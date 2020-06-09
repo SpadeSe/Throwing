@@ -3,7 +3,7 @@
 
 
 
-![folder arrange](https://github.com/SpadeSe/Throwing/job/raw/master/image/image-20200609090802678.png) 
+
 
 ![folder arrange](image/image-20200609090802678.png)
 
