@@ -1,17 +1,27 @@
-﻿using System.Collections;
+﻿/*
+ * 
+ * 放在骨骼上面来控制动画
+ * 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerAnimationControl : MonoBehaviour
 {
     public FirstPersonAIO movement;
     public Animator animControl;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
-    public bool targetTing = false;
+    public bool targeting = false;
     public bool throwing = false;
     public int attackType = 0;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        animControl = GetComponent<Animator>();
+    }
     void Start()
     {
        
@@ -36,17 +46,17 @@ public class PlayerAnimationControl : MonoBehaviour
         animControl.SetInteger("AttackType", attackType);
         if (Input.GetMouseButton(1))
         {
-            targetTing = true;
+            targeting = true;
             animControl.SetBool("Targeting", true);
         }
         else
         {
-            if (targetTing)
+            if (targeting)
             {
                 throwing = true;
                 animControl.SetBool("Throwing", true);
             }
-            targetTing = false;
+            targeting = false;
             animControl.SetBool("Targeting", false);
         }
     }

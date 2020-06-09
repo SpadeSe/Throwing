@@ -36,11 +36,11 @@ AvatarMask:
   - m_Path: mixamorig6:Hips/mixamorig6:RightUpLeg/mixamorig6:RightLeg/mixamorig6:RightFoot/mixamorig6:RightToeBase/mixamorig6:RightToe_End
     m_Weight: 0
   - m_Path: mixamorig6:Hips/mixamorig6:Spine
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2/mixamorig6:LeftShoulder
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2/mixamorig6:LeftShoulder/mixamorig6:LeftArm
