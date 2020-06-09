@@ -3,7 +3,9 @@
 
 
 
-![image-20200609090802678](image/image-20200609090802678.png) 
+![add image](https://github.com/SpadeSe/Throwing/raw/master/image/image-20200609090802678.png) 
+
+![folder arrange](image/image-20200609090802678.png)
 
 ```
 Animations 放动画相关的东西
