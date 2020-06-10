@@ -35,6 +35,11 @@ public class PlayerAnimationControl : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        
+    }
+    // Update is called once per frame
+    void Update()
+    {
         //state
         animControl.SetBool("Armed", playerControl.hasWeapon());
         //Move
@@ -42,7 +47,7 @@ public class PlayerAnimationControl : MonoBehaviour
         VerticalInput = Input.GetAxis("Vertical");
         animControl.SetFloat("Horizontal", HorizontalInput);
         animControl.SetFloat("Vertical", VerticalInput);
-        if(Mathf.Abs(HorizontalInput) > 0 || Mathf.Abs(VerticalInput) > 0)
+        if (Mathf.Abs(HorizontalInput) > 0 || Mathf.Abs(VerticalInput) > 0)
         {
             animControl.SetBool("Moving", true);
         }
@@ -52,27 +57,22 @@ public class PlayerAnimationControl : MonoBehaviour
         }
         animControl.SetFloat("MoveSpeed", movement.speed);
         //Throw
-        animControl.SetInteger("AttackType", attackType);
-        if (playerControl.hasWeapon() && Input.GetMouseButton(1))
-        {
-            targeting = true;
-            animControl.SetBool("Targeting", true);
-        }
-        else
-        {
-            if (targeting && playerControl.hasWeapon())
-            {
-                throwing = true;
-                animControl.SetBool("Throwing", true);
-            }
-            targeting = false;
-            animControl.SetBool("Targeting", false);
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        animControl.SetInteger("AttackType", playerControl.attackType);
+        animControl.SetBool("Throwing", playerControl.throwing);
+        animControl.SetBool("Targeting", playerControl.targeting);
+        //if (playerControl.hasWeapon() &&)
+        //{
+        //    targeting = true;
+        //}
+        //else
+        //{
+        //    if (targeting && playerControl.hasWeapon())
+        //    {
+        //        throwing = true;
+        //        animControl.SetBool("Throwing", true);
+        //    }
+        //    targeting = false;
+        //}
     }
 
     public void StartThrowing()
@@ -82,13 +82,14 @@ public class PlayerAnimationControl : MonoBehaviour
 
     public void EndThrowing()
     {
-        Debug.Log("throwing set false");
+        Debug.Log("<color=blue>throwing End</color>");
         animControl.SetBool("Throwing", false);
-        throwing = false;
+        playerControl.throwing = false;
     }
 
     public void ThrowOut()
     {
+        Debug.Log("<color=blue>throw out</color>");
         playerControl.Throw();
     }
 }
