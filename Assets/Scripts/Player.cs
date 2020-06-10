@@ -55,15 +55,14 @@ public class Player : MonoBehaviour
             Debug.DrawRay(playerCam.transform.position, 10 * playerCam.transform.forward, Color.blue);
             Debug.DrawRay(weapon.position, weapon.forward, Color.blue);
             Vector3 start = weapon.position;
-            Vector3 dir = playerCam.transform.forward;
-            float speed = weapon.GetComponent<Weapon>().StartSpeed;
+            Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
             float gravity = weapon.GetComponent<Weapon>().gravityScale;
             float time = 3;
             for (float i = 0.0f; i < time; i += Time.deltaTime)
             {
-                Vector3 end = start + dir * speed * Time.deltaTime;
+                Vector3 end = start + speed * Time.deltaTime;
                 Debug.DrawLine(start, end, Color.yellow);
-                dir += Physics.gravity * weapon.GetComponent<Weapon>().gravityScale * Time.deltaTime;
+                speed += Physics.gravity * weapon.GetComponent<Weapon>().gravityScale * Time.deltaTime;
                 start = end;
             }
         }
