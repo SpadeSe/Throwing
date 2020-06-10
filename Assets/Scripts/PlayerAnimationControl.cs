@@ -7,27 +7,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimationControl : MonoBehaviour
 {
     public FirstPersonAIO movement;
     public Animator animControl;
+    public Player playerControl;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
     public bool targeting = false;
     public bool throwing = false;
     public int attackType = 0;
+    
+
     // Start is called before the first frame update
     private void Awake()
     {
         animControl = GetComponent<Animator>();
+        playerControl = GetComponent<Player>();
     }
+
     void Start()
     {
        
     }
     private void FixedUpdate()
     {
+        //state
+        animControl.SetBool("Armed", playerControl.hasWeapon());
         //Move
         HorizontalInput = Input.GetAxis("Horizontal");
         VerticalInput = Input.GetAxis("Vertical");
@@ -44,14 +53,14 @@ public class PlayerAnimationControl : MonoBehaviour
         animControl.SetFloat("MoveSpeed", movement.speed);
         //Throw
         animControl.SetInteger("AttackType", attackType);
-        if (Input.GetMouseButton(1))
+        if (playerControl.hasWeapon() && Input.GetMouseButton(1))
         {
             targeting = true;
             animControl.SetBool("Targeting", true);
         }
         else
         {
-            if (targeting)
+            if (targeting && playerControl.hasWeapon())
             {
                 throwing = true;
                 animControl.SetBool("Throwing", true);
@@ -76,5 +85,10 @@ public class PlayerAnimationControl : MonoBehaviour
         Debug.Log("throwing set false");
         animControl.SetBool("Throwing", false);
         throwing = false;
+    }
+
+    public void ThrowOut()
+    {
+        playerControl.Throw();
     }
 }

@@ -6,17 +6,17 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TimmyUpperMask
-  m_Mask: 00000000010000000000000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+  m_Name: TimmyNoHead
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: Ch09
     m_Weight: 0
   - m_Path: mixamorig6:Hips
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:LeftUpLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:LeftUpLeg/mixamorig6:LeftLeg
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:LeftUpLeg/mixamorig6:LeftLeg/mixamorig6:LeftFoot
@@ -26,7 +26,7 @@ AvatarMask:
   - m_Path: mixamorig6:Hips/mixamorig6:LeftUpLeg/mixamorig6:LeftLeg/mixamorig6:LeftFoot/mixamorig6:LeftToeBase/mixamorig6:LeftToe_End
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:RightUpLeg
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:RightUpLeg/mixamorig6:RightLeg
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:RightUpLeg/mixamorig6:RightLeg/mixamorig6:RightFoot
@@ -36,11 +36,11 @@ AvatarMask:
   - m_Path: mixamorig6:Hips/mixamorig6:RightUpLeg/mixamorig6:RightLeg/mixamorig6:RightFoot/mixamorig6:RightToeBase/mixamorig6:RightToe_End
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2/mixamorig6:LeftShoulder
     m_Weight: 1
   - m_Path: mixamorig6:Hips/mixamorig6:Spine/mixamorig6:Spine1/mixamorig6:Spine2/mixamorig6:LeftShoulder/mixamorig6:LeftArm
