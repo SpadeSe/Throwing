@@ -3,7 +3,11 @@ guid: e65b0d171bb22bc47b23bfefc4bb0fb6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animControl: {instanceID: 0}
+  - highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
+  - highlightObj: {instanceID: 0}
+  - WeaponHead: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

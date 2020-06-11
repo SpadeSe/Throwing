@@ -2232,9 +2232,6 @@ MonoBehaviour:
   playerControl: {fileID: 0}
   HorizontalInput: 0
   VerticalInput: 0
-  targeting: 0
-  throwing: 0
-  attackType: 0
 --- !u!114 &1614504855609762092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2249,6 +2246,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSlot: {fileID: 7157459900735865981}
   playerCam: {fileID: 6983993711176959598}
+  targeting: 0
+  throwing: 0
+  attackType: 0
+  linePrefab: {fileID: 5449160340509838480, guid: 7cd3cc604ef7caa4ca26929c41c75960,
+    type: 3}
+  lineObj: {fileID: 0}
+  lineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  LinePredictTime: 5
+  LineSlice: 20
+  takeDis: 1
 --- !u!1 &5746466084566550271
 GameObject:
   m_ObjectHideFlags: 0

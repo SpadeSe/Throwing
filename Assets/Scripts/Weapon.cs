@@ -7,13 +7,19 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public Animator animControl;
-    public int type = 0;
     //public Rigidbody rigid;
+    [Header("High Light")]
+    public Material highlightMat;
+    public Color highlightColor = Color.yellow;
+    public GameObject highlightObj;
+    [Header("State")]
+    public int type = 0;
+    public bool taken = false;
+    public bool focused = false;
     [Header("Moving")]
     public bool moving = false;
     public float gravityScale = 0.05f;
     public float StartSpeed = 1.5f;
-
     Vector3 debugPos = Vector3.zero;
     [Header("RotateAdjust")]
     public GameObject WeaponHead;
@@ -26,7 +32,14 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //deal with focus
+        if (!taken)
+        {
+            DealWithFocus();
+        }
+        //animation
         animControl.SetBool("Throwing", moving);
+        //movement
         if (moving)
         {
             GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale);
@@ -87,5 +100,29 @@ public class Weapon : MonoBehaviour
             Vector3 axis = Vector3.Cross(dir, weaponHeadDir);
             Debug.DrawRay(transform.position, 3 * axis, Color.cyan);
         }
+    }
+
+    private void DealWithFocus()
+    {
+        
+        if (focused)
+        {
+            if(highlightMat != null && highlightObj == null)
+            {
+                highlightObj = Instantiate<GameObject>(gameObject, transform);
+                Renderer[] renderers = highlightObj.GetComponentsInChildren<Renderer>();
+                foreach(var renderer in renderers)
+                {
+                    //TODO: 这里可能有问题
+                    renderer.material = highlightMat;
+                    renderer.material.SetColor("g_vOutlineColor", highlightColor);
+                }
+            }
+        }
+        else
+        {
+            Destroy(highlightObj);
+            highlightObj = null;
+        } 
     }
 }
