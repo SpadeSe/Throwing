@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
 
     }
 
+    //用来更新瞄准时的参考线的绘制
     public void UpdateLine()
     {
         if (hasWeapon())
@@ -178,6 +179,7 @@ public class Player : MonoBehaviour
 
         }
     }
+    //用来禁用参考线
     public void DisableLine()
     {
         if(lineObj != null)
@@ -186,6 +188,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //拾取武器时的处理函数
     public void TakeWeapon()
     {
         if(focusingObj == null)
@@ -208,6 +211,7 @@ public class Player : MonoBehaviour
         focusingObj.GetComponent<Weapon>().taken = true;
     }
 
+    //投掷武器时的处理函数
     public void Throw()
     {
         if (!hasWeapon())
@@ -223,6 +227,7 @@ public class Player : MonoBehaviour
         copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
     }
 
+    //简单的用来判断是否拿了武器的函数
     public bool hasWeapon()
     {
         if(weaponSlot == null)

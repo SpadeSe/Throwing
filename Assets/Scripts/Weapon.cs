@@ -43,10 +43,12 @@ public class Weapon : MonoBehaviour
         //movement
         if (moving)
         {
+            //加重力
             GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale);
             //Debug.Log("<color=blue>Velocity * time:" + GetComponent<Rigidbody>().velocity * Time.deltaTime + "</color>");
             //Debug.Log("<color=blue>Delta Pos:" + (transform.position - debugPos) + "</color>");
             debugPos = transform.position;
+            //调整指向
             AdjustRotation(GetComponent<Rigidbody>().velocity);
         }
         else
@@ -56,6 +58,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    //武器被扔出前的各种处理
     public void ThrowOut(Vector3 dir)
     {
         if (moving)
@@ -69,6 +72,7 @@ public class Weapon : MonoBehaviour
         }
         Rigidbody rigid = GetComponent<Rigidbody>();
         rigid.isKinematic = false;
+        //给初速度
         rigid.AddForce(StartSpeed * dir, ForceMode.Impulse);
         //Debug.Log("<color=aqua>Force: " + (StartSpeed * dir) + "</color>");
         rigid.useGravity = false;
@@ -76,7 +80,7 @@ public class Weapon : MonoBehaviour
         moving = true;
         debugPos = transform.position;
     }
-
+    //调整武器的指向
     void AdjustRotation(Vector3 dir)
     {
         if(WeaponHead == null)
@@ -89,6 +93,7 @@ public class Weapon : MonoBehaviour
         transform.Rotate(axis, -Vector3.Angle(weaponHeadDir, dir), Space.World);
     }
 
+    //绘制debug线条
     public void DrawDebug(Vector3 dir)
     {
         Debug.DrawRay(transform.position, transform.forward, Color.red);
@@ -103,6 +108,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    //被盯着的时候的处理函数, 每帧会调用
     private void DealWithFocus()
     {
         

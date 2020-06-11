@@ -75,6 +75,7 @@ public class PlayerAnimationControl : MonoBehaviour
         //}
     }
 
+    #region 动画事件
     public void StartThrowing()
     {
 
@@ -92,4 +93,5 @@ public class PlayerAnimationControl : MonoBehaviour
         //Debug.Log("<color=blue>throw out</color>");
         playerControl.Throw();
     }
+    #endregion
 }
