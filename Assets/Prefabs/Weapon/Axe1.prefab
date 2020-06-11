@@ -64,7 +64,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animControl: {fileID: 0}
+  highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
+  highlightColor: {r: 0.990566, g: 0.849502, b: 0, a: 1}
+  highlightObj: {fileID: 0}
   type: 0
+  taken: 0
+  focused: 0
   moving: 0
   gravityScale: 0.1
   StartSpeed: 5
