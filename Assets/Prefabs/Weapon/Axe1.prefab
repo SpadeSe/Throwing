@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 54765787535451296}
   - component: {fileID: 114669656394451216}
   - component: {fileID: 95016798065245174}
+  - component: {fileID: 7779383631776766522}
   m_Layer: 0
   m_Name: Axe1
   m_TagString: Untagged
@@ -66,6 +67,7 @@ MonoBehaviour:
   animControl: {fileID: 0}
   highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
   highlightColor: {r: 0.990566, g: 0.849502, b: 0, a: 1}
+  highlightPrefab: {fileID: 2551075884852594987}
   highlightObj: {fileID: 0}
   type: 0
   taken: 0
@@ -93,6 +95,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &7779383631776766522
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550361064817628424}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 0}
+--- !u!64 &8662783416521364048
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551075884852594987}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300112, guid: 0674c08f5a480b74881afd54243c94ba, type: 3}
 --- !u!1 &3702624664921497124
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +222,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b238123dbc1aed34a8709fdddbb2cee1, type: 3}
+--- !u!1 &2551075884852594987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000420120444672, guid: b238123dbc1aed34a8709fdddbb2cee1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2550361064496952875}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2554715359959993849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4679477178514386, guid: b238123dbc1aed34a8709fdddbb2cee1,

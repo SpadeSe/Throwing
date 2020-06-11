@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [Header("Must Init")]
     public Transform weaponSlot;
     public Camera playerCam;
+    public FirstPersonAIO moveControl;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -25,7 +26,8 @@ public class Player : MonoBehaviour
     public int LineSlice = 20;
 
     [Header("Interact")]
-    public float takeDis = 1.0f;
+    public float interactDis = 1.0f;
+    public GameObject focusingObj;
     
     
     // Start is called before the first frame update
@@ -54,6 +56,13 @@ public class Player : MonoBehaviour
             targeting = false;
         }
         #endregion
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(focusingObj != null)
+            {
+                TakeWeapon();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -61,11 +70,33 @@ public class Player : MonoBehaviour
     {
         if (targeting)
         {
+            moveControl.autoCrosshair = false;
             UpdateLine();
         }
         else
         {
+            moveControl.autoCrosshair = true;
             DisableLine();
+
+            #region Detect Interactable
+            RaycastHit hit = new RaycastHit();
+            if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, interactDis))
+            {
+                if(hit.collider.transform.parent != null && hit.collider.transform.parent.GetComponent<Weapon>() != null)
+                {
+                    focusingObj = hit.collider.transform.parent.gameObject;
+                    focusingObj.GetComponent<Weapon>().focused = true;
+                }
+            }
+            else
+            {
+                if(focusingObj != null)
+                {
+                    focusingObj.GetComponent<Weapon>().focused = false;
+                    focusingObj = null;
+                }
+            }
+            #endregion
         }
 
     }
@@ -78,7 +109,7 @@ public class Player : MonoBehaviour
             #region DrawDebugLine
             if (Debug.unityLogger.logEnabled)
             {
-                Debug.DrawRay(playerCam.transform.position, 10 * playerCam.transform.forward, Color.blue);
+                Debug.DrawRay(playerCam.transform.position, interactDis * playerCam.transform.forward, Color.blue);
                 weapon.GetComponent<Weapon>().DrawDebug(playerCam.transform.forward);
                 Vector3 start = weapon.position;
                 Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
@@ -140,6 +171,27 @@ public class Player : MonoBehaviour
         {
             lineObj.SetActive(false);
         }
+    }
+
+    public void TakeWeapon()
+    {
+        if(focusingObj == null)
+        {
+            return;
+        }
+        if (hasWeapon())
+        {
+            Transform curWeapon = weaponSlot.transform.GetChild(0);
+            curWeapon.parent = null;
+            curWeapon.position = focusingObj.transform.position;
+            curWeapon.rotation = focusingObj.transform.rotation;
+            curWeapon.localScale = focusingObj.transform.localScale;
+        }
+        focusingObj.transform.parent = weaponSlot;
+        focusingObj.transform.localPosition = Vector3.zero;
+        focusingObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        focusingObj.transform.localScale = Vector3.one;
+        focusingObj.GetComponent<Weapon>().focused = false;
     }
 
     public void Throw()

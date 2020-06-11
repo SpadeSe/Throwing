@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     [Header("High Light")]
     public Material highlightMat;
     public Color highlightColor = Color.yellow;
+    public GameObject highlightPrefab;
     public GameObject highlightObj;
     [Header("State")]
     public int type = 0;
@@ -38,7 +39,10 @@ public class Weapon : MonoBehaviour
             DealWithFocus();
         }
         //animation
-        animControl.SetBool("Throwing", moving);
+        if(animControl.runtimeAnimatorController != null)
+        {
+            animControl.SetBool("Throwing", moving);
+        }
         //movement
         if (moving)
         {
@@ -109,7 +113,12 @@ public class Weapon : MonoBehaviour
         {
             if(highlightMat != null && highlightObj == null)
             {
-                highlightObj = Instantiate<GameObject>(gameObject, transform);
+                highlightObj = Instantiate<GameObject>(highlightPrefab, transform);
+                Collider[] colliders = highlightObj.GetComponentsInChildren<Collider>();
+                foreach(var collider in colliders)
+                {
+                    collider.enabled = false;
+                }
                 Renderer[] renderers = highlightObj.GetComponentsInChildren<Renderer>();
                 foreach(var renderer in renderers)
                 {
