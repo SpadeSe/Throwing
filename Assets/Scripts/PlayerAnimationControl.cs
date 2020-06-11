@@ -17,9 +17,9 @@ public class PlayerAnimationControl : MonoBehaviour
     public Player playerControl;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
-    public bool targeting = false;
-    public bool throwing = false;
-    public int attackType = 0;
+    //public bool targeting = false;
+    //public bool throwing = false;
+    //public int attackType = 0;
     
 
     // Start is called before the first frame update
@@ -82,14 +82,14 @@ public class PlayerAnimationControl : MonoBehaviour
 
     public void EndThrowing()
     {
-        Debug.Log("<color=blue>throwing End</color>");
+        //Debug.Log("<color=blue>throwing End</color>");
         animControl.SetBool("Throwing", false);
         playerControl.throwing = false;
     }
 
     public void ThrowOut()
     {
-        Debug.Log("<color=blue>throw out</color>");
+        //Debug.Log("<color=blue>throw out</color>");
         playerControl.Throw();
     }
 }

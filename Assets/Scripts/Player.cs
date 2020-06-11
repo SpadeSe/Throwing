@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (hasWeapon())
+        {
+            attackType = weaponSlot.transform.GetChild(0).GetComponent<Weapon>().type;
+        }
         if(hasWeapon() && Input.GetMouseButton(1))
         {
             targeting = true;
@@ -53,7 +57,7 @@ public class Player : MonoBehaviour
         {
             Transform weapon = weaponSlot.GetChild(0);
             Debug.DrawRay(playerCam.transform.position, 10 * playerCam.transform.forward, Color.blue);
-            Debug.DrawRay(weapon.position, weapon.forward, Color.blue);
+            weapon.GetComponent<Weapon>().DrawDebug(playerCam.transform.forward);
             Vector3 start = weapon.position;
             Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
             float gravity = weapon.GetComponent<Weapon>().gravityScale;
