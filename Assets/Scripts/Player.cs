@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     public Transform weaponSlot;
     public Camera playerCam;
     public FirstPersonAIO moveControl;
+    [Header("UI")]
     public GameObject crosshair;
+    public GameObject hintUI;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -89,6 +91,10 @@ public class Player : MonoBehaviour
                 {
                     focusingObj = hit.collider.transform.parent.gameObject;
                     focusingObj.GetComponent<Weapon>().focused = true;
+                    if(hintUI != null)
+                    {
+                        hintUI.SetActive(true);
+                    }
                 }
             }
             else
@@ -97,6 +103,10 @@ public class Player : MonoBehaviour
                 {
                     focusingObj.GetComponent<Weapon>().focused = false;
                     focusingObj = null;
+                }
+                if (hintUI != null)
+                {
+                    hintUI.SetActive(false);
                 }
             }
             #endregion
