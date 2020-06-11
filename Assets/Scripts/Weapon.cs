@@ -34,10 +34,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         //deal with focus
-        if (!taken)
-        {
-            DealWithFocus();
-        }
+        DealWithFocus();
         //animation
         if(animControl.runtimeAnimatorController != null)
         {
@@ -84,7 +81,7 @@ public class Weapon : MonoBehaviour
     {
         if(WeaponHead == null)
         {
-            Debug.LogError("Not Spear");
+            Debug.LogError("No WeaponHead");
             return;
         }
         Vector3 weaponHeadDir = WeaponHead.transform.position - transform.position;
@@ -109,7 +106,7 @@ public class Weapon : MonoBehaviour
     private void DealWithFocus()
     {
         
-        if (focused)
+        if (focused && !taken)
         {
             if(highlightMat != null && highlightObj == null)
             {

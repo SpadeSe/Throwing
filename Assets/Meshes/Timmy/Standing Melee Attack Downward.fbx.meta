@@ -169,7 +169,7 @@ ModelImporter:
       name: Standing Melee Attack Downward
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 36
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public Transform weaponSlot;
     public Camera playerCam;
     public FirstPersonAIO moveControl;
+    public GameObject crosshair;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -68,14 +69,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(crosshair != null)
+        {
+            crosshair.SetActive(!targeting);
+        }
         if (targeting)
         {
-            moveControl.autoCrosshair = false;
             UpdateLine();
         }
         else
         {
-            moveControl.autoCrosshair = true;
             DisableLine();
 
             #region Detect Interactable
@@ -186,12 +189,13 @@ public class Player : MonoBehaviour
             curWeapon.position = focusingObj.transform.position;
             curWeapon.rotation = focusingObj.transform.rotation;
             curWeapon.localScale = focusingObj.transform.localScale;
+            curWeapon.GetComponent<Weapon>().taken = false;
         }
         focusingObj.transform.parent = weaponSlot;
         focusingObj.transform.localPosition = Vector3.zero;
         focusingObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
         focusingObj.transform.localScale = Vector3.one;
-        focusingObj.GetComponent<Weapon>().focused = false;
+        focusingObj.GetComponent<Weapon>().taken = true;
     }
 
     public void Throw()
