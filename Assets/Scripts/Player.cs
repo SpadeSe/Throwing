@@ -90,10 +90,11 @@ public class Player : MonoBehaviour
                 if(hit.collider.transform.parent != null && hit.collider.transform.parent.GetComponent<Weapon>() != null)
                 {
                     focusingObj = hit.collider.transform.parent.gameObject;
-                    focusingObj.GetComponent<Weapon>().focused = true;
+                    Weapon weapon = focusingObj.GetComponent<Weapon>();
+                    weapon.focused = true;
                     if(hintUI != null)
                     {
-                        hintUI.SetActive(true);
+                        hintUI.SetActive(weapon.CanTake());
                     }
                 }
             }
@@ -198,17 +199,9 @@ public class Player : MonoBehaviour
         if (hasWeapon())
         {
             Transform curWeapon = weaponSlot.transform.GetChild(0);
-            curWeapon.parent = null;
-            curWeapon.position = focusingObj.transform.position;
-            curWeapon.rotation = focusingObj.transform.rotation;
-            curWeapon.localScale = focusingObj.transform.localScale;
-            curWeapon.GetComponent<Weapon>().taken = false;
+            curWeapon.GetComponent<Weapon>().Drop(focusingObj.transform);
         }
-        focusingObj.transform.parent = weaponSlot;
-        focusingObj.transform.localPosition = Vector3.zero;
-        focusingObj.transform.localRotation = Quaternion.Euler(Vector3.zero);
-        focusingObj.transform.localScale = Vector3.one;
-        focusingObj.GetComponent<Weapon>().taken = true;
+        focusingObj.GetComponent<Weapon>().Taken(weaponSlot);
     }
 
     //投掷武器时的处理函数

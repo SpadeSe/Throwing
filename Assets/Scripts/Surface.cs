@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Surface : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,5 +15,40 @@ public class Surface : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.transform.parent == null)
+        //{
+        //    return;
+        //}
+        Debug.Log(collision.gameObject.name);
+        Weapon weapon = collision.transform.GetComponent<Weapon>();
+        if (weapon != null)
+        {
+            Debug.Log(weapon.gameObject.name);
+            if (!weapon.isBomb)
+            {
+                weapon.ForceStop();
+                weapon.GetComponentInChildren<Collider>().isTrigger = true;
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Weapon weapon = collision.transform.GetComponent<Weapon>();
+        if(weapon != null)
+        {
+            if (weapon.isBomb)
+            {
+                weapon.BombBounce(collision);
+            }
+        }
     }
 }

@@ -17,6 +17,7 @@ public class PlayerAnimationControl : MonoBehaviour
     public Player playerControl;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
+    public float turnInput = 0.0f;
     //public bool targeting = false;
     //public bool throwing = false;
     //public int attackType = 0;
