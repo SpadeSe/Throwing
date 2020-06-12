@@ -8,6 +8,7 @@ public delegate void DeadEvent();
 
 public class Player : MonoBehaviour
 {
+    public bool isStaticTarget = false;
     [Header("Must Init")]
     public Transform weaponSlot;
     public Camera playerCam;
@@ -41,6 +42,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isStaticTarget)
+        {
+            return;
+        }
         #region setState
         if (hasWeapon())
         {
@@ -71,6 +76,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isStaticTarget)
+        {
+            return;
+        }
         if(crosshair != null)
         {
             crosshair.SetActive(!targeting);
@@ -89,6 +98,10 @@ public class Player : MonoBehaviour
             {
                 if(hit.collider.transform.parent != null && hit.collider.transform.parent.GetComponent<Weapon>() != null)
                 {
+                    if (focusingObj != null)
+                    {
+                        focusingObj.GetComponent<Weapon>().focused = false;
+                    }
                     focusingObj = hit.collider.transform.parent.gameObject;
                     Weapon weapon = focusingObj.GetComponent<Weapon>();
                     weapon.focused = true;

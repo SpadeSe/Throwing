@@ -19,6 +19,7 @@ public class Weapon : MonoBehaviour
     public bool taken = false;
     public bool focused = false;
     [Header("Moving")]
+    public Collider WeaponCollider;
     public bool moving = false;
     public float gravityScale = 0.05f;
     public float StartSpeed = 1.5f;
@@ -27,8 +28,10 @@ public class Weapon : MonoBehaviour
     public GameObject WeaponHead;
     [Header("Bomb")]
     public bool isBomb = false;
+    public SphereCollider burstRange;
+    public List<Player> burstAffectPlayers;
     public GameObject burstHintObj;
-    public GameObject burstParticle;
+    public GameObject burstParticlePrefab;
     public Coroutine burstRoutine;
     public float burstCountDown = 3.0f;
     public int maxBounce = 2;
@@ -37,6 +40,15 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         animControl = GetComponent<Animator>();
+
+        //ForceStop();
+        if (isBomb)
+        {
+            if(burstRange != null)
+            {
+                burstRange.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -95,7 +107,7 @@ public class Weapon : MonoBehaviour
         rigid.useGravity = false;
         debugPos = transform.position;
         //转为碰撞体
-        GetComponentInChildren<Collider>().isTrigger = false;
+        WeaponCollider.isTrigger = false;
         //改变状态
         taken = false;
         moving = true;
@@ -238,6 +250,11 @@ public class Weapon : MonoBehaviour
             {
                 burstRoutine = StartCoroutine(burstDelay());
             }
+            if(burstRange != null)
+            {
+                burstAffectPlayers.Clear();
+                burstRange.enabled = true;
+            }
         }
     }
 
@@ -255,21 +272,60 @@ public class Weapon : MonoBehaviour
             burstHintObj.SetActive(false);
         }
         //爆炸粒子
-        if(burstParticle != null)
+        if(burstParticlePrefab != null)
         {
-            GameObject particle = Instantiate<GameObject>(burstParticle);
+            GameObject particle = Instantiate<GameObject>(burstParticlePrefab);
             particle.GetComponent<ParticleSystem>().Play();
             Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
         }
         //TODO: 造成伤害, 处理力, 各种各种
-
+        foreach(var player in burstAffectPlayers)
+        {
+            Debug.Log(player.gameObject.name + "is hurt by burst");
+        }
         //reset状态
         bounceCount = maxBounce;
         burstRoutine = null;
+        if(burstRange != null)
+        {
+            burstRange.enabled = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //只处理爆炸的触发器
+        if(burstRange == null || !burstRange.enabled)
+        {
+            return;
+        }
+        //Debug.Log(other.gameObject.name);
+        if (other.GetComponentInChildren<Player>() != null)
+        {
+            if (burstAffectPlayers.Find(
+                delegate(Player player){ return player == other.GetComponentInChildren<Player>(); }) 
+                == null)
+            {
+                burstAffectPlayers.Add(other.GetComponentInChildren<Player>());
+            }
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        //只处理爆炸的触发器
+        if (burstRange == null || !burstRange.enabled)
+        {
+            return;
+        }
+        if (other.GetComponentInChildren<Player>() != null)
+        {
+            burstAffectPlayers.Remove(other.GetComponentInChildren<Player>());
+        }
     }
 }

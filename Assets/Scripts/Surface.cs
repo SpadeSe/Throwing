@@ -31,7 +31,9 @@ public class Surface : MonoBehaviour
             if (!weapon.isBomb)
             {
                 weapon.ForceStop();
-                weapon.GetComponentInChildren<Collider>().isTrigger = true;
+                weapon.WeaponCollider.isTrigger = true;
+                //TODO: 调整武器位置和角度
+
             }
             else
             {
