@@ -45,7 +45,7 @@ Animator:
   m_GameObject: {fileID: 3979498684251946647}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5c5cac10d8d8f124b98f359f9476f5d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -85,14 +85,24 @@ MonoBehaviour:
   animControl: {fileID: 0}
   highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
   highlightColor: {r: 0, g: 1, b: 0.15359592, a: 1}
+  highlightPrefab: {fileID: 5629586290586774843}
   highlightObj: {fileID: 0}
+  useCount: -1
   type: 1
   taken: 0
   focused: 0
+  WeaponCollider: {fileID: 8817749022834106115}
   moving: 0
   gravityScale: 0.1
   StartSpeed: 6
   WeaponHead: {fileID: 4140298138680099230}
+  isBomb: 0
+  burstRange: {fileID: 0}
+  burstAffectPlayers: []
+  burstHintObj: {fileID: 0}
+  burstParticlePrefab: {fileID: 0}
+  burstCountDown: 3
+  maxBounce: 2
 --- !u!1 &4140298138680099230
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +133,20 @@ Transform:
   m_Father: {fileID: 8054002268308908471}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &8817749022834106115
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629586290586774843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300080, guid: 0674c08f5a480b74881afd54243c94ba, type: 3}
 --- !u!1001 &5631307958139623061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,6 +216,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 212beda10a6dcbc47be50b5e25ce9ee8, type: 3}
+--- !u!1 &5629586290586774843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1726400950926254, guid: 212beda10a6dcbc47be50b5e25ce9ee8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5631307958139623061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5631908463712507393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4189311547703444, guid: 212beda10a6dcbc47be50b5e25ce9ee8,

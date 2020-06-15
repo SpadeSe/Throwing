@@ -8,9 +8,14 @@ public delegate void DeadEvent();
 
 public class Player : MonoBehaviour
 {
+    public bool isStaticTarget = false;
     [Header("Must Init")]
     public Transform weaponSlot;
     public Camera playerCam;
+    public FirstPersonAIO moveControl;
+    [Header("UI")]
+    public GameObject crosshair;
+    public GameObject hintUI;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -25,7 +30,8 @@ public class Player : MonoBehaviour
     public int LineSlice = 20;
 
     [Header("Interact")]
-    public float takeDis = 1.0f;
+    public float interactDis = 1.0f;
+    public GameObject focusingObj;
     
     
     // Start is called before the first frame update
@@ -36,6 +42,10 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isStaticTarget)
+        {
+            return;
+        }
         #region setState
         if (hasWeapon())
         {
@@ -54,11 +64,26 @@ public class Player : MonoBehaviour
             targeting = false;
         }
         #endregion
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(focusingObj != null)
+            {
+                TakeWeapon();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isStaticTarget)
+        {
+            return;
+        }
+        if(crosshair != null)
+        {
+            crosshair.SetActive(!targeting);
+        }
         if (targeting)
         {
             UpdateLine();
@@ -66,10 +91,44 @@ public class Player : MonoBehaviour
         else
         {
             DisableLine();
+
+            #region Detect Interactable
+            RaycastHit hit = new RaycastHit();
+            if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, interactDis))
+            {
+                if(hit.collider.transform.parent != null && hit.collider.transform.parent.GetComponent<Weapon>() != null)
+                {
+                    if (focusingObj != null)
+                    {
+                        focusingObj.GetComponent<Weapon>().focused = false;
+                    }
+                    focusingObj = hit.collider.transform.parent.gameObject;
+                    Weapon weapon = focusingObj.GetComponent<Weapon>();
+                    weapon.focused = true;
+                    if(hintUI != null)
+                    {
+                        hintUI.SetActive(weapon.CanTake());
+                    }
+                }
+            }
+            else
+            {
+                if(focusingObj != null)
+                {
+                    focusingObj.GetComponent<Weapon>().focused = false;
+                    focusingObj = null;
+                }
+                if (hintUI != null)
+                {
+                    hintUI.SetActive(false);
+                }
+            }
+            #endregion
         }
 
     }
 
+    //用来更新瞄准时的参考线的绘制
     public void UpdateLine()
     {
         if (hasWeapon())
@@ -78,7 +137,7 @@ public class Player : MonoBehaviour
             #region DrawDebugLine
             if (Debug.unityLogger.logEnabled)
             {
-                Debug.DrawRay(playerCam.transform.position, 10 * playerCam.transform.forward, Color.blue);
+                Debug.DrawRay(playerCam.transform.position, interactDis * playerCam.transform.forward, Color.blue);
                 weapon.GetComponent<Weapon>().DrawDebug(playerCam.transform.forward);
                 Vector3 start = weapon.position;
                 Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
@@ -134,6 +193,7 @@ public class Player : MonoBehaviour
 
         }
     }
+    //用来禁用参考线
     public void DisableLine()
     {
         if(lineObj != null)
@@ -142,6 +202,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    //拾取武器时的处理函数
+    public void TakeWeapon()
+    {
+        if(focusingObj == null)
+        {
+            return;
+        }
+        if (hasWeapon())
+        {
+            Transform curWeapon = weaponSlot.transform.GetChild(0);
+            curWeapon.GetComponent<Weapon>().Drop(focusingObj.transform);
+        }
+        focusingObj.GetComponent<Weapon>().Taken(weaponSlot);
+    }
+
+    //投掷武器时的处理函数
     public void Throw()
     {
         if (!hasWeapon())
@@ -157,6 +233,7 @@ public class Player : MonoBehaviour
         copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
     }
 
+    //简单的用来判断是否拿了武器的函数
     public bool hasWeapon()
     {
         if(weaponSlot == null)

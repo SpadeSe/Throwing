@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 06a289fbe51fcda4e8ff6454c90845b4
+guid: 412ad922e98d9a44387cc05f1420c85e
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -65,10 +65,10 @@ ModelImporter:
     100118: mixamorig6:Spine
     100120: mixamorig6:Spine1
     100122: mixamorig6:Spine2
-    100124: RightHandThumb2
-    100126: RightHandThumb3
-    100128: RightHandThumb4
-    100130: //RootNode
+    100124: //RootNode
+    100126: RightHandThumb2
+    100128: RightHandThumb3
+    100130: RightHandThumb4
     400000: LeftHandThumb2
     400002: LeftHandThumb3
     400004: LeftHandThumb4
@@ -131,11 +131,11 @@ ModelImporter:
     400118: mixamorig6:Spine
     400120: mixamorig6:Spine1
     400122: mixamorig6:Spine2
-    400124: RightHandThumb2
-    400126: RightHandThumb3
-    400128: RightHandThumb4
-    400130: //RootNode
-    7400000: Standing Melee Attack Downward
+    400124: //RootNode
+    400126: RightHandThumb2
+    400128: RightHandThumb3
+    400130: RightHandThumb4
+    7400000: Right Turn
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -166,21 +166,21 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Melee Attack Downward
+      name: Right Turn
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 36
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -188,23 +188,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000000000000000000000000000100000001000000010000000100000000000000000000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: ThrowOut
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 0581320bb7e404e489034df739b00b07,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 1
-        functionName: EndThrowing
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 0581320bb7e404e489034df739b00b07,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1

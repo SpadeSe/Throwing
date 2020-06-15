@@ -17,6 +17,7 @@ public class PlayerAnimationControl : MonoBehaviour
     public Player playerControl;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
+    public float turnInput = 0.0f;
     //public bool targeting = false;
     //public bool throwing = false;
     //public int attackType = 0;
@@ -75,6 +76,7 @@ public class PlayerAnimationControl : MonoBehaviour
         //}
     }
 
+    #region 动画事件
     public void StartThrowing()
     {
 
@@ -92,4 +94,5 @@ public class PlayerAnimationControl : MonoBehaviour
         //Debug.Log("<color=blue>throw out</color>");
         playerControl.Throw();
     }
+    #endregion
 }
