@@ -110,8 +110,8 @@ public class FirstPersonAIO : MonoBehaviour {
     public float jumpPower = 5f;
     public bool canJump = true;
     public bool canHoldJump;
-    bool jumpInput;
-    bool didJump;
+    public bool jumpInput;
+    public bool didJump;
     public bool useStamina = true;
     public float staminaDepletionSpeed = 5f;
     public float staminaLevel = 50;
@@ -156,13 +156,13 @@ public class FirstPersonAIO : MonoBehaviour {
         
     }
     public AdvancedSettings advanced = new AdvancedSettings();
-    private CapsuleCollider capsule;
+    public CapsuleCollider capsule;
     public bool IsGrounded { get; private set; }
     Vector2 inputXY;
     public bool isCrouching;
-    float yVelocity;
-    float checkedSlope;
-    bool isSprinting = false;
+    public float yVelocity;
+    public float checkedSlope;
+    public bool isSprinting = false;
 
     public Rigidbody fps_Rigidbody;
 

@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     [Header("Data")]
     public int maxHp = 3;
     public int curHp = 1;
+    public float normalSpeed = 2.0f;
+    public float runSpeed = 4.0f;
+    public float speedRate = 1.0f;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -36,6 +39,8 @@ public class Player : MonoBehaviour
     [Header("Interact")]
     public float interactDis = 1.0f;
     public GameObject focusingObj;
+
+    Coroutine speedUpState;
     
     
     // Start is called before the first frame update
@@ -54,6 +59,10 @@ public class Player : MonoBehaviour
             return;
         }
         #region setState
+        moveControl.walkSpeed = normalSpeed * speedRate;
+        moveControl.walkSpeedInternal = moveControl.walkSpeed;
+        moveControl.sprintSpeed = runSpeed * speedRate;
+        moveControl.walkSpeedInternal = moveControl.sprintSpeed;
         if (hasWeapon())
         {
             attackType = weaponSlot.transform.GetChild(0).GetComponent<Weapon>().type;
@@ -258,5 +267,21 @@ public class Player : MonoBehaviour
     public void ReceiveHeal(int healPoint = 0)
     {
         Debug.Log(gameObject.name + "ReceiveHeal: " + healPoint);
+    }
+
+    public void MakeSpeedUp(float upRate = 0.0f, float duration = 3.0f)
+    {
+        if(speedUpState != null)
+        {
+            StopCoroutine(speedUpState);
+        }
+        speedUpState = StartCoroutine(speedUp(upRate, duration));
+    }
+
+    IEnumerator speedUp(float upRate, float duration)
+    {
+        speedRate = 1.0f + upRate;
+        yield return new WaitForSeconds(duration);
+        speedRate = 1.0f;
     }
 }

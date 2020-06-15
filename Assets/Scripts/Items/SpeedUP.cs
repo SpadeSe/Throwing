@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : ItemBase
+public class SpeedUP : ItemBase
 {
-    int healPoint = 3;
+    public float upRate = 1.0f;
+    public float duration = 5.0f;
     // Start is called before the first frame update
-    
 
     // Update is called once per frame
     void Update()
@@ -19,7 +19,7 @@ public class Heal : ItemBase
         base.TakeEffect(weapon);
         if(weapon.owner != null)
         {
-            weapon.owner.ReceiveHeal(healPoint);
+            weapon.owner.MakeSpeedUp(upRate, duration);
         }
     }
 }

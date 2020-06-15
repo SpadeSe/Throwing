@@ -56,7 +56,7 @@ public class PlayerAnimationControl : MonoBehaviour
         {
             animControl.SetBool("Moving", false);
         }
-        animControl.SetFloat("MoveSpeed", movement.speed);
+        animControl.SetFloat("MoveSpeed", movement.isSprinting ? movement.sprintSpeed / movement.walkSpeed : 1.0f);
         //Throw
         animControl.SetInteger("AttackType", playerControl.attackType);
         animControl.SetBool("Throwing", playerControl.throwing);
