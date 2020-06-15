@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public GameObject crosshair;
     public GameObject hintUI;
 
+    [Header("Data")]
+    public int maxHp = 3;
+    public int curHp = 1;
+
     [Header("Throw")]
     public bool targeting = false;
     public bool throwing = false;
@@ -38,6 +42,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         Debug.unityLogger.logEnabled = true;
+
+        //init
+        curHp = maxHp;
     }
 
     private void FixedUpdate()
@@ -226,11 +233,11 @@ public class Player : MonoBehaviour
             return;
         }
         Transform weapon = weaponSlot.GetChild(0);
-        //weaponSlot.DetachChildren();
-        //weapon.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
-        GameObject copy = GameObject.Instantiate<GameObject>(weapon.gameObject, weaponSlot.transform);
-        copy.transform.parent = null;
-        copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
+        weaponSlot.DetachChildren();
+        weapon.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
+        //GameObject copy = GameObject.Instantiate<GameObject>(weapon.gameObject, weaponSlot.transform);
+        //copy.transform.parent = null;
+        //copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
     }
 
     //简单的用来判断是否拿了武器的函数

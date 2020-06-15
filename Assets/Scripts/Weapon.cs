@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     public GameObject highlightPrefab;
     public GameObject highlightObj;
     [Header("State")]
+    public int damage = 2;
     public int useCount = -1;//临时武器的使用计数, 如果小于0表示非临时武器
     public int type = 0;
     public bool taken = false;
@@ -41,9 +42,11 @@ public class Weapon : MonoBehaviour
     {
         animControl = GetComponent<Animator>();
 
+        AdjustPosAndRotToSurface();
         //ForceStop();
         if (isBomb)
         {
+            bounceCount = maxBounce;
             if(burstRange != null)
             {
                 burstRange.enabled = false;
@@ -207,11 +210,29 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Drop(Transform target)
+    public void Drop(Transform target=null)
     {
+        if(target == null)
+        {
+            //TODO: 直接丢弃时的办法
+            return;
+        }
+        //RaycastHit hit = new RaycastHit();
+        //Physics.Raycast(target.position, new Vector3(0, -1, 0), out hit, 100.0f);
+        //Vector3 distance = Vector3.zero;
+        //if (target.GetComponent<Weapon>().WeaponHead != null && hit.collider.GetComponent<Surface>())
+        //{
+        //    distance = hit.point - target.position;
+        //}
         //TODO: 修改这里的位置变化方式
         transform.parent = null;
-        transform.position = target.transform.position;
+        Vector3 newPos = target.transform.position;
+        if(WeaponHead != null && target.GetComponent<Weapon>().WeaponHead != null)
+        {
+            newPos.y += (transform.position.y - WeaponHead.transform.position.y) -
+                (target.position.y - target.GetComponent<Weapon>().WeaponHead.transform.position.y);
+        }
+        transform.position = newPos;
         transform.rotation = target.transform.rotation;
         transform.localScale = target.transform.localScale;
         taken = false;
@@ -244,6 +265,7 @@ public class Weapon : MonoBehaviour
             {
                 burstHintObj.SetActive(true);
                 //TODO: adjust rotation
+                AdjustPosAndRotToSurface(collision);
             }
             ForceStop();
             if (burstRoutine == null)//撞到停下再炸(否则hintobj的显示就有点微妙
@@ -294,7 +316,7 @@ public class Weapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.gameObject.name);
+        Debug.Log(collision.gameObject.name);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -326,6 +348,40 @@ public class Weapon : MonoBehaviour
         if (other.GetComponentInChildren<Player>() != null)
         {
             burstAffectPlayers.Remove(other.GetComponentInChildren<Player>());
+        }
+    }
+
+    //用来在砸地和开始的时候调整位置到Surface上
+    public void AdjustPosAndRotToSurface(Collision collision = null)
+    {
+        if (taken)
+        {
+            return;
+        }
+        //TODO
+        if(collision == null)
+        {
+            RaycastHit hit = new RaycastHit();
+            Vector3 dir = WeaponHead == null ? new Vector3(0, -1, 0) : (WeaponHead.transform.position - transform.position).normalized;
+            if(Physics.Raycast(transform.position, dir, out hit, 100))
+            {
+                Vector3 posDiffer = hit.point - transform.position + 
+                    (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
+                Debug.Log(hit.point);
+                Debug.Log(gameObject.name + " " + hit.collider.gameObject.name + (hit.point - WeaponHead.transform.position));
+                transform.Translate(posDiffer, Space.World);
+            }
+        }
+        if (isBomb)//如果是炸弹的话那就躺平
+        {
+            ContactPoint cp = collision.GetContact(0);
+            AdjustRotation(-cp.normal);
+        }
+        else//否则要沿原来方向插在surface上面
+        {
+            Vector3 posDiffer = collision.GetContact(0).point - transform.position +
+                (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
+            transform.Translate(posDiffer, Space.World);
         }
     }
 }
