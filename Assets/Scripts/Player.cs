@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
             Transform curWeapon = weaponSlot.transform.GetChild(0);
             curWeapon.GetComponent<Weapon>().Drop(focusingObj.transform);
         }
-        focusingObj.GetComponent<Weapon>().Taken(weaponSlot);
+        focusingObj.GetComponent<Weapon>().Taken(this);
     }
 
     //投掷武器时的处理函数
@@ -248,5 +248,15 @@ public class Player : MonoBehaviour
             return false;
         }
         return weaponSlot.childCount > 0;
+    }
+
+    public void ReceiveDamage(int dam = 0)
+    {
+        Debug.Log(gameObject.name + "ReceiveDamage: " + dam);
+    }
+
+    public void ReceiveHeal(int healPoint = 0)
+    {
+        Debug.Log(gameObject.name + "ReceiveHeal: " + healPoint);
     }
 }

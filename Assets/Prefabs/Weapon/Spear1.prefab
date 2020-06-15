@@ -87,14 +87,15 @@ MonoBehaviour:
   highlightColor: {r: 0, g: 1, b: 0.15359592, a: 1}
   highlightPrefab: {fileID: 5629586290586774843}
   highlightObj: {fileID: 0}
+  damage: 2
   useCount: -1
   type: 1
   taken: 0
   focused: 0
   WeaponCollider: {fileID: 8817749022834106115}
   moving: 0
-  gravityScale: 0.1
-  StartSpeed: 6
+  gravityScale: 0.5
+  StartSpeed: 20
   WeaponHead: {fileID: 4140298138680099230}
   isBomb: 0
   burstRange: {fileID: 0}

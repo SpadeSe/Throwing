@@ -68,14 +68,15 @@ MonoBehaviour:
   highlightColor: {r: 0.990566, g: 0.849502, b: 0, a: 1}
   highlightPrefab: {fileID: 2551075884852594987}
   highlightObj: {fileID: 0}
+  damage: 2
   useCount: -1
   type: 0
   taken: 0
   focused: 0
   WeaponCollider: {fileID: 3055616817207582078}
   moving: 0
-  gravityScale: 0.1
-  StartSpeed: 5
+  gravityScale: 0.8
+  StartSpeed: 18
   WeaponHead: {fileID: 3702624664921497124}
   isBomb: 0
   burstRange: {fileID: 0}
@@ -94,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 2550361064817628424}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0108e138fc6b5f48b6f5f5d07201040, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5c5cac10d8d8f124b98f359f9476f5d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -15,7 +15,32 @@ ModelImporter:
     2300000: "\u4EBA082ok"
     3300000: "\u4EBA082ok"
     4300000: "\u4EBA082ok"
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2'
+    second: {fileID: 2100000, guid: 0ccd75dda4b3fba4d994d80c7481a4c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mtl_edging01
+    second: {fileID: 2100000, guid: 30cf5c601e7d7dc4f99d505170c76ad0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mtl_gray04
+    second: {fileID: 2100000, guid: 88511f667a17f8044b80f98ab4a804b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mtl_sole
+    second: {fileID: 2100000, guid: f97ba66e593138a4bbf5cd2b81ca96e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mtl_spshoe01
+    second: {fileID: 2100000, guid: c805b4152160bd443a78b5678856b39c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

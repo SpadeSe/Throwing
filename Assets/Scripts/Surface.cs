@@ -23,17 +23,18 @@ public class Surface : MonoBehaviour
         //{
         //    return;
         //}
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
         Weapon weapon = collision.transform.GetComponent<Weapon>();
         if (weapon != null)
         {
-            Debug.Log(weapon.gameObject.name);
+            //Debug.Log(weapon.gameObject.name);
             if (!weapon.isBomb)
             {
                 //TODO: 调整武器位置和角度
                 weapon.AdjustPosAndRotToSurface(collision);
                 weapon.ForceStop();
                 weapon.WeaponCollider.isTrigger = true;
+                weapon.owner = null;
             }
             else
             {

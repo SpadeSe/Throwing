@@ -19,14 +19,17 @@ public class Weapon : MonoBehaviour
     public int type = 0;
     public bool taken = false;
     public bool focused = false;
+    public Player owner = null;
     [Header("Moving")]
     public Collider WeaponCollider;
     public bool moving = false;
     public float gravityScale = 0.05f;
     public float StartSpeed = 1.5f;
     Vector3 debugPos = Vector3.zero;
-    [Header("RotateAdjust")]
+    [Header("TransAdjust")]
     public GameObject WeaponHead;
+    public Vector3 startPos;
+    public Quaternion startRotate;
     [Header("Bomb")]
     public bool isBomb = false;
     public SphereCollider burstRange;
@@ -43,6 +46,8 @@ public class Weapon : MonoBehaviour
         animControl = GetComponent<Animator>();
 
         AdjustPosAndRotToSurface();
+        startPos = transform.position;
+        startRotate = transform.rotation;
         //ForceStop();
         if (isBomb)
         {
@@ -191,10 +196,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Taken(Transform weaponSlot)
+    public void Taken(Player player)
     {
+        owner = player;
         //Fixme: 这里会有点儿问题;
-        transform.SetParent(weaponSlot);
+        transform.SetParent(player.weaponSlot.transform);
         transform.SetAsFirstSibling();
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -217,6 +223,7 @@ public class Weapon : MonoBehaviour
             //TODO: 直接丢弃时的办法
             return;
         }
+        owner = null;
         //RaycastHit hit = new RaycastHit();
         //Physics.Raycast(target.position, new Vector3(0, -1, 0), out hit, 100.0f);
         //Vector3 distance = Vector3.zero;
@@ -306,6 +313,7 @@ public class Weapon : MonoBehaviour
             Debug.Log(player.gameObject.name + "is hurt by burst");
         }
         //reset状态
+        owner = null;
         bounceCount = maxBounce;
         burstRoutine = null;
         if(burstRange != null)
@@ -316,7 +324,7 @@ public class Weapon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -358,7 +366,6 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        //TODO
         if(collision == null)
         {
             RaycastHit hit = new RaycastHit();
@@ -368,9 +375,10 @@ public class Weapon : MonoBehaviour
                 Vector3 posDiffer = hit.point - transform.position + 
                     (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
                 Debug.Log(hit.point);
-                Debug.Log(gameObject.name + " " + hit.collider.gameObject.name + (hit.point - WeaponHead.transform.position));
+                //Debug.Log(gameObject.name + " " + hit.collider.gameObject.name + (hit.point - WeaponHead.transform.position));
                 transform.Translate(posDiffer, Space.World);
             }
+            return;
         }
         if (isBomb)//如果是炸弹的话那就躺平
         {
