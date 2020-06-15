@@ -30,10 +30,10 @@ public class Surface : MonoBehaviour
             Debug.Log(weapon.gameObject.name);
             if (!weapon.isBomb)
             {
+                //TODO: 调整武器位置和角度
+                weapon.AdjustPosAndRotToSurface(collision);
                 weapon.ForceStop();
                 weapon.WeaponCollider.isTrigger = true;
-                //TODO: 调整武器位置和角度
-
             }
             else
             {

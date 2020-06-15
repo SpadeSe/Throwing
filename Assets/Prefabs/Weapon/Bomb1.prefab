@@ -146,7 +146,7 @@ MonoBehaviour:
   burstHintObj: {fileID: 0}
   burstParticlePrefab: {fileID: 0}
   burstCountDown: 3
-  maxBounce: 2
+  maxBounce: 3
 --- !u!1 &8175105161945915548
 GameObject:
   m_ObjectHideFlags: 0
