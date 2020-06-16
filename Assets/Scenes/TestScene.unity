@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8984542439349651910, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: canDestroy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: m_LocalPosition.x

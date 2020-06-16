@@ -5,10 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Surface : Focusable
 {
+    //public List<Weapon> weaponList;
     [Header("Broken")]
     public Collider brokenCollider;
     public bool canBeDestroyed = false;
     public bool destroyed = false;
+    public float fixTime = 3.0f;
+    Coroutine fixRoutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +39,17 @@ public class Surface : Focusable
     // Update is called once per frame
     void Update()
     {
-        
+        if(fixRoutine != null)
+        {
+            if (!focused)
+            {
+                StopCoroutine(fixRoutine);
+                fixRoutine = null;
+                Debug.Log("Fix stalled");
+                //TODO: 提示修复失败
+
+            }
+        }
     }
 
     public void Broken()
@@ -46,6 +59,8 @@ public class Surface : Focusable
         GetComponent<Renderer>().enabled = false;
         destroyed = true;
         focusable = true;
+        Debug.Log(gameObject.name + " is broken");
+        //TODO: 提示被破坏
     }
 
     public void Fixed()
@@ -55,6 +70,8 @@ public class Surface : Focusable
         GetComponent<Renderer>().enabled = true;
         destroyed = false;
         focusable = false;
+        Debug.Log(gameObject.name + " has been fixed");
+        //TODO: 提示已修复
     }
 
 
@@ -69,17 +86,22 @@ public class Surface : Focusable
         Weapon weapon = collision.transform.GetComponent<Weapon>();
         if (weapon != null)
         {
+            //weaponList.Add(weapon);
             //Debug.Log(weapon.gameObject.name);
             if (!weapon.isBomb)
             {
+                weapon.MinusUseCount();
                 //TODO: 调整武器位置和角度
-                weapon.AdjustPosAndRotToSurface(collision);
-                weapon.ForceStop();
-                if (weapon.canDestroy) {
+                if (weapon.canDestroy && this.canBeDestroyed)
+                {
                     weapon.DestroySurface(this);
                 }
-                weapon.MinusUseCount();
-                weapon.ClearState();
+                else
+                {
+                    weapon.AdjustPosAndRotToSurface(collision);
+                    weapon.ForceStop();
+                    weapon.ClearState();
+                }
             }
             else
             {
@@ -93,10 +115,22 @@ public class Surface : Focusable
         Weapon weapon = collision.transform.GetComponent<Weapon>();
         if(weapon != null)
         {
+            //weaponList.Remove(weapon);
             if (weapon.isBomb)
             {
                 weapon.BombBounce(collision);
             }
         }
+    }
+
+    public void StartFixing()
+    {
+        fixRoutine = StartCoroutine(Fixing(fixTime));
+    }
+
+    IEnumerator Fixing(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Fixed();
     }
 }

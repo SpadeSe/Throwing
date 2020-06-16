@@ -33,6 +33,7 @@ public class Weapon : Focusable
     //public bool focused = false;
     public Player owner = null;
     public bool canDestroy = false;
+    //public Surface hitSurface = null;
     [Header("Moving")]
     public Collider WeaponCollider;
     public bool moving = false;

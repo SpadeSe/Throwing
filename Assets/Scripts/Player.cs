@@ -230,9 +230,10 @@ public class Player : MonoBehaviour
         {
             TakeWeapon(focusingObj);
         }
-        else
+        else if (focusingObj.GetComponent<Surface>() != null)
         {
-
+            //TODO: 修复船的时间模式
+            focusingObj.GetComponent<Surface>().StartFixing();
         }
     }
 
