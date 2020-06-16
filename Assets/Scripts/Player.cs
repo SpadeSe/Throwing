@@ -107,10 +107,13 @@ public class Player : MonoBehaviour
 
             #region Detect Interactable(Weapon Or Can be fixed Deck)
             RaycastHit hit = new RaycastHit();
-            if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, interactDis))
+            Debug.DrawRay(playerCam.transform.position, playerCam.transform.forward * interactDis, Color.blue);
+            if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, 
+                out hit, interactDis))//, ~LayerMask.NameToLayer("PlayerBlock")))
             {
                 if(hit.collider.transform.parent != null 
-                    && hit.collider.transform.parent.GetComponent<Focusable>() != null)
+                    && hit.collider.transform.parent.GetComponent<Focusable>() != null
+                    && hit.collider.transform.parent.GetComponent<Focusable>().focusable)
                 {
                     if (focusingObj != null)
                     {
@@ -119,10 +122,9 @@ public class Player : MonoBehaviour
                     focusingObj = hit.collider.transform.parent.gameObject;
                     Focusable focusable = focusingObj.GetComponent<Focusable>();
                     focusable.focused = true;
-                    focusable.focusHintUI = hintUI;
                     if(hintUI != null)
                     {
-                        hintUI.SetActive(focusable.canShowUI());
+                        focusable.ShowUI(hintUI);
                     }
                 }
             }
@@ -131,7 +133,7 @@ public class Player : MonoBehaviour
                 if(focusingObj != null)
                 {
 
-                    focusingObj.GetComponent<Weapon>().focused = false;
+                    focusingObj.GetComponent<Focusable>().focused = false;
                     focusingObj = null;
                 }
                 if (hintUI != null)

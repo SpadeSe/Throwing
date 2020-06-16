@@ -13,7 +13,6 @@ public class Focusable : MonoBehaviour
     public Color focusColor = Color.yellow;
     public GameObject focusPrefab;
     public GameObject focusObj;
-    public GameObject focusHintUI;
     public string focusUIHint;
 
     private void Awake()
@@ -33,9 +32,17 @@ public class Focusable : MonoBehaviour
         
     }
 
-    public virtual bool canShowUI()
+    public virtual void ShowUI(GameObject focusHintUI)
     {
-        return focusable || focused;
+        if (!(focusable && focused))
+        {
+            return;
+        }
+        focusHintUI.SetActive(true);
+        if (focusHintUI != null && focusHintUI.GetComponentInChildren<Text>() != null)
+        {
+            focusHintUI.GetComponentInChildren<Text>().text = focusUIHint;
+        }
     }
     
     //被盯着的时候的处理函数, 每帧会调用
@@ -53,6 +60,7 @@ public class Focusable : MonoBehaviour
                 return;
             }
             focusObj = Instantiate(focusPrefab, transform);
+            Debug.Log(focusObj);
             Collider[] colliders = focusObj.GetComponentsInChildren<Collider>();
             foreach (var collider in colliders)
             {
@@ -61,14 +69,12 @@ public class Focusable : MonoBehaviour
             Renderer[] renderers = focusObj.GetComponentsInChildren<Renderer>();
             foreach (var renderer in renderers)
             {
+                renderer.enabled = true;
                 //Fixme: 这里可能有问题
                 renderer.material = focusMat;
                 renderer.material.SetColor("g_vOutlineColor", focusColor);
             }
-            if(focusHintUI != null && focusHintUI.GetComponentInChildren<Text>() != null)
-            {
-                focusHintUI.GetComponentInChildren<Text>().text = focusUIHint;
-            }
+            
         }
         else
         {

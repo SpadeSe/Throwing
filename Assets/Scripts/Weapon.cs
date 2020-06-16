@@ -425,6 +425,9 @@ public class Weapon : Focusable
     
     public void DestroySurface(Surface surface)
     {
-
+        if (surface.canBeDestroyed)
+        {
+            surface.Broken();
+        }
     }
 }
