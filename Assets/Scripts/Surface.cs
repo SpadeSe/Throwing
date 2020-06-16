@@ -11,6 +11,7 @@ public class Surface : Focusable
     public bool canBeDestroyed = false;
     public bool destroyed = false;
     public float fixTime = 3.0f;
+
     Coroutine fixRoutine;
     // Start is called before the first frame update
     void Start()

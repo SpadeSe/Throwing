@@ -13,6 +13,7 @@ public class Focusable : MonoBehaviour
     public Color focusColor = Color.yellow;
     public GameObject focusPrefab;
     public GameObject focusObj;
+    public GameObject focusingUI;
     public string focusUIHint;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class Focusable : MonoBehaviour
     {
         if (!(focusable && focused))
         {
+            focusHintUI.SetActive(false);
             return;
         }
         focusHintUI.SetActive(true);
