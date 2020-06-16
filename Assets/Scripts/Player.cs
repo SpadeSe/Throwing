@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     public GameObject lineObj;
     public Color predictLineColor = Color.yellow;
     public float LinePredictTime = 5.0f;
-    [Range(3, 50)]
+    [Range(3, 100)]
     public int LineSlice = 20;
 
     [Header("Interact")]
@@ -82,10 +82,7 @@ public class Player : MonoBehaviour
         #endregion
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(focusingObj != null)
-            {
-                TakeWeapon();
-            }
+            DealWithFocusingObj();
         }
     }
 
@@ -108,22 +105,24 @@ public class Player : MonoBehaviour
         {
             DisableLine();
 
-            #region Detect Interactable
+            #region Detect Interactable(Weapon Or Can be fixed Deck)
             RaycastHit hit = new RaycastHit();
             if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, interactDis))
             {
-                if(hit.collider.transform.parent != null && hit.collider.transform.parent.GetComponent<Weapon>() != null)
+                if(hit.collider.transform.parent != null 
+                    && hit.collider.transform.parent.GetComponent<Focusable>() != null)
                 {
                     if (focusingObj != null)
                     {
-                        focusingObj.GetComponent<Weapon>().focused = false;
+                        focusingObj.GetComponent<Focusable>().focused = false;
                     }
                     focusingObj = hit.collider.transform.parent.gameObject;
-                    Weapon weapon = focusingObj.GetComponent<Weapon>();
-                    weapon.focused = true;
+                    Focusable focusable = focusingObj.GetComponent<Focusable>();
+                    focusable.focused = true;
+                    focusable.focusHintUI = hintUI;
                     if(hintUI != null)
                     {
-                        hintUI.SetActive(weapon.CanTake());
+                        hintUI.SetActive(focusable.canShowUI());
                     }
                 }
             }
@@ -131,6 +130,7 @@ public class Player : MonoBehaviour
             {
                 if(focusingObj != null)
                 {
+
                     focusingObj.GetComponent<Weapon>().focused = false;
                     focusingObj = null;
                 }
@@ -218,19 +218,43 @@ public class Player : MonoBehaviour
         }
     }
 
-    //拾取武器时的处理函数
-    public void TakeWeapon()
+    public void DealWithFocusingObj()
     {
         if(focusingObj == null)
+        {
+            return;
+        }
+        if (focusingObj.GetComponent<Weapon>() != null)
+        {
+            TakeWeapon(focusingObj);
+        }
+        else
+        {
+
+        }
+    }
+
+    //拾取武器时的处理函数
+    public void TakeWeapon(GameObject takeWeapon)
+    {
+        if(takeWeapon == null)
         {
             return;
         }
         if (hasWeapon())
         {
             Transform curWeapon = weaponSlot.transform.GetChild(0);
-            curWeapon.GetComponent<Weapon>().Drop(focusingObj.transform);
+            //TODO: 处理takeWeapon是临时武器的状况(或者干脆让临时武器只对空手有效)
+            if(takeWeapon.GetComponent<Weapon>().IsTempWeapon())
+            {
+
+            }
+            else
+            {
+                curWeapon.GetComponent<Weapon>().Drop(takeWeapon.transform);
+            }
         }
-        focusingObj.GetComponent<Weapon>().Taken(this);
+        takeWeapon.GetComponent<Weapon>().Taken(this);
     }
 
     //投掷武器时的处理函数

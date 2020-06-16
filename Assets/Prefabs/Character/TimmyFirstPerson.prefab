@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 3305573661445042223}
   - component: {fileID: 3242162847086505635}
   - component: {fileID: 3209827527001813661}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TimmyFirstPerson
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -111,6 +111,8 @@ MonoBehaviour:
   jumpPower: 5
   canJump: 1
   canHoldJump: 0
+  jumpInput: 0
+  didJump: 0
   useStamina: 0
   staminaDepletionSpeed: 2
   staminaLevel: 50
@@ -136,7 +138,11 @@ MonoBehaviour:
     FOVKickAmount: 2.5
     changeTime: 0.75
     fovRef: 0
+  capsule: {fileID: 0}
   isCrouching: 0
+  yVelocity: 0
+  checkedSlope: 0
+  isSprinting: 0
   fps_Rigidbody: {fileID: 0}
   useHeadbob: 1
   head: {fileID: 2845972245508837953}
@@ -370,6 +376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440465616812685333, guid: a7027407690972e4f99d7e770cbab775,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7027407690972e4f99d7e770cbab775, type: 3}

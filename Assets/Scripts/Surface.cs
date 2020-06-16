@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+//[RequireComponent(typeof(Collider))]
 public class Surface : MonoBehaviour
 {
+    bool canBeDestroyed = false;
+    bool broken = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +15,16 @@ public class Surface : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void Broken()
+    {
+
+    }
+
+    public void Fixed()
     {
         
     }
@@ -33,8 +45,8 @@ public class Surface : MonoBehaviour
                 //TODO: 调整武器位置和角度
                 weapon.AdjustPosAndRotToSurface(collision);
                 weapon.ForceStop();
-                weapon.WeaponCollider.isTrigger = true;
-                weapon.owner = null;
+                weapon.MinusUseCount();
+                weapon.ClearState();
             }
             else
             {

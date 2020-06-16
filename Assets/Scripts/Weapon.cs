@@ -1,25 +1,38 @@
-﻿using System.Collections;
+﻿/*
+ * Weapon
+ * 制作一个weapon的方法
+ * 在角色的weaponslot下挂一个空物体作为武器的父物体, transform都是初始状态
+ * 挂上weapon脚本
+ * rigidbody 重力和drag都不要, iskinematic勾上.
+ * animator上一个合适的
+ * 下挂武器, 加上weaponhead
+ * 给weapon脚本设置里面各种东西. 完成!
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody))]
-public class Weapon : MonoBehaviour
+public class Weapon : Focusable
 {
+    [HideInInspector]
     public Animator animControl;
     //public Rigidbody rigid;
-    [Header("High Light")]
-    public Material highlightMat;
-    public Color highlightColor = Color.yellow;
-    public GameObject highlightPrefab;
-    public GameObject highlightObj;
+    //[Header("High Light")]
+    //public Material highlightMat;
+    //public Color highlightColor = Color.yellow;
+    //public GameObject highlightPrefab;
+    //public GameObject highlightObj;
     [Header("State")]
     public int damage = 2;
     public int useCount = -1;//临时武器的使用计数, 如果小于0表示非临时武器
     public int type = 0;
     public bool taken = false;
-    public bool focused = false;
+    //public bool focused = false;
     public Player owner = null;
+    public bool canDestroy = false;
     [Header("Moving")]
     public Collider WeaponCollider;
     public bool moving = false;
@@ -43,6 +56,8 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        focusUIHint = "按<size=27><color=yellow>E</color></size>拾取";
+
         animControl = GetComponent<Animator>();
 
         AdjustPosAndRotToSurface();
@@ -151,36 +166,7 @@ public class Weapon : MonoBehaviour
             Debug.DrawRay(transform.position, 3 * axis, Color.cyan);
         }
     }
-
-    //被盯着的时候的处理函数, 每帧会调用
-    private void DealWithFocus()
-    {
-        
-        if (focused && CanTake())
-        {
-            if(highlightMat != null && highlightObj == null)
-            {
-                highlightObj = Instantiate<GameObject>(highlightPrefab, transform);
-                Collider[] colliders = highlightObj.GetComponentsInChildren<Collider>();
-                foreach(var collider in colliders)
-                {
-                    collider.enabled = false;
-                }
-                Renderer[] renderers = highlightObj.GetComponentsInChildren<Renderer>();
-                foreach(var renderer in renderers)
-                {
-                    //Fixme: 这里可能有问题
-                    renderer.material = highlightMat;
-                    renderer.material.SetColor("g_vOutlineColor", highlightColor);
-                }
-            }
-        }
-        else
-        {
-            Destroy(highlightObj);
-            highlightObj = null;
-        } 
-    }
+    
 
     //简易的判断weapon是否能take的函数
     public bool CanTake()
@@ -198,6 +184,7 @@ public class Weapon : MonoBehaviour
 
     public void Taken(Player player)
     {
+        focusable = false;
         owner = player;
         //Fixme: 这里会有点儿问题;
         transform.SetParent(player.weaponSlot.transform);
@@ -223,7 +210,7 @@ public class Weapon : MonoBehaviour
             //TODO: 直接丢弃时的办法
             return;
         }
-        owner = null;
+        ClearState();
         //RaycastHit hit = new RaycastHit();
         //Physics.Raycast(target.position, new Vector3(0, -1, 0), out hit, 100.0f);
         //Vector3 distance = Vector3.zero;
@@ -313,13 +300,24 @@ public class Weapon : MonoBehaviour
             Debug.Log(player.gameObject.name + "is hurt by burst");
         }
         //reset状态
+        MinusUseCount();
+        ClearState();
+    }
+
+    public void ClearState()
+    {
         owner = null;
-        bounceCount = maxBounce;
-        burstRoutine = null;
-        if(burstRange != null)
+        WeaponCollider.isTrigger = true;
+        if (isBomb)
         {
-            burstRange.enabled = false;
+            bounceCount = maxBounce;
+            burstRoutine = null;
+            if (burstRange != null)
+            {
+                burstRange.enabled = false;
+            }
         }
+        focusable = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -391,5 +389,42 @@ public class Weapon : MonoBehaviour
                 (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
             transform.Translate(posDiffer, Space.World);
         }
+    }
+
+    //简易的判断是否是临时武器的函数
+    public bool IsTempWeapon()
+    {
+        return useCount > 0;
+    }
+
+    //减少临时武器的使用次数
+    public void MinusUseCount()
+    {
+        if(!IsTempWeapon())
+        {
+            return;
+        }
+        useCount--;
+        if(useCount == 0)
+        {
+            //TODO: play sound, particle, etc
+            Destroy(gameObject);//这里后面需要加上延迟等一等音效和粒子
+        }
+    }
+
+
+    //重新生成(丢到不可拾取区域的时候
+    public void ReGen()
+    {
+        if (IsTempWeapon())
+        {
+            return;
+        }
+
+    }
+    
+    public void DestroySurface(Surface surface)
+    {
+
     }
 }

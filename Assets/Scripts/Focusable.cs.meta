@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c2296d9935ece8d4d9229d31711f38c2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
+  - focusPrefab: {instanceID: 0}
+  - focusObj: {instanceID: 0}
+  - focusUI: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

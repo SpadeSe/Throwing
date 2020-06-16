@@ -32,6 +32,10 @@ public class ItemBase : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
         Weapon weapon = other.GetComponentInParent<Weapon>();
+        if(weapon.moving == false || weapon.owner == null)
+        {
+            return;
+        }
         if (weapon != null)
         {
             TakeEffect(weapon);

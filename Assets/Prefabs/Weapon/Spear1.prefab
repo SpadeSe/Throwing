@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 95989683670066512}
   - component: {fileID: 54895142093449662}
   - component: {fileID: 114052794062760114}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spear1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,21 +82,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65b0d171bb22bc47b23bfefc4bb0fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focusable: 1
+  focused: 0
+  focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
+  focusColor: {r: 0, g: 1, b: 0.15294118, a: 1}
+  focusPrefab: {fileID: 5629586290586774843}
+  focusObj: {fileID: 0}
+  focusHintUI: {fileID: 0}
+  focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u62FE\u53D6"
   animControl: {fileID: 0}
-  highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
-  highlightColor: {r: 0, g: 1, b: 0.15359592, a: 1}
-  highlightPrefab: {fileID: 5629586290586774843}
-  highlightObj: {fileID: 0}
   damage: 2
   useCount: -1
   type: 1
   taken: 0
-  focused: 0
+  owner: {fileID: 0}
+  canDestroy: 0
   WeaponCollider: {fileID: 8817749022834106115}
   moving: 0
   gravityScale: 0.5
   StartSpeed: 20
   WeaponHead: {fileID: 4140298138680099230}
+  startPos: {x: 0, y: 0, z: 0}
+  startRotate: {x: 0, y: 0, z: 0, w: 0}
   isBomb: 0
   burstRange: {fileID: 0}
   burstAffectPlayers: []
@@ -113,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2383195932815839633}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spearhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 1726400950926254, guid: 212beda10a6dcbc47be50b5e25ce9ee8, type: 3}
       propertyPath: m_Name
       value: spear9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1726400950926254, guid: 212beda10a6dcbc47be50b5e25ce9ee8, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4189311547703444, guid: 212beda10a6dcbc47be50b5e25ce9ee8, type: 3}
       propertyPath: m_LocalPosition.x

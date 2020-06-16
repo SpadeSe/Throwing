@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 54765787535451296}
   - component: {fileID: 114669656394451216}
   - component: {fileID: 95016798065245174}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Axe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,17 +63,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65b0d171bb22bc47b23bfefc4bb0fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focusable: 1
+  focused: 0
+  focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
+  focusColor: {r: 0.9921569, g: 0.85098046, b: 0, a: 1}
+  focusPrefab: {fileID: 2551075884852594987}
+  focusObj: {fileID: 0}
+  focusHintUI: {fileID: 0}
+  focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u62FE\u53D6"
   animControl: {fileID: 0}
-  highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
-  highlightColor: {r: 0.990566, g: 0.849502, b: 0, a: 1}
-  highlightPrefab: {fileID: 2551075884852594987}
-  highlightObj: {fileID: 0}
   damage: 2
   useCount: -1
   type: 0
   taken: 0
-  focused: 0
   owner: {fileID: 0}
+  canDestroy: 0
   WeaponCollider: {fileID: 3055616817207582078}
   moving: 0
   gravityScale: 0.8
@@ -130,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790871099536143849}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: axeHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +164,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000420120444672, guid: b238123dbc1aed34a8709fdddbb2cee1, type: 3}
       propertyPath: m_Name
-      value: axe1H1
+      value: axe
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000420120444672, guid: b238123dbc1aed34a8709fdddbb2cee1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4679477178514386, guid: b238123dbc1aed34a8709fdddbb2cee1, type: 3}
       propertyPath: m_LocalPosition.x
