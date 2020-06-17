@@ -62,7 +62,7 @@ public class Focusable : MonoBehaviour
                 return;
             }
             focusObj = Instantiate(focusPrefab, transform);
-            Debug.Log(focusObj);
+            //Debug.Log(focusObj);
             Collider[] colliders = focusObj.GetComponentsInChildren<Collider>();
             foreach (var collider in colliders)
             {

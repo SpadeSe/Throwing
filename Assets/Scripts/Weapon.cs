@@ -7,6 +7,8 @@
  * animator上一个合适的
  * 下挂武器, 加上weaponhead
  * 给weapon脚本设置里面各种东西. 完成!
+ * 
+ * 注意: 用collisionEnter的时候不用在parent找weapon, 而triggerEnter需要从parent找weapon
  */
 
 using System.Collections;
@@ -382,8 +384,8 @@ public class Weapon : Focusable
                 if (hitSurface != null)
                 {
                     bornSurface = hitSurface;
-                    hitSurface.weaponList.Add(this);
-                    if (hitSurface.destroyed)
+                    bornSurface.AddWeaponToList(this);
+                    if (bornSurface.destroyed)
                     {
                         gameObject.SetActive(false);
                     }
@@ -433,13 +435,15 @@ public class Weapon : Focusable
         {
             return;
         }
+        ClearState();
+        ForceStop();
         transform.position = startPos;
         transform.rotation = startRotate;
         if(bornSurface != null)
         {
             if (bornSurface.destroyed)
             {
-                bornSurface.weaponList.Add(this);
+                bornSurface.AddWeaponToList(this);
                 gameObject.SetActive(false);
             }
         }
@@ -455,6 +459,7 @@ public class Weapon : Focusable
         {
             surface.Broken();
             canDestroy = false;//避免一砸砸一片
+            
         }
     }
 }

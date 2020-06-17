@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/*
+ * Player
+ * 放在FirstPerson AIO的下层, 角色的mesh+骨骼的父级gameobject上
+ * 
+ * 
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VolumetricLines;
@@ -16,6 +24,7 @@ public class Player : MonoBehaviour
     [Header("UI")]
     public GameObject crosshair;
     public GameObject hintUI;
+    public GameObject fixingBar;
 
     [Header("Data")]
     public int maxHp = 3;
@@ -39,7 +48,7 @@ public class Player : MonoBehaviour
     [Header("Interact")]
     public float interactDis = 1.0f;
     public GameObject focusingObj;
-
+    public Surface fixingSurface;
     Coroutine speedUpState;
     
     
@@ -127,12 +136,18 @@ public class Player : MonoBehaviour
                         focusable.ShowUI(hintUI);
                     }
                 }
+                else
+                {
+                    if (hintUI != null)
+                    {
+                        hintUI.SetActive(false);
+                    }
+                }
             }
             else
             {
                 if(focusingObj != null)
                 {
-
                     focusingObj.GetComponent<Focusable>().focused = false;
                     focusingObj = null;
                 }
