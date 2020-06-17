@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider))]
 public class Surface : Focusable
 {
     public List<Weapon> weaponList;
     [Header("Broken")]
-    public Collider brokenCollider;
     public bool canBeDestroyed = false;
+    public Collider brokenCollider;
     public bool destroyed = false;
+    public bool fixing = false;
     public float fixTime = 3.0f;
-
+    public float fixProgress = 0.0f;
+    public GameObject fixingUI;
     Coroutine fixRoutine;
     // Start is called before the first frame update
     void Start()
@@ -56,32 +59,41 @@ public class Surface : Focusable
     public void Broken()
     {
         GetComponent<Collider>().isTrigger = true;//让砸破它的武器可以掉下去, 并且不触发函数
-        //暂时隐藏上面的武器
-        foreach(Weapon weapon in weaponList)
-        {
-            weapon.gameObject.SetActive(false);
-        }
         brokenCollider.enabled = true;
         GetComponent<Renderer>().enabled = false;
         destroyed = true;
         focusable = true;
-        Debug.Log(gameObject.name + " is broken");
+        //暂时隐藏上面的武器
+        foreach (Weapon weapon in weaponList)
+        {
+            weapon.gameObject.SetActive(false);
+        }
+        //Debug.Log(gameObject.name + " is broken");
         //TODO: 提示被破坏
     }
 
     public void Fixed()
     {
+        fixing = false;
         GetComponent<Collider>().isTrigger = false;//恢复原来功能
-        //重新显示上面的武器
-        foreach (Weapon weapon in weaponList)
-        {
-            weapon.gameObject.SetActive(true);
-        }
         brokenCollider.enabled = false;
         GetComponent<Renderer>().enabled = true;
         destroyed = false;
         focusable = false;
-        Debug.Log(gameObject.name + " has been fixed");
+        //重新显示上面的武器
+        foreach (Weapon weapon in weaponList)
+        {
+            if(weapon.bornSurface == this)
+            {
+                weapon.ReGen();
+            }
+            weapon.gameObject.SetActive(true);
+        }
+        //Debug.Log(gameObject.name + " has been fixed");
+        if(fixingUI != null)
+        {
+            fixingUI.SetActive(false);
+        }
         //TODO: 提示已修复
     }
 
@@ -103,7 +115,7 @@ public class Surface : Focusable
             {
                 weapon.MinusUseCount();
                 //TODO: 调整武器位置和角度
-                if (weapon.canDestroy && this.canBeDestroyed)
+                if (weapon.canDestroy && canBeDestroyed)
                 {
                     weapon.DestroySurface(this);
                 }
@@ -139,7 +151,7 @@ public class Surface : Focusable
         Weapon weapon = other.GetComponentInParent<Weapon>();
         if(weapon != null)
         {
-            weaponList.Add(weapon);
+            AddWeaponToList(weapon);
         }
     }
 
@@ -152,14 +164,40 @@ public class Surface : Focusable
         }
     }
 
-    public void StartFixing()
+    public void AddWeaponToList(Weapon weapon)
     {
-        fixRoutine = StartCoroutine(Fixing(fixTime));
+        if(!weaponList.Find((w)=>weapon == w))
+        {
+            weaponList.Add(weapon);
+        }
     }
 
-    IEnumerator Fixing(float duration)
+    public void StartFixing(GameObject fUI = null)
     {
-        yield return new WaitForSeconds(duration);
+        fixingUI = fUI;
+        fixRoutine = StartCoroutine(Fixing());
+        fixing = true;
+        if (fixingUI != null)
+        {
+            fixingUI.SetActive(true);
+            fixingUI.GetComponent<Scrollbar>().size = 0;
+        }
+        fixProgress = 0.0f;
+    }
+
+    IEnumerator Fixing()
+    {
+        while(fixProgress < fixTime)
+        {
+            fixProgress += Time.deltaTime;
+            if (fixingUI != null)
+            {
+                //fixingUI.SetActive(true);
+                fixingUI.GetComponent<Scrollbar>().size = fixProgress / fixTime;
+            }
+            yield return null;
+        }
+        //yield return new WaitForSeconds(duration);
         Fixed();
     }
 }
