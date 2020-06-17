@@ -96,10 +96,10 @@ MonoBehaviour:
   mouseSensitivity: 10
   fOVToMouseSensitivity: 1
   cameraSmoothing: 5
-  lockAndHideCursor: 1
+  lockAndHideCursor: 0
   playerCamera: {fileID: 3963217826493600041}
-  enableCameraShake: 1
-  autoCrosshair: 1
+  enableCameraShake: 0
+  autoCrosshair: 0
   drawStaminaMeter: 1
   Crosshair: {fileID: 21300000, guid: 7fa7752f7f2a3fc4fbc2bcaea5671e2d, type: 3}
   targetAngles: {x: 0, y: 0, z: 0}
