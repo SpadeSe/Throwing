@@ -73,7 +73,7 @@ Transform:
   m_LocalScale: {x: 0.18987611, y: 0.20991, z: 0.045321234}
   m_Children: []
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5673260403029934558
 BoxCollider:
@@ -3657,7 +3657,6 @@ Transform:
   m_LocalPosition: {x: 20.09, y: 8.18, z: -0.88}
   m_LocalScale: {x: 28, y: 28, z: 28}
   m_Children:
-  - {fileID: 5931721216287142625}
   - {fileID: 6225099028885354028}
   - {fileID: 6214526030879681677}
   - {fileID: 6225099029426435824}
@@ -3869,21 +3868,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941890
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,21 +4077,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941894
 GameObject:
   m_ObjectHideFlags: 0
@@ -4297,21 +4286,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941898
 GameObject:
   m_ObjectHideFlags: 0
@@ -4419,21 +4403,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941900
 GameObject:
   m_ObjectHideFlags: 0
@@ -4541,21 +4520,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941902
 GameObject:
   m_ObjectHideFlags: 0
@@ -4663,21 +4637,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941904
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,21 +4847,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 4047083751453911858}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6197,21 +6161,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271941936
 GameObject:
   m_ObjectHideFlags: 0
@@ -10705,21 +10664,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942034
 GameObject:
   m_ObjectHideFlags: 0
@@ -10919,21 +10873,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942038
 GameObject:
   m_ObjectHideFlags: 0
@@ -11225,21 +11174,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942044
 GameObject:
   m_ObjectHideFlags: 0
@@ -11348,21 +11292,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942046
 GameObject:
   m_ObjectHideFlags: 0
@@ -11563,21 +11502,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942050
 GameObject:
   m_ObjectHideFlags: 0
@@ -11778,21 +11712,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942054
 GameObject:
   m_ObjectHideFlags: 0
@@ -11901,21 +11830,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942056
 GameObject:
   m_ObjectHideFlags: 0
@@ -12024,21 +11948,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942058
 GameObject:
   m_ObjectHideFlags: 0
@@ -12147,21 +12066,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942060
 GameObject:
   m_ObjectHideFlags: 0
@@ -12270,21 +12184,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942062
 GameObject:
   m_ObjectHideFlags: 0
@@ -12393,21 +12302,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942064
 GameObject:
   m_ObjectHideFlags: 0
@@ -12516,21 +12420,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942066
 GameObject:
   m_ObjectHideFlags: 0
@@ -12639,21 +12538,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942068
 GameObject:
   m_ObjectHideFlags: 0
@@ -12761,21 +12655,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942070
 GameObject:
   m_ObjectHideFlags: 0
@@ -12976,21 +12865,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942074
 GameObject:
   m_ObjectHideFlags: 0
@@ -13099,21 +12983,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942076
 GameObject:
   m_ObjectHideFlags: 0
@@ -13222,21 +13101,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942078
 GameObject:
   m_ObjectHideFlags: 0
@@ -13345,21 +13219,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942080
 GameObject:
   m_ObjectHideFlags: 0
@@ -13467,21 +13336,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942082
 GameObject:
   m_ObjectHideFlags: 0
@@ -13590,21 +13454,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942084
 GameObject:
   m_ObjectHideFlags: 0
@@ -13713,21 +13572,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942086
 GameObject:
   m_ObjectHideFlags: 0
@@ -13928,21 +13782,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942090
 GameObject:
   m_ObjectHideFlags: 0
@@ -14051,21 +13900,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942092
 GameObject:
   m_ObjectHideFlags: 0
@@ -14174,21 +14018,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 374109878601263206}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942094
 GameObject:
   m_ObjectHideFlags: 0
@@ -14297,21 +14136,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942096
 GameObject:
   m_ObjectHideFlags: 0
@@ -14420,21 +14254,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942098
 GameObject:
   m_ObjectHideFlags: 0
@@ -14542,21 +14371,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942100
 GameObject:
   m_ObjectHideFlags: 0
@@ -14665,21 +14489,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942102
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,21 +14606,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942104
 GameObject:
   m_ObjectHideFlags: 0
@@ -14909,21 +14723,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942106
 GameObject:
   m_ObjectHideFlags: 0
@@ -15125,21 +14934,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942110
 GameObject:
   m_ObjectHideFlags: 0
@@ -15248,21 +15052,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942112
 GameObject:
   m_ObjectHideFlags: 0
@@ -15370,21 +15169,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942114
 GameObject:
   m_ObjectHideFlags: 0
@@ -15493,21 +15287,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942116
 GameObject:
   m_ObjectHideFlags: 0
@@ -15616,21 +15405,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 5493313276186292951}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942118
 GameObject:
   m_ObjectHideFlags: 0
@@ -15738,21 +15522,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942120
 GameObject:
   m_ObjectHideFlags: 0
@@ -15860,21 +15639,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942122
 GameObject:
   m_ObjectHideFlags: 0
@@ -15983,21 +15757,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942124
 GameObject:
   m_ObjectHideFlags: 0
@@ -16105,21 +15874,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942126
 GameObject:
   m_ObjectHideFlags: 0
@@ -16227,21 +15991,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942128
 GameObject:
   m_ObjectHideFlags: 0
@@ -16349,21 +16108,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942130
 GameObject:
   m_ObjectHideFlags: 0
@@ -16471,21 +16225,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942132
 GameObject:
   m_ObjectHideFlags: 0
@@ -16593,21 +16342,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942134
 GameObject:
   m_ObjectHideFlags: 0
@@ -16715,21 +16459,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942136
 GameObject:
   m_ObjectHideFlags: 0
@@ -16837,21 +16576,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942138
 GameObject:
   m_ObjectHideFlags: 0
@@ -16959,21 +16693,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942140
 GameObject:
   m_ObjectHideFlags: 0
@@ -17081,21 +16810,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271942142
 GameObject:
   m_ObjectHideFlags: 0
@@ -17203,21 +16927,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943168
 GameObject:
   m_ObjectHideFlags: 0
@@ -17325,21 +17044,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943170
 GameObject:
   m_ObjectHideFlags: 0
@@ -17447,21 +17161,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943172
 GameObject:
   m_ObjectHideFlags: 0
@@ -17569,21 +17278,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943174
 GameObject:
   m_ObjectHideFlags: 0
@@ -17691,21 +17395,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943176
 GameObject:
   m_ObjectHideFlags: 0
@@ -17814,21 +17513,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943178
 GameObject:
   m_ObjectHideFlags: 0
@@ -17936,21 +17630,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943180
 GameObject:
   m_ObjectHideFlags: 0
@@ -18059,21 +17748,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943182
 GameObject:
   m_ObjectHideFlags: 0
@@ -18182,21 +17866,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943184
 GameObject:
   m_ObjectHideFlags: 0
@@ -18304,21 +17983,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943186
 GameObject:
   m_ObjectHideFlags: 0
@@ -18426,21 +18100,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943188
 GameObject:
   m_ObjectHideFlags: 0
@@ -26783,21 +26452,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943370
 GameObject:
   m_ObjectHideFlags: 0
@@ -27994,21 +27658,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943396
 GameObject:
   m_ObjectHideFlags: 0
@@ -28116,21 +27775,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943398
 GameObject:
   m_ObjectHideFlags: 0
@@ -28775,21 +28429,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943412
 GameObject:
   m_ObjectHideFlags: 0
@@ -28898,21 +28547,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
-  weaponList: []
-  canBeDestroyed: 1
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 1
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943414
 GameObject:
   m_ObjectHideFlags: 0
@@ -29020,21 +28664,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943416
 GameObject:
   m_ObjectHideFlags: 0
@@ -29142,21 +28781,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943418
 GameObject:
   m_ObjectHideFlags: 0
@@ -29264,21 +28898,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943420
 GameObject:
   m_ObjectHideFlags: 0
@@ -29386,21 +29015,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943422
 GameObject:
   m_ObjectHideFlags: 0
@@ -29508,21 +29132,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 0
   focused: 0
-  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 0}
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
   focusingUI: {fileID: 0}
   focusUIHint: 
-  weaponList: []
-  canBeDestroyed: 0
   brokenCollider: {fileID: 0}
+  canBeDestroyed: 0
   destroyed: 0
-  fixing: 0
   fixTime: 3
-  fixProgress: 0
-  fixingUI: {fileID: 0}
 --- !u!1 &2872394794271943456
 GameObject:
   m_ObjectHideFlags: 0
@@ -33484,7 +33103,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1521711474897344590
 BoxCollider:
@@ -33675,36 +33294,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 19.05959, y: 42.142372, z: 85}
   m_Center: {x: 0, y: 0.0000009536747, z: 35}
---- !u!1 &4814574374814803647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5931721216287142625}
-  m_Layer: 0
-  m_Name: PlayerStart
-  m_TagString: PlayerStart
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5931721216287142625
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4814574374814803647}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.4777, y: 0.096, z: 0.2068}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &5173896346285339279
 GameObject:
   m_ObjectHideFlags: 0
@@ -33792,7 +33381,7 @@ Transform:
   - {fileID: 2872394794272110332}
   - {fileID: 2872394794272110096}
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5717514666414024278
 GameObject:
@@ -33951,7 +33540,7 @@ Transform:
   - {fileID: 2872394794272109024}
   - {fileID: 2872394794272110248}
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6024493613604440983
 GameObject:
@@ -34148,7 +33737,7 @@ Transform:
   - {fileID: 2872394794272108962}
   - {fileID: 3631218504227996513}
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6225099029015017384
 GameObject:
@@ -34218,7 +33807,7 @@ Transform:
   - {fileID: 2872394794272108848}
   - {fileID: 2872394794272110286}
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6225099029369586864
 GameObject:
@@ -34496,7 +34085,7 @@ Transform:
   - {fileID: 2872394794272110214}
   - {fileID: 2872394794272110288}
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6225099029541412486
 GameObject:
@@ -34839,7 +34428,7 @@ Transform:
   m_LocalScale: {x: 0.18987611, y: 0.20991, z: 0.045321234}
   m_Children: []
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4875088163083845483
 BoxCollider:
@@ -35059,7 +34648,7 @@ Transform:
   m_LocalScale: {x: 0.072956316, y: 0.20991, z: 0.35705692}
   m_Children: []
   m_Father: {fileID: 2872394794272108710}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2984385527457877181
 BoxCollider:
