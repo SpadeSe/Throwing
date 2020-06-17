@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider))]
 public class Surface : Focusable
 {
     public List<Weapon> weaponList;
     [Header("Broken")]
-    public Collider brokenCollider;
     public bool canBeDestroyed = false;
+    public Collider brokenCollider;
     public bool destroyed = false;
+    public bool fixing = false;
     public float fixTime = 3.0f;
     public float fixProgress = 0.0f;
+    public GameObject fixingUI;
     Coroutine fixRoutine;
     // Start is called before the first frame update
     void Start()
@@ -71,6 +74,7 @@ public class Surface : Focusable
 
     public void Fixed()
     {
+        fixing = false;
         GetComponent<Collider>().isTrigger = false;//恢复原来功能
         brokenCollider.enabled = false;
         GetComponent<Renderer>().enabled = true;
@@ -86,6 +90,10 @@ public class Surface : Focusable
             weapon.gameObject.SetActive(true);
         }
         //Debug.Log(gameObject.name + " has been fixed");
+        if(fixingUI != null)
+        {
+            fixingUI.SetActive(false);
+        }
         //TODO: 提示已修复
     }
 
@@ -164,9 +172,16 @@ public class Surface : Focusable
         }
     }
 
-    public void StartFixing()
+    public void StartFixing(GameObject fUI = null)
     {
+        fixingUI = fUI;
         fixRoutine = StartCoroutine(Fixing());
+        fixing = true;
+        if (fixingUI != null)
+        {
+            fixingUI.SetActive(true);
+            fixingUI.GetComponent<Scrollbar>().size = 0;
+        }
         fixProgress = 0.0f;
     }
 
@@ -175,6 +190,11 @@ public class Surface : Focusable
         while(fixProgress < fixTime)
         {
             fixProgress += Time.deltaTime;
+            if (fixingUI != null)
+            {
+                //fixingUI.SetActive(true);
+                fixingUI.GetComponent<Scrollbar>().size = fixProgress / fixTime;
+            }
             yield return null;
         }
         //yield return new WaitForSeconds(duration);

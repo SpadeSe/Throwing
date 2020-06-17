@@ -1,7 +1,7 @@
 ﻿/*
  * Player
  * 放在FirstPerson AIO的下层, 角色的mesh+骨骼的父级gameobject上
- * 
+ * 需要拽好MustInit下的部分.(以及UI)
  * 
  * 
  */
@@ -50,8 +50,13 @@ public class Player : MonoBehaviour
     public GameObject focusingObj;
     public Surface fixingSurface;
     Coroutine speedUpState;
-    
-    
+
+    //TODO: 可能UI改成获取模式会好一点儿, 联机的时候再弄
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -105,6 +110,10 @@ public class Player : MonoBehaviour
         if(crosshair != null)
         {
             crosshair.SetActive(!targeting);
+        }
+        if(fixingBar != null)
+        {
+            fixingBar.SetActive(fixingSurface != null && fixingSurface.fixing);
         }
         if (targeting)
         {
@@ -247,8 +256,8 @@ public class Player : MonoBehaviour
         }
         else if (focusingObj.GetComponent<Surface>() != null)
         {
-            //TODO: 修复船的时间模式
-            focusingObj.GetComponent<Surface>().StartFixing();
+            fixingSurface = focusingObj.GetComponent<Surface>();
+            fixingSurface.StartFixing(fixingBar);
         }
     }
 
