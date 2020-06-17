@@ -8,6 +8,7 @@ public class Focusable : MonoBehaviour
     [Header("Focus")]
     public bool focusable = true;
     public bool focused = false;
+    public Player focusingPlayer;
     
     public Material focusMat;
     public Color focusColor = Color.yellow;
@@ -15,6 +16,8 @@ public class Focusable : MonoBehaviour
     public GameObject focusObj;
     public GameObject focusingUI;
     public string focusUIHint;
+    
+
 
     private void Awake()
     {
@@ -62,7 +65,7 @@ public class Focusable : MonoBehaviour
                 return;
             }
             focusObj = Instantiate(focusPrefab, transform);
-            Debug.Log(focusObj);
+            //Debug.Log(focusObj);
             Collider[] colliders = focusObj.GetComponentsInChildren<Collider>();
             foreach (var collider in colliders)
             {
