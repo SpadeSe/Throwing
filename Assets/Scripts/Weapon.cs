@@ -33,6 +33,7 @@ public class Weapon : Focusable
     //public bool focused = false;
     public Player owner = null;
     public bool canDestroy = false;
+    public Surface bornSurface;
     //public Surface hitSurface = null;
     [Header("Moving")]
     public Collider WeaponCollider;
@@ -376,6 +377,17 @@ public class Weapon : Focusable
                 //Debug.Log(hit.point);
                 //Debug.Log(gameObject.name + " " + hit.collider.gameObject.name + (hit.point - WeaponHead.transform.position));
                 transform.Translate(posDiffer, Space.World);
+                //初始表面就已经出问题的时候
+                Surface hitSurface = hit.collider.GetComponent<Surface>();
+                if (hitSurface != null)
+                {
+                    bornSurface = hitSurface;
+                    hitSurface.weaponList.Add(this);
+                    if (hitSurface.destroyed)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                }
             }
             return;
         }
@@ -421,7 +433,16 @@ public class Weapon : Focusable
         {
             return;
         }
-
+        transform.position = startPos;
+        transform.rotation = startRotate;
+        if(bornSurface != null)
+        {
+            if (bornSurface.destroyed)
+            {
+                bornSurface.weaponList.Add(this);
+                gameObject.SetActive(false);
+            }
+        }
     }
     
     public void DestroySurface(Surface surface)

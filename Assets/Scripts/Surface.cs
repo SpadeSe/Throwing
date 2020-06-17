@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Surface : Focusable
 {
-    //public List<Weapon> weaponList;
+    public List<Weapon> weaponList;
     [Header("Broken")]
     public Collider brokenCollider;
     public bool canBeDestroyed = false;
@@ -55,7 +55,12 @@ public class Surface : Focusable
 
     public void Broken()
     {
-        GetComponent<Collider>().isTrigger = true;//让武器可以掉下去, 并且不触发函数
+        GetComponent<Collider>().isTrigger = true;//让砸破它的武器可以掉下去, 并且不触发函数
+        //暂时隐藏上面的武器
+        foreach(Weapon weapon in weaponList)
+        {
+            weapon.gameObject.SetActive(false);
+        }
         brokenCollider.enabled = true;
         GetComponent<Renderer>().enabled = false;
         destroyed = true;
@@ -66,7 +71,12 @@ public class Surface : Focusable
 
     public void Fixed()
     {
-        GetComponent<Collider>().isTrigger = false;
+        GetComponent<Collider>().isTrigger = false;//恢复原来功能
+        //重新显示上面的武器
+        foreach (Weapon weapon in weaponList)
+        {
+            weapon.gameObject.SetActive(true);
+        }
         brokenCollider.enabled = false;
         GetComponent<Renderer>().enabled = true;
         destroyed = false;
@@ -121,6 +131,24 @@ public class Surface : Focusable
             {
                 weapon.BombBounce(collision);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Weapon weapon = other.GetComponentInParent<Weapon>();
+        if(weapon != null)
+        {
+            weaponList.Add(weapon);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Weapon weapon = other.GetComponentInParent<Weapon>();
+        if (weapon != null)
+        {
+            weaponList.Remove(weapon);
         }
     }
 

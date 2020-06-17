@@ -44,6 +44,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.262892, y: 39.40632, z: 85}
   m_Center: {x: 0.0000019073486, y: 0.000012397769, z: 35}
+--- !u!1 &397167985189844600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 28083742422908518}
+  - component: {fileID: 5673260403029934558}
+  m_Layer: 13
+  m_Name: playerBlock (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &28083742422908518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397167985189844600}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4569, y: 0.1652, z: 0.306}
+  m_LocalScale: {x: 0.18987611, y: 0.20991, z: 0.045321234}
+  m_Children: []
+  m_Father: {fileID: 2872394794272108710}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5673260403029934558
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397167985189844600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &444604216140807599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3611,7 +3655,7 @@ Transform:
   m_GameObject: {fileID: 2872394794271941830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.09, y: 8.18, z: -0.88}
-  m_LocalScale: {x: 30, y: 30, z: 30}
+  m_LocalScale: {x: 28, y: 28, z: 28}
   m_Children:
   - {fileID: 6225099028885354028}
   - {fileID: 6214526030879681677}
@@ -3619,6 +3663,9 @@ Transform:
   - {fileID: 6225099029218282320}
   - {fileID: 5074899890403570659}
   - {fileID: 3501145826029650628}
+  - {fileID: 1525269431093949586}
+  - {fileID: 5262524392152810206}
+  - {fileID: 28083742422908518}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3825,6 +3872,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4033,6 +4081,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4241,6 +4290,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4357,6 +4407,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4473,6 +4524,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4589,6 +4641,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -4798,6 +4851,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 4047083751453911858}
   canBeDestroyed: 1
@@ -6111,6 +6165,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -10613,6 +10668,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -10821,6 +10877,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -11121,6 +11178,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -11238,6 +11296,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -11447,6 +11506,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -11656,6 +11716,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -11773,6 +11834,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -11890,6 +11952,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12007,6 +12070,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12124,6 +12188,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12241,6 +12306,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12358,6 +12424,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12475,6 +12542,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12591,6 +12659,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -12800,6 +12869,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -12917,6 +12987,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13034,6 +13105,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13151,6 +13223,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13267,6 +13340,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -13384,6 +13458,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13501,6 +13576,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13710,6 +13786,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13827,6 +13904,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -13944,6 +14022,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 374109878601263206}
   canBeDestroyed: 1
@@ -14061,6 +14140,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -14178,6 +14258,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -14294,6 +14375,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -14411,6 +14493,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -14527,6 +14610,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -14643,6 +14727,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -14853,6 +14938,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -14970,6 +15056,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -15086,6 +15173,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -15203,6 +15291,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -15320,6 +15409,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 5493313276186292951}
   canBeDestroyed: 1
@@ -15436,6 +15526,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -15552,6 +15643,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -15669,6 +15761,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -15785,6 +15878,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -15901,6 +15995,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16017,6 +16112,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16133,6 +16229,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16249,6 +16346,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16365,6 +16463,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16481,6 +16580,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16597,6 +16697,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16713,6 +16814,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16829,6 +16931,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -16945,6 +17048,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17061,6 +17165,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17177,6 +17282,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17293,6 +17399,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17410,6 +17517,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -17526,6 +17634,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17643,6 +17752,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -17760,6 +17870,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -17876,6 +17987,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -17992,6 +18104,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -26343,6 +26456,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -27548,6 +27662,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -27664,6 +27779,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -28317,6 +28433,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -28434,6 +28551,7 @@ MonoBehaviour:
   focusColor: {r: 0.25490198, g: 0.2509804, b: 1, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u4FEE\u590D"
   brokenCollider: {fileID: 0}
   canBeDestroyed: 1
@@ -28550,6 +28668,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -28666,6 +28785,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -28782,6 +28902,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -28898,6 +29019,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -29014,6 +29136,7 @@ MonoBehaviour:
   focusColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   focusPrefab: {fileID: 0}
   focusObj: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   brokenCollider: {fileID: 0}
   canBeDestroyed: 0
@@ -34276,6 +34399,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20.126259, y: 43.68104, z: 85}
   m_Center: {x: 0.0000014305115, y: -0.00000047683716, z: 35}
+--- !u!1 &6493103263163220543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5262524392152810206}
+  - component: {fileID: 4875088163083845483}
+  m_Layer: 13
+  m_Name: playerBlock (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5262524392152810206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493103263163220543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4569, y: 0.1652, z: -0.039}
+  m_LocalScale: {x: 0.18987611, y: 0.20991, z: 0.045321234}
+  m_Children: []
+  m_Father: {fileID: 2872394794272108710}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4875088163083845483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493103263163220543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6512532771237926701
 GameObject:
   m_ObjectHideFlags: 0
@@ -34452,6 +34619,50 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.262892, y: 39.40632, z: 85}
   m_Center: {x: 0.0000019073486, y: 0.000008583072, z: 35}
+--- !u!1 &8156052256969007050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1525269431093949586}
+  - component: {fileID: 2984385527457877181}
+  m_Layer: 13
+  m_Name: playerBlock (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1525269431093949586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156052256969007050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5566, y: 0.1652, z: 0.1154}
+  m_LocalScale: {x: 0.072956316, y: 0.20991, z: 0.35705692}
+  m_Children: []
+  m_Father: {fileID: 2872394794272108710}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2984385527457877181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156052256969007050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8391025451691183084
 GameObject:
   m_ObjectHideFlags: 0
