@@ -27,6 +27,9 @@ public class Weapon : Focusable
     //public Color highlightColor = Color.yellow;
     //public GameObject highlightPrefab;
     //public GameObject highlightObj;
+    [Header("Display")]
+    public string weaponName;
+    public Sprite UISprite;
     [Header("State")]
     public int damage = 2;
     public int useCount = -1;//临时武器的使用计数, 如果小于0表示非临时武器

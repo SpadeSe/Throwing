@@ -2251,6 +2251,7 @@ MonoBehaviour:
   moveControl: {fileID: 0}
   crosshair: {fileID: 0}
   hintUI: {fileID: 0}
+  fixingBar: {fileID: 0}
   maxHp: 3
   curHp: 1
   normalSpeed: 2
@@ -2263,10 +2264,11 @@ MonoBehaviour:
     type: 3}
   lineObj: {fileID: 0}
   predictLineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  LinePredictTime: 5
-  LineSlice: 20
+  LinePredictTime: 3
+  LineSlice: 50
   interactDis: 2
   focusingObj: {fileID: 0}
+  fixingSurface: {fileID: 0}
 --- !u!1 &5746466084566550271
 GameObject:
   m_ObjectHideFlags: 0
