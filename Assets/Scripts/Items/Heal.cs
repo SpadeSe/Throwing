@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Heal : ItemBase
 {
-    int healPoint = 3;
+    public int healPoint = 3;
     // Start is called before the first frame update
     
 

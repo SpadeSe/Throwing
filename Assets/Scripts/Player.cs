@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public Transform weaponSlot;
     public Camera playerCam;
     public FirstPersonAIO moveControl;
+    public Transform respawnTrans;
     [Header("UI")]
     public GameObject crosshair;
     public GameObject hintUI;
@@ -334,5 +335,19 @@ public class Player : MonoBehaviour
         speedRate = 1.0f + upRate;
         yield return new WaitForSeconds(duration);
         speedRate = 1.0f;
+    }
+
+    public void Killed()
+    {
+        //TODO: 计分, 灰屏, 等待时间之类
+
+
+        Respawn();
+    }
+
+    public void Respawn()
+    {
+        moveControl.transform.position = respawnTrans.position;
+        moveControl.transform.rotation = respawnTrans.rotation;
     }
 }
