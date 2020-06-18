@@ -1,4 +1,4 @@
-﻿Shader "myShader/anime_Test"
+﻿Shader "myShaders/anime_Test"
 {
 	Properties
 	{

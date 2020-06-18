@@ -1,4 +1,4 @@
-﻿Shader "myShaders/water_shader"
+﻿Shader "myShaders/water_shader_Opaque"
 {
     Properties
     {
@@ -23,7 +23,7 @@
 		[Space][Space][Space][Space][Space][Space][Space][Space]
 		_colorNear("颜色近",Color) = (0,0.835294,0.7894523,1)
 		_colorFar("颜色远",Color) = (0.2205884,0.1502028,1,1)
-		_Alpha("透明度",range(0,1)) = 0.441
+		//_Alpha("透明度",range(0,1)) = 0.441
 		_refSet("折射调节",range(0,5)) = 0.5
 		_SpecColor("高光颜色",Color) = (0,0,0,1)
 		_diffStep("漫反射层级",range(0,5)) = 2
@@ -46,8 +46,8 @@
 		{
 		Tags {
 			"IngoreProjector" = "True"
-			"RenderType" = "Transparent"
-			"Queue" = "Transparent"
+			"RenderType" = "Opaque"
+			"Queue" = "Geometry"
 			}
 		GrabPass{}
 
@@ -55,7 +55,7 @@
 		{
 			Name"FORWARD"
 			Tags{"LightMode" = "ForwardBase"}
-			ZWrite off
+			ZWrite On
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -86,7 +86,7 @@
 			float _FresRange;
 			float4 _colorNear;
 			float4 _colorFar;
-			float _Alpha;
+			//float _Alpha;
 			float _refSet;
 			float4 _SpecColor;
 			float _diffStep;
@@ -170,7 +170,7 @@
 				half foam = pow((foamC.r + foamC.g + foamC.b) * 0.333 + _FoamLight1, _FoamLight2);
 				float4 foamRgb = float4(foam * _FoamColor.rgb,1);
 
-				float3 finalColor = ((lerp(tex2D(_GrabTexture, (0.05*(((_refSet*(saturate(dot(normalLocal,float3(0.3,0.59,0.11))) - 0.5)) + 0.5) - 0.5)*mul(tangentTransform, ViewDir).xy + sceneUVs.rg).rg).rgb,((_water_color.rgb*((_Diff_Set*(0.2 + floor(max(0,dot(ViewDir,normalDir)) * _diffStep) / (_diffStep - 1))) + (pow((_SpecSet*floor((max(0,dot(ViewDir,normalDir))*max(0,dot(normalDir,lightDir))) * _specStep) / (_specStep - 1)),_SpecRange)*_SpecColor.rgb))) + lerp(_colorFar.rgb,_colorNear.rgb,Fresnel)),_Alpha) + (_RefTex_var.rgb * _flcSet)) + foamRgb.rgb);
+				float3 finalColor = ((lerp(tex2D(_GrabTexture, (0.05*(((_refSet*(saturate(dot(normalLocal,float3(0.3,0.59,0.11))) - 0.5)) + 0.5) - 0.5)*mul(tangentTransform, ViewDir).xy + sceneUVs.rg).rg).rgb,((_water_color.rgb*((_Diff_Set*(0.2 + floor(max(0,dot(ViewDir,normalDir)) * _diffStep) / (_diffStep - 1))) + (pow((_SpecSet*floor((max(0,dot(ViewDir,normalDir))*max(0,dot(normalDir,lightDir))) * _specStep) / (_specStep - 1)),_SpecRange)*_SpecColor.rgb))) + lerp(_colorFar.rgb,_colorNear.rgb,Fresnel)),1) + (_RefTex_var.rgb * _flcSet)) + foamRgb.rgb);
 				fixed4 finalRGBA = fixed4(finalColor,1);
 				UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
 				return finalRGBA;

@@ -1,4 +1,4 @@
-﻿Shader "myShader/anime_test_unitychan"
+﻿Shader "myShaders/anime_test_unitychan"
 {
 	Properties
 	{
