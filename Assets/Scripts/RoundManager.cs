@@ -40,7 +40,8 @@ public class RoundManager : MonoBehaviour
 
     void Start()
     {
-
+        //test
+        GameInit();
     }
 
     // Update is called once per frame
