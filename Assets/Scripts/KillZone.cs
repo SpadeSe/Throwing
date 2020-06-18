@@ -31,5 +31,11 @@ public class KillZone : MonoBehaviour
         {
             weapon.ReGen();
         }
+
+        Player player = other.GetComponentInChildren<Player>();
+        if (player != null)
+        {
+            player.Killed();
+        }
     }
 }

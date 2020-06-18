@@ -1255,6 +1255,7 @@ GameObject:
   - component: {fileID: 3183391301267663376}
   - component: {fileID: 3183391301277467712}
   - component: {fileID: 3183391301268058402}
+  - component: {fileID: 114297072254386896}
   m_Layer: 9
   m_Name: sporty_granny
   m_TagString: Untagged
@@ -1318,6 +1319,43 @@ MonoBehaviour:
   HorizontalInput: 0
   VerticalInput: 0
   turnInput: 0
+--- !u!114 &114297072254386896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183391301268092528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f81947a3c95e3f4e9ab7e23c77031f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isStaticTarget: 0
+  weaponSlot: {fileID: 0}
+  playerCam: {fileID: 0}
+  moveControl: {fileID: 0}
+  respawnTrans: {fileID: 0}
+  crosshair: {fileID: 0}
+  hintUI: {fileID: 0}
+  fixingBar: {fileID: 0}
+  maxHp: 3
+  curHp: 1
+  normalSpeed: 2
+  runSpeed: 4
+  speedRate: 1
+  targeting: 0
+  throwing: 0
+  attackType: 0
+  linePrefab: {fileID: 5449160340509838480, guid: 258054ed1025b5042a91a16c76ec57c3,
+    type: 3}
+  lineObj: {fileID: 0}
+  predictLineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  LinePredictTime: 3
+  LineSlice: 50
+  interactDis: 1
+  focusingObj: {fileID: 0}
+  fixingSurface: {fileID: 0}
 --- !u!1 &3183391301268092530
 GameObject:
   m_ObjectHideFlags: 0

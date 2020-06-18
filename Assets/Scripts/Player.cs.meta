@@ -3,7 +3,19 @@ guid: 7f81947a3c95e3f4e9ab7e23c77031f4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - weaponSlot: {instanceID: 0}
+  - playerCam: {instanceID: 0}
+  - moveControl: {instanceID: 0}
+  - respawnTrans: {instanceID: 0}
+  - crosshair: {instanceID: 0}
+  - hintUI: {instanceID: 0}
+  - fixingBar: {instanceID: 0}
+  - linePrefab: {fileID: 5449160340509838480, guid: 258054ed1025b5042a91a16c76ec57c3,
+      type: 3}
+  - lineObj: {instanceID: 0}
+  - focusingObj: {instanceID: 0}
+  - fixingSurface: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -90,10 +90,10 @@ public class Surface : Focusable
             weapon.gameObject.SetActive(true);
         }
         //Debug.Log(gameObject.name + " has been fixed");
-        if(fixingUI != null)
-        {
-            fixingUI.SetActive(false);
-        }
+        //if(fixingUI != null)
+        //{
+        //    fixingUI.SetActive(false);
+        //}
         //TODO: 提示已修复
     }
 
@@ -172,16 +172,16 @@ public class Surface : Focusable
         }
     }
 
-    public void StartFixing(GameObject fUI = null)
+    public void StartFixing()//GameObject fUI = null)
     {
-        fixingUI = fUI;
+        //fixingUI = fUI;
         fixRoutine = StartCoroutine(Fixing());
         fixing = true;
-        if (fixingUI != null)
-        {
-            fixingUI.SetActive(true);
-            fixingUI.GetComponent<Scrollbar>().size = 0;
-        }
+        //if (fixingUI != null)
+        //{
+        //    fixingUI.SetActive(true);
+        //    fixingUI.GetComponent<Scrollbar>().size = 0;
+        //}
         fixProgress = 0.0f;
     }
 
@@ -190,11 +190,11 @@ public class Surface : Focusable
         while(fixProgress < fixTime)
         {
             fixProgress += Time.deltaTime;
-            if (fixingUI != null)
-            {
-                //fixingUI.SetActive(true);
-                fixingUI.GetComponent<Scrollbar>().size = fixProgress / fixTime;
-            }
+            //if (fixingUI != null)
+            //{
+            //    //fixingUI.SetActive(true);
+            //    fixingUI.GetComponent<Scrollbar>().size = fixProgress / fixTime;
+            //}
             yield return null;
         }
         //yield return new WaitForSeconds(duration);

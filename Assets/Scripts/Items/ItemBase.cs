@@ -32,12 +32,12 @@ public class ItemBase : MonoBehaviour
     {
         Debug.Log(other.gameObject.name);
         Weapon weapon = other.GetComponentInParent<Weapon>();
-        if(weapon.moving == false || weapon.owner == null)
+        if(weapon != null)
         {
-            return;
-        }
-        if (weapon != null)
-        {
+            if (weapon.moving == false || weapon.owner == null)
+            {
+                return;
+            }
             TakeEffect(weapon);
         }
     }
