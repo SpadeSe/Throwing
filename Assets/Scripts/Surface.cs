@@ -123,6 +123,10 @@ public class Surface : Focusable
                 {
                     weapon.AdjustPosAndRotToSurface(collision);
                     weapon.ForceStop();
+                    if (weapon.canTransfer)//如果可以传送, 辣么就要传送
+                    {
+                        weapon.Transfer();
+                    }
                     weapon.ClearState();
                 }
             }

@@ -72,7 +72,12 @@ public class Player : MonoBehaviour
 
         //init
         curHp = maxHp;
-        if(ownedCanvas == null)
+
+        if (isStaticTarget)//靶子分界线
+        {
+            return;            
+        }
+        if (ownedCanvas == null)
         {
             ownedCanvas = Instantiate(CanvasPrefab);
             ownedCanvas.GetComponent<PlayerCanvas>().player = this;

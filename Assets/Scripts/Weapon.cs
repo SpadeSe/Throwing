@@ -38,6 +38,7 @@ public class Weapon : Focusable
     //public bool focused = false;
     public Player owner = null;
     public bool canDestroy = false;
+    public bool canTransfer = false;
     public Surface bornSurface;
     //public Surface hitSurface = null;
     [Header("Moving")]
@@ -464,5 +465,17 @@ public class Weapon : Focusable
             canDestroy = false;//避免一砸砸一片
             
         }
+    }
+
+    public void Transfer()
+    {
+        if (!canTransfer || owner == null)
+        {
+            return;
+        }
+        Vector3 transPos = owner.moveControl.transform.position;
+        transPos.x = transform.position.x;
+        transPos.z = transform.position.z;
+        owner.moveControl.transform.position = transPos;
     }
 }
