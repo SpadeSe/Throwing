@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using VolumetricLines;
 
-public delegate void HittenEvent();
-public delegate void DeadEvent();
+public delegate void PlayerHittenEvent();
+public delegate void PlayerDeadEvent(Player dead, Player killer);
 
 public class Player : MonoBehaviour
 {
@@ -23,15 +23,20 @@ public class Player : MonoBehaviour
     public FirstPersonAIO moveControl;
     public Transform respawnTrans;
     [Header("UI")]
-    public GameObject crosshair;
-    public GameObject hintUI;
-    public GameObject fixingBar;
+    public GameObject CanvasPrefab;
+    public GameObject ownedCanvas;
+    //public GameObject crosshair;
+    //public GameObject hintUI;
+    //public GameObject fixingBar;
 
     [Header("Data")]
     public int maxHp = 3;
-    public int curHp = 1;
     public float normalSpeed = 2.0f;
     public float runSpeed = 4.0f;
+
+    [Header("State")]
+    public PlayerSide side;
+    public int curHp = 1;
     public float speedRate = 1.0f;
 
     [Header("Throw")]
@@ -42,9 +47,9 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public GameObject lineObj;
     public Color predictLineColor = Color.yellow;
-    public float LinePredictTime = 5.0f;
+    public float LinePredictTime = 3.0f;
     [Range(3, 100)]
-    public int LineSlice = 20;
+    public int LineSlice = 50;
 
     [Header("Interact")]
     public float interactDis = 1.0f;
@@ -52,7 +57,9 @@ public class Player : MonoBehaviour
     public Surface fixingSurface;
     Coroutine speedUpState;
 
-    //TODO: 可能UI改成获取模式会好一点儿, 联机的时候再弄
+    //Delegates
+    public PlayerDeadEvent deadEvent;
+    
     private void Awake()
     {
         
@@ -65,6 +72,11 @@ public class Player : MonoBehaviour
 
         //init
         curHp = maxHp;
+        if(ownedCanvas == null)
+        {
+            ownedCanvas = Instantiate(CanvasPrefab);
+            ownedCanvas.GetComponent<PlayerCanvas>().player = this;
+        }
     }
 
     private void FixedUpdate()
@@ -108,14 +120,14 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if(crosshair != null)
-        {
-            crosshair.SetActive(!targeting);
-        }
-        if(fixingBar != null)
-        {
-            fixingBar.SetActive(fixingSurface != null && fixingSurface.fixing);
-        }
+        //if(crosshair != null)
+        //{
+        //    crosshair.SetActive(!targeting);
+        //}
+        //if(fixingBar != null)
+        //{
+        //    fixingBar.SetActive(fixingSurface != null && fixingSurface.fixing);
+        //}
         if (targeting)
         {
             UpdateLine();
@@ -141,18 +153,18 @@ public class Player : MonoBehaviour
                     focusingObj = hit.collider.transform.parent.gameObject;
                     Focusable focusable = focusingObj.GetComponent<Focusable>();
                     focusable.focused = true;
-                    if(hintUI != null)
-                    {
-                        focusable.ShowUI(hintUI);
-                    }
+                    //if(hintUI != null)
+                    //{
+                    //    focusable.ShowUI(hintUI);
+                    //}
                 }
                 else
                 {
-                    if (hintUI != null)
-                    {
-                        hintUI.SetActive(false);
-                    }
-                }
+                    //if (hintUI != null)
+                    //{
+                    //    hintUI.SetActive(false);
+                    //}
+                }//deprecated
             }
             else
             {
@@ -161,10 +173,10 @@ public class Player : MonoBehaviour
                     focusingObj.GetComponent<Focusable>().focused = false;
                     focusingObj = null;
                 }
-                if (hintUI != null)
-                {
-                    hintUI.SetActive(false);
-                }
+                //if (hintUI != null)
+                //{
+                //    hintUI.SetActive(false);
+                //}
             }
             #endregion
         }
@@ -258,7 +270,7 @@ public class Player : MonoBehaviour
         else if (focusingObj.GetComponent<Surface>() != null)
         {
             fixingSurface = focusingObj.GetComponent<Surface>();
-            fixingSurface.StartFixing(fixingBar);
+            fixingSurface.StartFixing();
         }
     }
 
@@ -311,7 +323,7 @@ public class Player : MonoBehaviour
         return weaponSlot.childCount > 0;
     }
 
-    public void ReceiveDamage(int dam = 0)
+    public void ReceiveDamage(Player resource, int dam = 0)
     {
         Debug.Log(gameObject.name + "ReceiveDamage: " + dam);
     }
@@ -337,8 +349,10 @@ public class Player : MonoBehaviour
         speedRate = 1.0f;
     }
 
-    public void Killed()
+    public void Killed(Player killer=null)
     {
+
+        deadEvent(this, killer);
         //TODO: 计分, 灰屏, 等待时间之类
 
 

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+ * CameraAdjust
+ * 用来给摄像机调整位置, 减少跟随骨骼导致的抖动
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
