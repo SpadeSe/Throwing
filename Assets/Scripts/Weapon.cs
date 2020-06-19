@@ -319,11 +319,17 @@ public class Weapon : Focusable
         if (isBomb)
         {
             bounceCount = maxBounce;
+            if(burstRoutine != null)
+            {
+                StopCoroutine(burstRoutine);
+            }
             burstRoutine = null;
+            burstAffectPlayers.Clear();
             if (burstRange != null)
             {
                 burstRange.enabled = false;
             }
+            
         }
         focusable = true;
     }

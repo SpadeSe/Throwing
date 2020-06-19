@@ -17,10 +17,11 @@ public delegate void PlayerDeadEvent(Player dead, Player killer);
 public class Player : MonoBehaviour
 {
     public bool isStaticTarget = false;
-    [Header("Must Init")]
+    [Header("Hand Init")]
     public Transform weaponSlot;
     public Camera playerCam;
     public FirstPersonAIO moveControl;
+    [Header("Script Init")]
     public Transform respawnTrans;
     [Header("UI")]
     public GameObject CanvasPrefab;
@@ -75,6 +76,15 @@ public class Player : MonoBehaviour
 
         if (isStaticTarget)//靶子分界线
         {
+            if(moveControl != null)
+            {
+                moveControl.enableCameraMovement = false;
+                moveControl.playerCanMove = false;
+            }
+            if(playerCam != null)
+            {
+                playerCam.gameObject.SetActive(false);
+            }
             return;            
         }
         if (ownedCanvas == null)
@@ -275,7 +285,7 @@ public class Player : MonoBehaviour
         else if (focusingObj.GetComponent<Surface>() != null)
         {
             fixingSurface = focusingObj.GetComponent<Surface>();
-            fixingSurface.StartFixing();
+            fixingSurface.StartFixing(this);
         }
     }
 
@@ -356,8 +366,10 @@ public class Player : MonoBehaviour
 
     public void Killed(Player killer=null)
     {
-
-        deadEvent(this, killer);
+        if(deadEvent != null)
+        {
+            deadEvent(this, killer);
+        }
         //TODO: 计分, 灰屏, 等待时间之类
 
 

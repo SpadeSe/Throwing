@@ -10,11 +10,12 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Player))]
 public class PlayerAnimationControl : MonoBehaviour
 {
-    public FirstPersonAIO movement;
     public Animator animControl;
     public Player playerControl;
+    public FirstPersonAIO movement;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
     public float turnInput = 0.0f;
@@ -23,16 +24,16 @@ public class PlayerAnimationControl : MonoBehaviour
     //public int attackType = 0;
     
 
-    // Start is called before the first frame update
     private void Awake()
+    {
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
         animControl = GetComponent<Animator>();
         playerControl = GetComponent<Player>();
-    }
-
-    void Start()
-    {
-       
+        movement = playerControl.moveControl;
     }
     private void FixedUpdate()
     {
@@ -41,6 +42,10 @@ public class PlayerAnimationControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (playerControl.isStaticTarget)
+        {
+            return;
+        }
         //state
         animControl.SetBool("Armed", playerControl.hasWeapon());
         //Move

@@ -12,6 +12,7 @@ public class Surface : Focusable
     public Collider brokenCollider;
     public bool destroyed = false;
     public bool fixing = false;
+    public Player fixingPlayer;
     public float fixTime = 3.0f;
     public float fixProgress = 0.0f;
     public GameObject fixingUI;
@@ -50,7 +51,7 @@ public class Surface : Focusable
                 StopCoroutine(fixRoutine);
                 fixRoutine = null;
                 Debug.Log("Fix stalled");
-                //TODO: 提示修复失败
+                //TODO: 提示修复失败, 这里架构可能还要改
 
             }
         }
@@ -58,11 +59,7 @@ public class Surface : Focusable
 
     public void Broken()
     {
-        GetComponent<Collider>().isTrigger = true;//让砸破它的武器可以掉下去, 并且不触发函数
-        brokenCollider.enabled = true;
-        GetComponent<Renderer>().enabled = false;
-        destroyed = true;
-        focusable = true;
+        ToggleBrokenOrFixedState(true);
         //暂时隐藏上面的武器
         foreach (Weapon weapon in weaponList)
         {
@@ -72,14 +69,23 @@ public class Surface : Focusable
         //TODO: 提示被破坏
     }
 
+    public void ToggleBrokenOrFixedState(bool broken)
+    {
+        GetComponent<Collider>().isTrigger = broken;//让砸破它的武器可以掉下去, 并且不触发函数
+        brokenCollider.enabled = broken;
+        GetComponent<Renderer>().enabled = !broken;
+        destroyed = broken;
+        focusable = broken;
+    }
+
     public void Fixed()
     {
         fixing = false;
-        GetComponent<Collider>().isTrigger = false;//恢复原来功能
-        brokenCollider.enabled = false;
-        GetComponent<Renderer>().enabled = true;
-        destroyed = false;
-        focusable = false;
+        ToggleBrokenOrFixedState(false);
+        if(fixingPlayer != null)
+        {
+            fixingPlayer.fixingSurface = null;
+        }
         //重新显示上面的武器
         foreach (Weapon weapon in weaponList)
         {
@@ -176,8 +182,9 @@ public class Surface : Focusable
         }
     }
 
-    public void StartFixing()//GameObject fUI = null)
+    public void StartFixing(Player player)//GameObject fUI = null)
     {
+        fixingPlayer = player;
         //fixingUI = fUI;
         fixRoutine = StartCoroutine(Fixing());
         fixing = true;
