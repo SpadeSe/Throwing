@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerStart
+  - Bullet
+  - PlayerController
+  - NetworkManager
   layers:
   - Default
   - TransparentFX

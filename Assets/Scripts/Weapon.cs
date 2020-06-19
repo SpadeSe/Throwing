@@ -36,7 +36,7 @@ public class Weapon : Focusable
     public int type = 0;
     public bool taken = false;
     //public bool focused = false;
-    public Player owner = null;
+    public PlayerCharacter owner = null;
     public bool canDestroy = false;
     public bool canTransfer = false;
     public Surface bornSurface;
@@ -54,7 +54,7 @@ public class Weapon : Focusable
     [Header("Bomb")]
     public bool isBomb = false;
     public SphereCollider burstRange;
-    public List<Player> burstAffectPlayers;
+    public List<PlayerCharacter> burstAffectPlayers;
     public GameObject burstHintObj;
     public GameObject burstParticlePrefab;
     public Coroutine burstRoutine;
@@ -190,7 +190,7 @@ public class Weapon : Focusable
         }
     }
 
-    public void Taken(Player player)
+    public void Taken(PlayerCharacter player)
     {
         focusable = false;
         owner = player;
@@ -347,13 +347,13 @@ public class Weapon : Focusable
             return;
         }
         //Debug.Log(other.gameObject.name);
-        if (other.GetComponentInChildren<Player>() != null)
+        if (other.GetComponentInChildren<PlayerCharacter>() != null)
         {
             if (burstAffectPlayers.Find(
-                delegate(Player player){ return player == other.GetComponentInChildren<Player>(); }) 
+                delegate(PlayerCharacter player){ return player == other.GetComponentInChildren<PlayerCharacter>(); }) 
                 == null)
             {
-                burstAffectPlayers.Add(other.GetComponentInChildren<Player>());
+                burstAffectPlayers.Add(other.GetComponentInChildren<PlayerCharacter>());
             }
         }
     }
@@ -365,9 +365,9 @@ public class Weapon : Focusable
         {
             return;
         }
-        if (other.GetComponentInChildren<Player>() != null)
+        if (other.GetComponentInChildren<PlayerCharacter>() != null)
         {
-            burstAffectPlayers.Remove(other.GetComponentInChildren<Player>());
+            burstAffectPlayers.Remove(other.GetComponentInChildren<PlayerCharacter>());
         }
     }
 

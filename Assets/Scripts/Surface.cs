@@ -12,7 +12,7 @@ public class Surface : Focusable
     public Collider brokenCollider;
     public bool destroyed = false;
     public bool fixing = false;
-    public Player fixingPlayer;
+    public PlayerCharacter fixingPlayer;
     public float fixTime = 3.0f;
     public float fixProgress = 0.0f;
     public GameObject fixingUI;
@@ -182,7 +182,7 @@ public class Surface : Focusable
         }
     }
 
-    public void StartFixing(Player player)//GameObject fUI = null)
+    public void StartFixing(PlayerCharacter player)//GameObject fUI = null)
     {
         fixingPlayer = player;
         //fixingUI = fUI;

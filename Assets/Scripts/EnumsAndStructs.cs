@@ -12,7 +12,7 @@ public enum PlayerSide
 public class SideRecords
 {
     public PlayerSide side;
-    public List<Player> players;
+    public List<PlayerCharacter> players;
     public int Score;
     public int DeadCount;
 }

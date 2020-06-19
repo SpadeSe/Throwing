@@ -10,11 +10,11 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerCharacter))]
 public class PlayerAnimationControl : MonoBehaviour
 {
     public Animator animControl;
-    public Player playerControl;
+    public PlayerCharacter playerControl;
     public FirstPersonAIO movement;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
@@ -32,7 +32,7 @@ public class PlayerAnimationControl : MonoBehaviour
     void Start()
     {
         animControl = GetComponent<Animator>();
-        playerControl = GetComponent<Player>();
+        playerControl = GetComponent<PlayerCharacter>();
         movement = playerControl.moveControl;
     }
     private void FixedUpdate()

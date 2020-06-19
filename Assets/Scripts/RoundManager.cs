@@ -28,14 +28,14 @@ public class RoundManager : MonoBehaviour
     [Header("Blue")]
     public List<GameObject> bluePrefabs;
     public List<Transform> blueSpawnPoses;
-    public List<Player> bluePlayers;
+    public List<PlayerCharacter> bluePlayers;
     public int blueKills;
     public int blueScore;
 
     [Header("Red")]
     public List<GameObject> redPrefabs;
     public List<Transform> redSpawnPoses;
-    public List<Player> redPlayers;
+    public List<PlayerCharacter> redPlayers;
     public int redKills;
     public int redScore;
 
@@ -57,11 +57,11 @@ public class RoundManager : MonoBehaviour
     public void GameInit()
     {
         
-        foreach(Player player in redPlayers)
+        foreach(PlayerCharacter player in redPlayers)
         {
             player.deadEvent += PlayerDead;
         }
-        foreach(Player player in bluePlayers)
+        foreach(PlayerCharacter player in bluePlayers)
         {
             player.deadEvent += PlayerDead;
         }
@@ -81,7 +81,7 @@ public class RoundManager : MonoBehaviour
 
     }
 
-    public void PlayerDead(Player deadPlayer, Player killer)
+    public void PlayerDead(PlayerCharacter deadPlayer, PlayerCharacter killer)
     {
         int score = killer == null ? SuicideScore : KillScore;
         int kill = killer == null ? 0 : 1;

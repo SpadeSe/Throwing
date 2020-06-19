@@ -12,9 +12,9 @@ using UnityEngine;
 using VolumetricLines;
 
 public delegate void PlayerHittenEvent();
-public delegate void PlayerDeadEvent(Player dead, Player killer);
+public delegate void PlayerDeadEvent(PlayerCharacter dead, PlayerCharacter killer);
 
-public class Player : MonoBehaviour
+public class PlayerCharacter : MonoBehaviour
 {
     public bool isStaticTarget = false;
     [Header("Hand Init")]
@@ -87,7 +87,8 @@ public class Player : MonoBehaviour
             }
             return;            
         }
-        if (ownedCanvas == null)
+        //以上是全体都要, 下面是非靶子角色才有
+        if (ownedCanvas == null && CanvasPrefab != null)
         {
             ownedCanvas = Instantiate(CanvasPrefab);
             ownedCanvas.GetComponent<PlayerCanvas>().player = this;
@@ -338,7 +339,7 @@ public class Player : MonoBehaviour
         return weaponSlot.childCount > 0;
     }
 
-    public void ReceiveDamage(Player resource, int dam = 0)
+    public void ReceiveDamage(PlayerCharacter resource, int dam = 0)
     {
         Debug.Log(gameObject.name + "ReceiveDamage: " + dam);
     }
@@ -364,7 +365,7 @@ public class Player : MonoBehaviour
         speedRate = 1.0f;
     }
 
-    public void Killed(Player killer=null)
+    public void Killed(PlayerCharacter killer=null)
     {
         if(deadEvent != null)
         {

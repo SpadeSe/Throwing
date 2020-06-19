@@ -220,6 +220,12 @@ PrefabInstance:
       propertyPath: moveControl
       value: 
       objectReference: {fileID: 3209827527001813661}
+    - target: {fileID: 1614504855609762092, guid: 29b79c1ddf304ac43b6d2f16e66443e3,
+        type: 3}
+      propertyPath: CanvasPrefab
+      value: 
+      objectReference: {fileID: 1333277302465083856, guid: 2f9ca634479899d4cbc717e375195f66,
+        type: 3}
     - target: {fileID: 4544019747377795454, guid: 29b79c1ddf304ac43b6d2f16e66443e3,
         type: 3}
       propertyPath: m_Name

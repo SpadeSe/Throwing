@@ -8,7 +8,7 @@ public class Focusable : MonoBehaviour
     [Header("Focus")]
     public bool focusable = true;
     public bool focused = false;
-    public Player focusingPlayer;
+    public PlayerCharacter focusingPlayer;
     
     public Material focusMat;
     public Color focusColor = Color.yellow;

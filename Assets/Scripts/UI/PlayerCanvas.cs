@@ -7,7 +7,7 @@ public class PlayerCanvas : MonoBehaviour
 {
     [Header("DataRefs")]
     public RoundManager roundManager;//动态获取
-    public Player player;//必须靠其他东西来分配
+    public PlayerCharacter player;//必须靠其他东西来分配
 
     [Header("UIRefs")]
     public Image TimeImage;

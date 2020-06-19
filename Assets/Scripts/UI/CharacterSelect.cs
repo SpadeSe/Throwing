@@ -14,6 +14,7 @@ public class CharacterSelect : MonoBehaviour
     public GameObject curDisplaying;
     [Header("Debug")]
     public ScrollRect scroll;
+    public PlayerController controller;
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +23,26 @@ public class CharacterSelect : MonoBehaviour
         {
             scroll = GetComponent<ScrollRect>();
         }
+        if(controller == null)
+        {
+            controller = GameObject.FindGameObjectWithTag("PlayerController").GetComponent<PlayerController>();
+        }
         RectTransform contentTrans = scroll.content;
         //清空原有的
         List<GameObject> childs = new List<GameObject>();
-        for(int i = 0; i < contentTrans.childCount; i++)
+        for(int i = 0; i < contentTrans.childCount; i++)//UI
         {
             childs.Add(contentTrans.GetChild(i).gameObject);
         }
+        if (characterTrans.childCount > 0)//角色位置
+        {
+            for(int i = 0; i < characterTrans.childCount; i++)
+            {
+                childs.Add(characterTrans.GetChild(i).gameObject);
+            }
+        }
         contentTrans.DetachChildren();
+        characterTrans.DetachChildren();
         foreach(GameObject child in childs)
         {
             Destroy(child);
@@ -39,10 +52,10 @@ public class CharacterSelect : MonoBehaviour
         {
             //生成角色
             GameObject character = Instantiate(characters[i].displayPrefab, characterTrans);
-            //character.transform.position = Vector3.zero;
-            //character.transform.rotation = Quaternion.Euler(Vector3.zero);
-            character.SetActive(false);
+            character.transform.localPosition = Vector3.zero;
+            character.transform.localRotation = Quaternion.Euler(Vector3.zero);
             displayObjs.Add(character);
+            character.SetActive(false);
             //调整toggle
             GameObject toggle = Instantiate(DisplayTogglePrefab, contentTrans);
             toggle.GetComponentInChildren<Image>().sprite = characters[i].displaySprite;
@@ -61,6 +74,7 @@ public class CharacterSelect : MonoBehaviour
         {
             displayObjs[0].SetActive(true);
             curDisplaying = displayObjs[0];
+            controller.characterPrefab = characters[0].inGamePrefab;
 
             contentTrans.sizeDelta = new Vector2(contentTrans.sizeDelta.x,
                 contentTrans.childCount * ((RectTransform)contentTrans.GetChild(0)).sizeDelta.y);
@@ -80,7 +94,7 @@ public class CharacterSelect : MonoBehaviour
         if (activated)
         {
             int activaIdx = -1;
-            GameObject toggleObj = null;
+            //GameObject toggleObj = null;
             for(int i = 0; i < scroll.content.childCount; i++)
             {
                 if (scroll.content.GetChild(i).GetComponent<Toggle>().isOn)
@@ -93,6 +107,7 @@ public class CharacterSelect : MonoBehaviour
             curDisplaying.SetActive(false);
             curDisplaying = displayObjs[activaIdx];
             curDisplaying.SetActive(true);
+            controller.characterPrefab = characters[activaIdx].inGamePrefab;
         }
     }
 }
