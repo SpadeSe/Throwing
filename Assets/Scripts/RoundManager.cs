@@ -22,6 +22,8 @@ public class RoundManager : MonoBehaviour
     [Header("States")]
     public float RoundTime;
 
+    public List<SideRecords> records;
+
     //TODO: 暂时先全部手拖, 做到关卡跳转的时候再来动态获取
     [Header("Blue")]
     public List<GameObject> bluePrefabs;
@@ -40,8 +42,9 @@ public class RoundManager : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         //test
-        GameInit();
+        //GameInit();
     }
 
     // Update is called once per frame

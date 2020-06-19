@@ -15,10 +15,10 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0.6792453, g: 0.6568174, b: 0.6568174, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 1
+  m_LinearFogStart: 4.93
   m_LinearFogEnd: 100
   m_AmbientSkyColor: {r: 0.7728729, g: 0.8414461, b: 0.9811321, a: 1}
   m_AmbientEquatorColor: {r: 0.17030083, g: 0.31195244, b: 0.4056604, a: 1}
@@ -1685,7 +1685,7 @@ PrefabInstance:
     - target: {fileID: 3394621598822207483, guid: a948ef1f8fd58c94198668002137870c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.91
+      value: 4.683
       objectReference: {fileID: 0}
     - target: {fileID: 3394621598822207483, guid: a948ef1f8fd58c94198668002137870c,
         type: 3}
@@ -1730,6 +1730,11 @@ PrefabInstance:
     - target: {fileID: 3394621598822207483, guid: a948ef1f8fd58c94198668002137870c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445693816280240169, guid: a948ef1f8fd58c94198668002137870c,
+        type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

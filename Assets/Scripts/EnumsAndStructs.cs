@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public enum PlayerSide
@@ -8,10 +9,19 @@ public enum PlayerSide
 }
 
 [System.Serializable]
-public struct SideRecords
+public class SideRecords
 {
-    PlayerSide side;
-    List<Player> players;
-    int Score;
-    int DeadCount;
+    public PlayerSide side;
+    public List<Player> players;
+    public int Score;
+    public int DeadCount;
+}
+
+[System.Serializable]
+public struct CharacterSelectInfo
+{
+    public Sprite displaySprite;
+    public string description;
+    public GameObject displayPrefab;
+    public GameObject inGamePrefab;
 }
