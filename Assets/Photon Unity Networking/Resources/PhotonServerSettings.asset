@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   AppSettings:
     AppIdRealtime: 
     AppIdChat: 
@@ -34,3 +35,37 @@ MonoBehaviour:
   DisableAutoOpenWizard: 0
   ShowSettings: 0
   DevRegionSetOnce: 0
+=======
+  AppID: 9a111bd3-5d95-4f0b-be21-438132b85a4f
+  VoiceAppID: 
+  ChatAppID: 3d1d805c-598a-4c59-b452-7ef4c0658f97
+  HostType: 1
+  PreferredRegion: 0
+  EnabledRegions: -1
+  Protocol: 0
+  ServerAddress: 
+  ServerPort: 5055
+  VoiceServerPort: 5055
+  JoinLobby: 0
+  EnableLobbyStatistics: 0
+  PunLogging: 0
+  NetworkLogging: 1
+  RunInBackground: 1
+  RpcList:
+  - Chat
+  - ColorRpc
+  - DestroyRpc
+  - DoJump
+  - Flash
+  - InstantiateRpc
+  - Marco
+  - PickupItemInit
+  - Polo
+  - PunPickup
+  - PunPickupSimple
+  - PunRespawn
+  - RequestForPickupItems
+  - RequestForPickupTimes
+  - TaggedPlayer
+  DisableAutoOpenWizard: 1
+>>>>>>> parent of 09cd265... 删了photon1导了photon2
