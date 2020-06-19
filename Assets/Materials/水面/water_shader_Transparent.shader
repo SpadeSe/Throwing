@@ -121,7 +121,7 @@
 				float4 refl: TEXCOORD6;
 				float2 uvmain:TEXCOORD7;
 				float2 uvFoam:TEXCOORD8;
-				UNITY_FOG_COORDS(6)
+				//UNITY_FOG_COORDS(9)
 			};
 			v2f vert(a2v v) {
 				v2f o = (v2f)0;
@@ -134,7 +134,7 @@
 				o.refl = ComputeScreenPos(o.pos);
 				o.uvmain = TRANSFORM_TEX(v.texcoord0, _RefTex);
 				o.uvFoam = v.texcoord0 * _FoamTex_ST.xy + float2(_Time.y * _FoamSpeedU, _Time.y * _FoamSpeedV);
-				UNITY_TRANSFER_FOG(o, o.pos);
+				//UNITY_TRANSFER_FOG(o, o.pos);
 				o.screenPos = o.pos;
 				return o;
 			}
@@ -172,7 +172,7 @@
 
 				float3 finalColor = ((lerp(tex2D(_GrabTexture, (0.05*(((_refSet*(saturate(dot(normalLocal,float3(0.3,0.59,0.11))) - 0.5)) + 0.5) - 0.5)*mul(tangentTransform, ViewDir).xy + sceneUVs.rg).rg).rgb,((_water_color.rgb*((_Diff_Set*(0.2 + floor(max(0,dot(ViewDir,normalDir)) * _diffStep) / (_diffStep - 1))) + (pow((_SpecSet*floor((max(0,dot(ViewDir,normalDir))*max(0,dot(normalDir,lightDir))) * _specStep) / (_specStep - 1)),_SpecRange)*_SpecColor.rgb))) + lerp(_colorFar.rgb,_colorNear.rgb,Fresnel)),_Alpha) + (_RefTex_var.rgb * _flcSet)) + foamRgb.rgb);
 				fixed4 finalRGBA = fixed4(finalColor,1);
-				UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
+				//UNITY_APPLY_FOG(i.fogCoord, finalRGBA);
 				return finalRGBA;
 			}
             ENDCG
