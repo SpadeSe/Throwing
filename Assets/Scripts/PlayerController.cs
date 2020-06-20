@@ -5,11 +5,14 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject characterPrefab;
+    public int idInRoom;
+
+    public CharacterSelectInfo selectCharacter;
+    public PlayerSide side;
     // Start is called before the first frame update
     private void Awake()
     {
-        gameObject.tag = "PlayerController";
+        gameObject.tag = Definitions.playerControllerTag;
 
     }
     

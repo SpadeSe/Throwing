@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCanvas : MonoBehaviour
+public class PlayerInGameCanvas : MonoBehaviour
 {
     [Header("DataRefs")]
     public RoundManager roundManager;//动态获取

@@ -7,7 +7,7 @@ TagManager:
   - PlayerStart
   - Bullet
   - PlayerController
-  - NetworkManager
+  - NetworkController
   layers:
   - Default
   - TransparentFX

@@ -91,7 +91,7 @@ public class PlayerCharacter : MonoBehaviour
         if (ownedCanvas == null && CanvasPrefab != null)
         {
             ownedCanvas = Instantiate(CanvasPrefab);
-            ownedCanvas.GetComponent<PlayerCanvas>().player = this;
+            ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
         }
     }
 
