@@ -32,21 +32,24 @@ public class MainCanvas : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        mainPanel.SetActive(false);
-        selectPanel.SetActive(true);
-        selectPanel.GetComponent<CharacterSelect>().CreateSelectScroll();
 
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Start Game. Connect to master");
-            PhotonNetwork.ConnectUsingSettings();
-        }
+            PhotonNetwork.ConnectUsingSettings();        }
         PopupHint.PopupUI("开始游戏", (RectTransform)transform);
     }
 
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
+        mainPanel.SetActive(false);
+        selectPanel.SetActive(true);
+        selectPanel.GetComponent<CharacterSelect>().CreateSelectScroll();
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 
     public void QuitGame()

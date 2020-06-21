@@ -68,7 +68,7 @@ public class CharacterSelect : MonoBehaviour
             character.SetActive(false);
             //调整toggle
             GameObject toggle = Instantiate(DisplayTogglePrefab, contentTrans);
-            toggle.GetComponentInChildren<Image>().sprite = characters[i].displaySprite;
+            toggle.GetComponentsInChildren<Image>()[1].sprite = characters[i].displaySprite;
             toggle.GetComponentInChildren<Text>().text = characters[i].description;
             //RectTransform toggleTrans = toggle.GetComponent<RectTransform>();
             //toggleTrans.anchoredPosition = new Vector2(0, -i * toggleTrans.sizeDelta.y);

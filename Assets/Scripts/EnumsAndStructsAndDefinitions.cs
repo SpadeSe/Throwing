@@ -6,6 +6,8 @@ using ExitGames.Client.Photon;
 public class Definitions
 {
     public static string playerControllerTag = "PlayerController";
+    public static string characterSelectDisplaySpriteResourcePath = "displaySprite/";
+    public static string inGameCharacterPrefabResourcePath = "charactersFinal/";
 }
 
 [System.Serializable]

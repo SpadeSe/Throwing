@@ -225,6 +225,11 @@ PrefabInstance:
       propertyPath: moveControl
       value: 
       objectReference: {fileID: 3352306357889127067}
+    - target: {fileID: 4544019747364199548, guid: 29b79c1ddf304ac43b6d2f16e66443e3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b8c7f2294356d845867a3792e159ae2, type: 2}
     - target: {fileID: 4544019747377795454, guid: 29b79c1ddf304ac43b6d2f16e66443e3,
         type: 3}
       propertyPath: m_Name

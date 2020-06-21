@@ -42,6 +42,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         RoomNameInput = CreateRoomInputPanel.GetComponentInChildren<InputField>();
         RoomScroll = RoomScrollObj.GetComponent<ScrollRect>();
         RoomGroup = RoomScrollObj.GetComponent<ToggleGroup>();
+        roomInfoDict = new Dictionary<string, RoomInfo>();
         if (playerController == null)
         {
             playerController = GameObject.FindGameObjectWithTag(Definitions.playerControllerTag).GetComponent<PlayerController>();
@@ -59,14 +60,22 @@ public class RoomManager : MonoBehaviourPunCallbacks
         RoomPanel.SetActive(false);
     }
 
+
     // Update is called once per frame
     void Update()
     {
 
     }
 
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        PhotonNetwork.GetCustomRoomList(PhotonNetwork.CurrentLobby, null);
+    }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        Debug.Log("房间信息更新");
         base.OnRoomListUpdate(roomList);
         //update dict
         foreach (RoomInfo room in roomList)
@@ -117,9 +126,15 @@ public class RoomManager : MonoBehaviourPunCallbacks
         string roomname = RoomNameInput.text;
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = (byte)maxPlayer;
-        if(PhotonNetwork.CreateRoom(roomname, options))
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
+        if (PhotonNetwork.CreateRoom(roomname, options))
         {
             PopupHint.PopupUI("成功创建房间", (RectTransform)transform);//.parent);
+            //PhotonNetwork.GetCustomRoomList(PhotonNetwork.CurrentLobby, null);
+
             CreateRoomInputPanel.SetActive(false);
         }
         else

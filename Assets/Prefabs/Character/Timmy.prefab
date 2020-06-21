@@ -2064,7 +2064,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7978c39aa48c7674b969af91c19a0d33, type: 2}
+  - {fileID: 2100000, guid: 8b8c7f2294356d845867a3792e159ae2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2227,9 +2227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0581320bb7e404e489034df739b00b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 0}
   animControl: {fileID: 4544019747368411836}
   playerControl: {fileID: 0}
+  movement: {fileID: 0}
   HorizontalInput: 0
   VerticalInput: 0
   turnInput: 0
@@ -2249,13 +2249,14 @@ MonoBehaviour:
   weaponSlot: {fileID: 7157459900735865981}
   playerCam: {fileID: 6983993711176959598}
   moveControl: {fileID: 0}
-  crosshair: {fileID: 0}
-  hintUI: {fileID: 0}
-  fixingBar: {fileID: 0}
+  respawnTrans: {fileID: 0}
+  CanvasPrefab: {fileID: 0}
+  ownedCanvas: {fileID: 0}
   maxHp: 3
-  curHp: 1
   normalSpeed: 2
   runSpeed: 4
+  side: 0
+  curHp: 1
   speedRate: 1
   targeting: 0
   throwing: 0
