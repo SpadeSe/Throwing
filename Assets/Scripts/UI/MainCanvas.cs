@@ -34,7 +34,7 @@ public class MainCanvas : MonoBehaviourPunCallbacks
     {
         mainPanel.SetActive(false);
         selectPanel.SetActive(true);
-        //selectPanel.GetComponent<CharacterSelect>().CreateSelectScroll();
+        selectPanel.GetComponent<CharacterSelect>().CreateSelectScroll();
 
         if (!PhotonNetwork.IsConnected)
         {

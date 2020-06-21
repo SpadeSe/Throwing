@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public int idInRoom;
 
+    public string playerName;
     public CharacterSelectInfo selectCharacter;
     public PlayerSide side;
     // Start is called before the first frame update

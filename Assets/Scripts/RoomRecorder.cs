@@ -6,8 +6,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
-public class RoomRecorder : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class RoomRecorder : MonoBehaviourPun, IPunObservable
 {
     public bool clearRecord = false;
     public List<RoomRecord> redRecords;
@@ -18,7 +22,7 @@ public class RoomRecorder : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-
+        PhotonPeer.RegisterType(typeof(RoomRecord), (byte)'r', RoomRecord.SerializeClass, RoomRecord.DeserializeClass);
     }
 
     // Update is called once per frame
@@ -28,16 +32,17 @@ public class RoomRecorder : MonoBehaviour
     }
 
     //玩家初次进入房间的时候要注册进这个roomRecorder, 然后recoder会返回一个int来标识
-    public int RegisterToRoom(CharacterSelectInfo selectInfo, string name)
+    public int RegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
     {
         RoomRecord newRecord = new RoomRecord
         (
             curIdx,
-            name,
-            selectInfo,
+            playername,
+            spriteprefabname,
+            ingameprefabname,
             redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE
         );
-        if(newRecord.side == PlayerSide.RED)
+        if (newRecord.side == PlayerSide.RED)
         {
             redRecords.Add(newRecord);
         }
@@ -50,13 +55,73 @@ public class RoomRecorder : MonoBehaviour
     }
 
     //玩家离开房间的时候需要调用, 将记录移除
-    public void LeaveRoom(int id)
+    public void LeaveRoom(int id, PlayerSide prevSide)
     {
-        if(!redRecords.Remove(redRecords.Find((r) => r.id == id)))
+        //if(!redRecords.Remove(redRecords.Find((r) => r.id == id)))
+        //{
+        //    blueRecords.Remove(blueRecords.Find((r) => r.id == id));
+        //}
+        if(prevSide == PlayerSide.RED)
+        {
+            redRecords.Remove(redRecords.Find((r) => r.id == id));
+        }
+        else
         {
             blueRecords.Remove(blueRecords.Find((r) => r.id == id));
         }
     }
 
+    //public void ChangeName(int id, PlayerSide prevSide, string name)
+    //{
+    //    List<RoomRecord> changeRecord = redRecords;
+    //    if(prevSide == PlayerSide.BLUE)
+    //    {
+    //        changeRecord = blueRecords;
+    //    }
+    //    for(int i = 0; i < changeRecord.Count; i++)
+    //    {
+    //        if(changeRecord[i].id == id)
+    //        {
+    //            changeRecord[i].name = name;
+    //            break;
+    //        }
+    //    }
+    //}
 
+    public void ChangeSide(int id, PlayerSide prevSide, PlayerSide newSide)
+    {
+        if(prevSide == newSide)
+        {
+            return;
+        }
+        List<RoomRecord> changeRecord = redRecords;
+        if (prevSide == PlayerSide.BLUE)
+        {
+            changeRecord = blueRecords;
+        }
+        for (int i = 0; i < changeRecord.Count; i++)
+        {
+            if (changeRecord[i].id == id)
+            {
+                changeRecord[i].side = newSide;
+                break;
+            }
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(redRecords.ToArray());
+            stream.SendNext(blueRecords.ToArray());
+            stream.SendNext(curIdx);
+        }
+        else
+        {
+            redRecords = new List<RoomRecord>((RoomRecord[])stream.ReceiveNext());
+            blueRecords = new List<RoomRecord>((RoomRecord[])stream.ReceiveNext());
+            curIdx = (int)stream.ReceiveNext();
+        }
+    }
 }

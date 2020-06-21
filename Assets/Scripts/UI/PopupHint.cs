@@ -36,6 +36,7 @@ public class PopupHint : MonoBehaviour
         text.text = hint;
         text.material.SetColor("_Color", textColor);
         popup.GetComponent<Animation>().Play();
+        Destroy(popup, popup.GetComponent<Animation>().clip.length);
         //TODO: 根据字数来调整尺寸
     }
 }
