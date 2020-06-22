@@ -29,6 +29,10 @@ public class PopupHint : MonoBehaviour
         {
             UIPrefab = Resources.Load<GameObject>("PopupUI");
         }
+        if(canvasTrans == null)
+        {
+            
+        }
         GameObject popup = Instantiate(UIPrefab, canvasTrans);
         Image back = popup.GetComponentInChildren<Image>();
         back.material.SetColor("_Color", backColor);

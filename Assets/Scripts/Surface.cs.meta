@@ -3,7 +3,20 @@ guid: 8cb20567732b73244bfc66713d4054d7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - focusingPlayer: {instanceID: 0}
+  - focusMat: {instanceID: 0}
+  - focusPrefab: {instanceID: 0}
+  - focusObj: {instanceID: 0}
+  - focusingUI: {instanceID: 0}
+  - brokenCollider: {instanceID: 0}
+  - fixingPlayer: {instanceID: 0}
+  - fixingUI: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - weaponHitSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - bombBounceSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - BrokenSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - fixedSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,6 +6,10 @@ using UnityEngine;
 public class KillZone : MonoBehaviour
 {
     public GameObject EnterParticle;
+    [Header("Audio")]
+    public AudioSource audioSource;
+    [Tooltip("进入水面时的音效")]
+    public AudioClip enterClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,11 @@ public class KillZone : MonoBehaviour
         {
             GameObject particle = Instantiate(EnterParticle, transform);
             particle.transform.position = other.transform.position;
+        }
+        if(enterClip != null)
+        {
+            audioSource.clip = enterClip;
+            audioSource.Play();
         }
         //处理武器
         Weapon weapon = other.GetComponentInParent<Weapon>();

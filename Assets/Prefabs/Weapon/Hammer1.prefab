@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 8984542439349651911}
   - component: {fileID: 8984542439349651908}
   - component: {fileID: 8984542439349651909}
+  - component: {fileID: 82821628604862470}
   - component: {fileID: 8984542439349651910}
   m_Layer: 10
   m_Name: Hammer1
@@ -113,6 +114,102 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!82 &82821628604862470
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8984542439349651904}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &8984542439349651910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,19 +224,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   focusable: 1
   focused: 0
+  focusingPlayer: {fileID: 0}
   focusMat: {fileID: 2100000, guid: efe7ab8b23eb2b94eb5f7ff9c4e9e936, type: 2}
   focusColor: {r: 0.9450981, g: 0.25882354, b: 0.08627451, a: 1}
   focusPrefab: {fileID: 8983296080518028886}
   focusObj: {fileID: 0}
-  focusHintUI: {fileID: 0}
+  focusingUI: {fileID: 0}
   focusUIHint: 
   animControl: {fileID: 0}
+  weaponName: 
+  UISprite: {fileID: 0}
   damage: 2
   useCount: -1
   type: 1
   taken: 0
   owner: {fileID: 0}
   canDestroy: 0
+  canTransfer: 0
+  bornSurface: {fileID: 0}
   WeaponCollider: {fileID: 5631276234728080199}
   moving: 0
   gravityScale: 0.6
@@ -147,6 +249,10 @@ MonoBehaviour:
   WeaponHead: {fileID: 4903320825780382658}
   startPos: {x: 0, y: 0, z: 0}
   startRotate: {x: 0, y: 0, z: 0, w: 0}
+  audioSource: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  throwOutSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  BombBurstSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
   isBomb: 0
   burstRange: {fileID: 0}
   burstAffectPlayers: []

@@ -17,6 +17,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
 public class Weapon : Focusable
 {
     [HideInInspector]
@@ -51,6 +52,17 @@ public class Weapon : Focusable
     public GameObject WeaponHead;
     public Vector3 startPos;
     public Quaternion startRotate;
+
+    [Header("Audio")]
+    public AudioSource audioSource;
+    [Tooltip("拾取时的音效, 比如武器金属音, 炸弹就emmm比较轻的一个声音")]
+    public AudioClip pickupSound;
+    [Tooltip("投掷出去的音效, 会有风声. 炸弹就不需要")]
+    public AudioClip throwOutSound;
+    [Tooltip("炸弹爆炸的声音, 其他武器就不需要")]
+    public AudioClip BombBurstSound;
+    
+
     [Header("Bomb")]
     public bool isBomb = false;
     public SphereCollider burstRange;
@@ -67,6 +79,7 @@ public class Weapon : Focusable
         focusUIHint = "按<size=27><color=yellow>E</color></size>拾取";
 
         animControl = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         AdjustPosAndRotToSurface();
         startPos = transform.position;
@@ -146,6 +159,12 @@ public class Weapon : Focusable
         {
             bounceCount = maxBounce;
         }
+        //播放声音
+        if(throwOutSound != null)
+        {
+            audioSource.clip = throwOutSound;
+            audioSource.Play();
+        }
     }
     //调整武器的指向
     void AdjustRotation(Vector3 dir)
@@ -208,6 +227,11 @@ public class Weapon : Focusable
             {
                 burstHintObj.SetActive(false);
             }
+        }
+        if(pickupSound != null)
+        {
+            audioSource.clip = pickupSound;
+            audioSource.Play();
         }
     }
 
@@ -301,6 +325,11 @@ public class Weapon : Focusable
             GameObject particle = Instantiate<GameObject>(burstParticlePrefab);
             particle.GetComponent<ParticleSystem>().Play();
             Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
+        }
+        if (BombBurstSound != null)
+        {
+            audioSource.clip = BombBurstSound;
+            audioSource.Play();
         }
         //TODO: 造成伤害, 处理力, 各种各种
         foreach(var player in burstAffectPlayers)

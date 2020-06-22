@@ -4,10 +4,24 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - focusingPlayer: {instanceID: 0}
+  - focusMat: {instanceID: 0}
+  - focusPrefab: {instanceID: 0}
+  - focusObj: {instanceID: 0}
+  - focusingUI: {instanceID: 0}
   - animControl: {instanceID: 0}
-  - highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
-  - highlightObj: {instanceID: 0}
+  - UISprite: {instanceID: 0}
+  - owner: {instanceID: 0}
+  - bornSurface: {instanceID: 0}
+  - WeaponCollider: {instanceID: 0}
   - WeaponHead: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - pickupSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - throwOutSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - BombBurstSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  - burstRange: {instanceID: 0}
+  - burstHintObj: {instanceID: 0}
+  - burstParticlePrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

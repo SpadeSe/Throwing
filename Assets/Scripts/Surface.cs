@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(AudioSource))]
 public class Surface : Focusable
 {
     public List<Weapon> weaponList;
@@ -17,9 +17,24 @@ public class Surface : Focusable
     public float fixProgress = 0.0f;
     public GameObject fixingUI;
     Coroutine fixRoutine;
+    [Header("Audio")]
+    public AudioSource audioSource;
+    [Tooltip("投掷类武器击中的音效")]
+    public AudioClip weaponHitSound;
+    [Tooltip("炸弹反弹的音效")]
+    public AudioClip bombBounceSound;
+    [Tooltip("被砸碎的音效音效")]
+    public AudioClip BrokenSound;
+    [Tooltip("修复时的音效")]
+    public AudioClip fixedSound;
+    [Header("Particle")]
+    public GameObject brokenParticlePrefab;
+    public GameObject fixingParticlePrefab;
+    public GameObject fixingParticle;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         if (canBeDestroyed)
         {
             Transform childBlock = transform.GetChild(0);
@@ -29,10 +44,10 @@ public class Surface : Focusable
             {
                 Broken();
             }
-            else
-            {
-                Fixed();
-            }
+            //else
+            //{
+            //    Fixed();
+            //}
             focusPrefab = gameObject;
         }
         else
@@ -48,9 +63,16 @@ public class Surface : Focusable
         {
             if (!focused)
             {
+                fixing = false;
                 StopCoroutine(fixRoutine);
                 fixRoutine = null;
                 Debug.Log("Fix stalled");
+                PopupHint.PopupUI("修复失败", (RectTransform)fixingPlayer.ownedCanvas.transform);
+                fixingPlayer = null;
+                if(fixingParticle != null)
+                {
+                    fixingParticle.GetComponent<ParticleSystem>().Pause();
+                }
                 //TODO: 提示修复失败, 这里架构可能还要改
 
             }
@@ -64,6 +86,17 @@ public class Surface : Focusable
         foreach (Weapon weapon in weaponList)
         {
             weapon.gameObject.SetActive(false);
+        }
+        if(BrokenSound != null)
+        {
+            audioSource.clip = BrokenSound;
+            audioSource.Play();
+        }
+        if(brokenParticlePrefab != null)
+        {
+            GameObject brokenParticle = Instantiate(brokenParticlePrefab);
+            brokenParticle.GetComponent<ParticleSystem>().Play();
+            Destroy(brokenParticle, brokenParticle.GetComponent<ParticleSystem>().main.duration);
         }
         //Debug.Log(gameObject.name + " is broken");
         //TODO: 提示被破坏
@@ -80,11 +113,18 @@ public class Surface : Focusable
 
     public void Fixed()
     {
+        fixProgress = 0.0f;
         fixing = false;
         ToggleBrokenOrFixedState(false);
         if(fixingPlayer != null)
         {
             fixingPlayer.fixingSurface = null;
+        }
+        fixingPlayer = null;
+        if(fixingParticle != null)
+        {
+            Destroy(fixingParticle);
+            fixingParticle = null;
         }
         //重新显示上面的武器
         foreach (Weapon weapon in weaponList)
@@ -94,6 +134,11 @@ public class Surface : Focusable
                 weapon.ReGen();
             }
             weapon.gameObject.SetActive(true);
+        }
+        if(fixedSound != null)
+        {
+            audioSource.clip = fixedSound;
+            audioSource.Play();
         }
         //Debug.Log(gameObject.name + " has been fixed");
         //if(fixingUI != null)
@@ -127,6 +172,11 @@ public class Surface : Focusable
                 }
                 else
                 {
+                    if(weaponHitSound != null)
+                    {
+                        audioSource.clip = weaponHitSound;
+                        audioSource.Play();
+                    }
                     weapon.AdjustPosAndRotToSurface(collision);
                     weapon.ForceStop();
                     if (weapon.canTransfer)//如果可以传送, 辣么就要传送
@@ -152,6 +202,11 @@ public class Surface : Focusable
             if (weapon.isBomb)
             {
                 weapon.BombBounce(collision);
+                if(bombBounceSound != null)
+                {
+                    audioSource.clip = bombBounceSound;
+                    audioSource.Play();
+                }
             }
         }
     }
@@ -193,7 +248,19 @@ public class Surface : Focusable
         //    fixingUI.SetActive(true);
         //    fixingUI.GetComponent<Scrollbar>().size = 0;
         //}
-        fixProgress = 0.0f;
+        //fixProgress = 0.0f;
+        if(fixingParticle == null)
+        {
+            if(fixingParticlePrefab != null)
+            {
+                fixingParticle = Instantiate(fixingParticlePrefab);
+                fixingParticle.GetComponent<ParticleSystem>().Play();
+            }
+        }
+        else
+        {
+            fixingParticle.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     IEnumerator Fixing()

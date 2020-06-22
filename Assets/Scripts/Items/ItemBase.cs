@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ItemBase : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     public virtual void Init()
     {
@@ -39,6 +40,7 @@ public class ItemBase : MonoBehaviour
                 return;
             }
             TakeEffect(weapon);
+            Destroy(gameObject);//生效后删除
         }
     }
 }
