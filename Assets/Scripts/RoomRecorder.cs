@@ -21,8 +21,10 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.tag = Definitions.roomRecorderTag;
         DontDestroyOnLoad(gameObject);
         PhotonPeer.RegisterType(typeof(RoomRecord), (byte)'r', RoomRecord.SerializeClass, RoomRecord.DeserializeClass);
+        
     }
 
     // Update is called once per frame
@@ -31,9 +33,20 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         
     }
 
-    //玩家初次进入房间的时候要注册进这个roomRecorder, 然后recoder会返回一个int来标识
-    public int RegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
+    public int CallRegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
     {
+        PhotonView view = PhotonView.Get(this);
+        int toReturnId = curIdx;
+        view.RPC("RegisterToRoom", RpcTarget.All, playername, spriteprefabname, ingameprefabname);
+        return toReturnId;
+        
+    }
+
+    //玩家初次进入房间的时候要注册进这个roomRecorder, 然后recoder会返回一个int来标识
+    [PunRPC]
+    public void RegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
+    {
+        Debug.Log(playername);
         RoomRecord newRecord = new RoomRecord
         (
             curIdx,
@@ -51,7 +64,6 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
             blueRecords.Add(newRecord);
         }
         curIdx++;
-        return curIdx - 1;
     }
 
     //玩家离开房间的时候需要调用, 将记录移除

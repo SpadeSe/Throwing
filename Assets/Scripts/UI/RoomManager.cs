@@ -19,6 +19,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public GameObject RoomScrollObj;//需要这个scroll有scrollRect和ToggleGroup
     public GameObject PlayerNameInputObj;
     public GameObject CreateRoomInputPanel;
+    public GameObject JoinRoomButton;
 
     [Header("Settings")]
     public GameObject RoomSelectTogglePrefab;
@@ -32,9 +33,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
     public ToggleGroup RoomGroup;
     public PlayerController playerController;
     public Dictionary<string, RoomInfo> roomInfoDict;
+    public string selectedRoomName = "";
 
     public RoomRecorder roomRecorder;
-    public bool isManager;
+    public bool isManager = false;
 
     public void Init()
     {
@@ -48,6 +50,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
             playerController = GameObject.FindGameObjectWithTag(Definitions.playerControllerTag).GetComponent<PlayerController>();
         }
         PlayerNameInput.onEndEdit.AddListener(ChangeName);
+        JoinRoomButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        JoinRoomButton.GetComponent<Button>().onClick.AddListener(JoinRoomButtonClicked);
 
         playerController.playerName = PlayerNameInput.text;
     }
@@ -67,6 +71,22 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
     }
 
+    
+    
+    
+    
+
+    public void ChangeSide(bool temp)
+    {
+
+    }
+
+    public void ChangeName(string newName)
+    {
+        playerController.playerName = newName;
+    }
+
+    #region callbacks
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
@@ -80,7 +100,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         //update dict
         foreach (RoomInfo room in roomList)
         {
-            if (!room.IsVisible)// || room.RemovedFromList)
+            if (!room.IsVisible || !room.IsOpen || room.RemovedFromList)
             {
                 if (roomInfoDict.ContainsKey(room.Name))
                 {
@@ -105,9 +125,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         for (; curToggle < roomInfoDict.Count; curToggle++)
         {
             GameObject newToggle = Instantiate(RoomSelectTogglePrefab, contentTrans);
+            RoomScroll.GetComponent<ToggleGroup>().RegisterToggle(newToggle.GetComponent<Toggle>());
         }
         int idx = 0;
-        foreach(var room in roomInfoDict)
+        foreach (var room in roomInfoDict)
         {
             Transform child = contentTrans.GetChild(idx);
             Text[] texts = child.GetComponentsInChildren<Text>();
@@ -115,11 +136,68 @@ public class RoomManager : MonoBehaviourPunCallbacks
             texts[1].text = "人属: " + room.Value.PlayerCount + " / " + (int)room.Value.MaxPlayers;
             idx++;
         }
-        for(; idx < curToggle; idx++)
+        for (; idx < curToggle; idx++)
         {
             contentTrans.GetChild(idx).gameObject.SetActive(false);
+            contentTrans.GetChild(idx).GetComponent<Toggle>().isOn = false;
+        }
+        if(roomInfoDict.Count > 0)
+        {
+            contentTrans.GetChild(0).GetComponent<Toggle>().isOn = true;
+            var iter = roomInfoDict.Values.GetEnumerator();
+            if(iter.Current == null)
+            {
+                iter.MoveNext();
+            }
+            selectedRoomName = iter.Current.Name;
         }
     }
+
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+        roomRecorder = PhotonNetwork.Instantiate("RoomRecorder", Vector3.zero, Quaternion.Euler(Vector3.zero))
+                .GetComponent<RoomRecorder>();
+        isManager = true;
+        playerController.idInRoom = roomRecorder.CallRegisterToRoom(
+            playerController.playerName,
+            playerController.selectCharacter.displaySprite.name,
+            playerController.selectCharacter.inGamePrefab.name);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+        //如果不是创建房间的人, 那么就找到roomRecorder, 然后注册进去.
+        //如果是创建房间的人, 那么就创建一个新的roomRecorder
+        if (!isManager)
+        {
+            StartCoroutine(FindRoomRecorderAndRegister());
+            //GameObject roomRecorderObj = GameObject.Find("RoomRecorder");
+            //if (roomRecorderObj == null)
+            //{
+            //    roomRecorder = PhotonNetwork.Instantiate("RoomRecorder", Vector3.zero, Quaternion.Euler(Vector3.zero))
+            //        .GetComponent<RoomRecorder>();
+            //}
+            //else
+            //{
+            //    roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
+            //}
+            //playerController.idInRoom = roomRecorder.RegisterToRoom(
+            //    playerController.playerName,
+            //    playerController.selectCharacter.displaySprite.name,
+            //    playerController.selectCharacter.inGamePrefab.name);
+        }
+        RoomPanel.SetActive(true);
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+    }
+    #endregion
+
+    #region delegate events
 
     public void CreateRoomConfirm()
     {
@@ -129,57 +207,78 @@ public class RoomManager : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.InLobby)
         {
             PhotonNetwork.JoinLobby();
+            PopupHint.PopupUI("创建房间失败: 未加入大厅");
+            return;
         }
         if (PhotonNetwork.CreateRoom(roomname, options))
         {
-            PopupHint.PopupUI("成功创建房间", (RectTransform)transform);//.parent);
+            PopupHint.PopupUI("成功创建房间");//.parent);
             //PhotonNetwork.GetCustomRoomList(PhotonNetwork.CurrentLobby, null);
 
             CreateRoomInputPanel.SetActive(false);
         }
         else
         {
-            PopupHint.PopupUI("创建房间失败", (RectTransform)transform);//.parent);
+            PopupHint.PopupUI("创建房间失败");//.parent);
         }
     }
 
-    public override void OnJoinedRoom()
+    public void ChooseRoom(bool on)
     {
-        base.OnJoinedRoom();
-        //如果不是创建房间的人, 那么就找到roomRecorder, 然后注册进去.
-        //如果是创建房间的人, 那么就创建一个新的roomRecorder
-        GameObject roomRecorderObj = GameObject.Find("RoomRecorder");
-        if(roomRecorderObj == null)
+        if (on)
         {
-            roomRecorder = PhotonNetwork.Instantiate("RoomRecorder", Vector3.zero, Quaternion.Euler(Vector3.zero))
-                .GetComponent<RoomRecorder>();
-            isManager = true;
+            RectTransform contentTrans = RoomScroll.content;
+            int idx = 0;
+            foreach(var room in roomInfoDict)
+            {
+                if (contentTrans.GetChild(idx).GetComponent<Toggle>().isOn)
+                {
+                    selectedRoomName = room.Key;
+                    break;
+                }
+                idx++;
+            }
+        }
+    }
+
+    public void JoinRoomButtonClicked()
+    {
+        Debug.Log("JoinRoomButtonClicked");
+        if(selectedRoomName == "")
+        {
+            PopupHint.PopupUI("未选择房间, 无法加入");
+            return;
+        }
+        if (!PhotonNetwork.IsConnectedAndReady)
+        {
+            PopupHint.PopupUI("加入房间失败");
+            return;
+        }
+        if (PhotonNetwork.JoinRoom(selectedRoomName))
+        {
+            PopupHint.PopupUI("成功加入房间");
+
         }
         else
         {
-            roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
-            isManager = false;
+            PopupHint.PopupUI("加入房间失败");
         }
-        playerController.idInRoom = roomRecorder.RegisterToRoom(
-            playerController.playerName, 
-            playerController.selectCharacter.displaySprite.name, 
+    }
+
+    #endregion
+
+    IEnumerator FindRoomRecorderAndRegister()
+    {
+        GameObject roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
+        while (roomRecorderObj == null)
+        {
+            yield return null;
+            roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
+        }
+        roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
+        playerController.idInRoom = roomRecorder.CallRegisterToRoom(
+            playerController.playerName,
+            playerController.selectCharacter.displaySprite.name,
             playerController.selectCharacter.inGamePrefab.name);
-
-        RoomPanel.SetActive(true);
-    }
-
-    public override void OnLeftRoom()
-    {
-        base.OnLeftRoom();
-    }
-
-    public void ChangeSide(bool temp)
-    {
-
-    }
-
-    public void ChangeName(string newName)
-    {
-
     }
 }

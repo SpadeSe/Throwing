@@ -6,6 +6,8 @@ using ExitGames.Client.Photon;
 public class Definitions
 {
     public static string playerControllerTag = "PlayerController";
+    public static string roomRecorderTag = "RoomRecorder";
+
     public static string characterSelectDisplaySpriteResourcePath = "displaySprite/";
     public static string inGameCharacterPrefabResourcePath = "charactersFinal/";
 }
@@ -93,8 +95,7 @@ public class RoomRecord
         Protocol.Deserialize(out length, bytes, ref index);
         record.inGamePrefabName = UTF8Encoding.Default.GetString(bytes, index, length);
         index += length;
-        int side = 0;
-        Protocol.Deserialize(out side, bytes, ref index);
+        byte side = bytes[index];
         record.side = (PlayerSide)side;
         return record;
     }

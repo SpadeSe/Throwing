@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - PlayerController
   - NetworkController
+  - RoomRecorder
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Collider), typeof(AudioSource))]
+[RequireComponent(typeof(Collider))]
 public class Surface : Focusable
 {
     public List<Weapon> weaponList;
@@ -34,7 +34,7 @@ public class Surface : Focusable
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponentInParent<AudioSource>();
         if (canBeDestroyed)
         {
             Transform childBlock = transform.GetChild(0);

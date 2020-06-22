@@ -52,6 +52,12 @@ public class MainCanvas : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        PopupHint.PopupUI("成功加入大厅");
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR

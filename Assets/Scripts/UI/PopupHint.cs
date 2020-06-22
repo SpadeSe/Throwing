@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class PopupHint : MonoBehaviour
 {
-    public static GameObject UIPrefab;
+    public static GameObject UIItemPrefab;
+    public static GameObject CanvasPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,29 +19,37 @@ public class PopupHint : MonoBehaviour
         
     }
 
-    public static void PopupUI(string hint, RectTransform canvasTrans)
+    public static void PopupUI(string hint, RectTransform canvasTrans = null)
     {
         PopupUI(hint, canvasTrans, Color.white, Color.black);
     }
 
     public static void PopupUI(string hint, RectTransform canvasTrans, Color textColor, Color backColor)
     {
-        if(UIPrefab == null)
+        if(UIItemPrefab == null)
         {
-            UIPrefab = Resources.Load<GameObject>("PopupUI");
+            UIItemPrefab = Resources.Load<GameObject>("PopupUI");
         }
+        if(CanvasPrefab == null)
+        {
+            CanvasPrefab = Resources.Load<GameObject>("PopupCanvas");
+        }
+        GameObject popup = null;
         if(canvasTrans == null)
         {
-            
+            popup = Instantiate(CanvasPrefab, null);
         }
-        GameObject popup = Instantiate(UIPrefab, canvasTrans);
+        else
+        {
+            popup = Instantiate(UIItemPrefab, canvasTrans);
+        }
         Image back = popup.GetComponentInChildren<Image>();
         back.material.SetColor("_Color", backColor);
         Text text = popup.GetComponentInChildren<Text>();
         text.text = hint;
         text.material.SetColor("_Color", textColor);
-        popup.GetComponent<Animation>().Play();
-        Destroy(popup, popup.GetComponent<Animation>().clip.length);
+        popup.GetComponentInChildren<Animation>().Play();
+        Destroy(popup, popup.GetComponentInChildren<Animation>().clip.length);
         //TODO: 根据字数来调整尺寸
     }
 }
