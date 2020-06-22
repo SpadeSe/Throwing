@@ -69,7 +69,7 @@ public class PlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.unityLogger.logEnabled = true;
+        //Debug.unityLogger.logEnabled = true;
 
         //init
         curHp = maxHp;
@@ -85,9 +85,9 @@ public class PlayerCharacter : MonoBehaviour
             {
                 playerCam.gameObject.SetActive(false);
             }
-            return;            
+            return;//靶子角色设置不能移动, 摄像机也无效. 然后退出            
         }
-        //以上是全体都要, 下面是非靶子角色才有
+        //以上是靶子角色, 下面是非靶子角色
         if (ownedCanvas == null && CanvasPrefab != null)
         {
             ownedCanvas = Instantiate(CanvasPrefab);
@@ -367,10 +367,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Killed(PlayerCharacter killer=null)
     {
-        if(deadEvent != null)
-        {
-            deadEvent(this, killer);
-        }
+        deadEvent?.Invoke(this, killer);
         //TODO: 计分, 灰屏, 等待时间之类
 
 

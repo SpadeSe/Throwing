@@ -15,11 +15,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
 {
 
     [Header("Hand Init")]
-    public GameObject RoomPanel;
     public GameObject RoomScrollObj;//需要这个scroll有scrollRect和ToggleGroup
     public GameObject PlayerNameInputObj;
     public GameObject CreateRoomInputPanel;
     public GameObject JoinRoomButton;
+    public GameObject RoomPanel;
+    public GameObject PlayButton;
 
     [Header("Settings")]
     public GameObject RoomSelectTogglePrefab;
@@ -52,6 +53,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         PlayerNameInput.onEndEdit.AddListener(ChangeName);
         JoinRoomButton.GetComponent<Button>().onClick.RemoveAllListeners();
         JoinRoomButton.GetComponent<Button>().onClick.AddListener(JoinRoomButtonClicked);
+        PlayButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        PlayButton.GetComponent<Button>().onClick.AddListener(PlayButtonClicked);
 
         playerController.playerName = PlayerNameInput.text;
     }
@@ -159,10 +162,10 @@ public class RoomManager : MonoBehaviourPunCallbacks
         roomRecorder = PhotonNetwork.Instantiate("RoomRecorder", Vector3.zero, Quaternion.Euler(Vector3.zero))
                 .GetComponent<RoomRecorder>();
         isManager = true;
-        playerController.idInRoom = roomRecorder.CallRegisterToRoom(
-            playerController.playerName,
-            playerController.selectCharacter.displaySprite.name,
-            playerController.selectCharacter.inGamePrefab.name);
+        //playerController.idInRoom = roomRecorder.CallRegisterToRoom(
+        //    playerController.playerName,
+        //    playerController.selectCharacter.displaySprite.name,
+        //    playerController.selectCharacter.inGamePrefab.name);
     }
 
     public override void OnJoinedRoom()
@@ -170,9 +173,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         //如果不是创建房间的人, 那么就找到roomRecorder, 然后注册进去.
         //如果是创建房间的人, 那么就创建一个新的roomRecorder
+        StartCoroutine(FindRoomRecorderAndRegister());
         if (!isManager)
         {
-            StartCoroutine(FindRoomRecorderAndRegister());
             //GameObject roomRecorderObj = GameObject.Find("RoomRecorder");
             //if (roomRecorderObj == null)
             //{
@@ -183,7 +186,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
             //{
             //    roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
             //}
-            //playerController.idInRoom = roomRecorder.RegisterToRoom(
+            //playerController.idInRoom = roomRecorder.CallRegisterToRoom(
             //    playerController.playerName,
             //    playerController.selectCharacter.displaySprite.name,
             //    playerController.selectCharacter.inGamePrefab.name);
@@ -265,6 +268,17 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void PlayButtonClicked()
+    {
+        if (!roomRecorder.CanStartGame())
+        {
+            PopupHint.PopupUI("人数不均, 不能开始游戏");
+            return;
+        }
+
+        roomRecorder.CallStartGame();
+    }
+
     #endregion
 
     IEnumerator FindRoomRecorderAndRegister()
@@ -272,13 +286,13 @@ public class RoomManager : MonoBehaviourPunCallbacks
         GameObject roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
         while (roomRecorderObj == null)
         {
-            yield return null;
+            yield return new WaitForSeconds(1.0f / PhotonNetwork.SendRate);
             roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
         }
         roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
-        playerController.idInRoom = roomRecorder.CallRegisterToRoom(
-            playerController.playerName,
-            playerController.selectCharacter.displaySprite.name,
-            playerController.selectCharacter.inGamePrefab.name);
+        yield return new WaitForSeconds(2.0f / PhotonNetwork.SendRate);
+        Debug.Log(roomRecorder.curIdx);
+        Debug.Log(roomRecorder.redRecords.Count <= roomRecorder.blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
+        playerController.ConnectToRoom(roomRecorder);
     }
 }

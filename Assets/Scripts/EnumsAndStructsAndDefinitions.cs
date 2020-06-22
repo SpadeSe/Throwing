@@ -7,9 +7,18 @@ public class Definitions
 {
     public static string playerControllerTag = "PlayerController";
     public static string roomRecorderTag = "RoomRecorder";
+    public static string playerStartTag = "PlayerStart";
 
     public static string characterSelectDisplaySpriteResourcePath = "displaySprite/";
     public static string inGameCharacterPrefabResourcePath = "charactersFinal/";
+}
+
+public enum RoomState: byte
+{
+    Preparing,   //房间中未准备状态
+    ReadyToPlay, //已经准备, 处于进入游戏前
+    Playing,     //进入了游戏, 正在玩
+    EndPlay      //在游戏结算, 或已经结算完成
 }
 
 [System.Serializable]

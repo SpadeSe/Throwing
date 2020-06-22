@@ -11,6 +11,7 @@ public class MainCanvas : MonoBehaviourPunCallbacks
     public Button QuitButton;
     public GameObject mainPanel;
     public GameObject selectPanel;
+    public GameObject RoomPanel;
     
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class MainCanvas : MonoBehaviourPunCallbacks
         selectPanel.GetComponent<RoomManager>().Init();
         selectPanel.SetActive(false);
         mainPanel.SetActive(true);
+        RoomPanel.SetActive(false);
         startButton.onClick.AddListener(StartGame);
         QuitButton.onClick.AddListener(QuitGame);
     }

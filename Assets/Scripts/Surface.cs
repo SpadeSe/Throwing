@@ -44,10 +44,10 @@ public class Surface : Focusable
             {
                 Broken();
             }
-            //else
-            //{
-            //    Fixed();
-            //}
+            else
+            {
+                ToggleBrokenOrFixedState(false);
+            }
             focusPrefab = gameObject;
         }
         else
@@ -121,7 +121,12 @@ public class Surface : Focusable
             fixingPlayer.fixingSurface = null;
         }
         fixingPlayer = null;
-        if(fixingParticle != null)
+        if (fixing && fixedSound != null)
+        {
+            audioSource.clip = fixedSound;
+            audioSource.Play();
+        }
+        if (fixingParticle != null)
         {
             Destroy(fixingParticle);
             fixingParticle = null;
@@ -134,11 +139,6 @@ public class Surface : Focusable
                 weapon.ReGen();
             }
             weapon.gameObject.SetActive(true);
-        }
-        if(fixedSound != null)
-        {
-            audioSource.clip = fixedSound;
-            audioSource.Play();
         }
         //Debug.Log(gameObject.name + " has been fixed");
         //if(fixingUI != null)

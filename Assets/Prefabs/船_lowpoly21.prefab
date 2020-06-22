@@ -34185,7 +34185,7 @@ GameObject:
   - component: {fileID: 887169385193789023}
   m_Layer: 0
   m_Name: PlayerStartMid
-  m_TagString: PlayerStart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34479,7 +34479,7 @@ GameObject:
   - component: {fileID: 5931721216287142625}
   m_Layer: 0
   m_Name: PlayerStartRight
-  m_TagString: PlayerStart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34553,7 +34553,7 @@ GameObject:
   - component: {fileID: 9102386347240080062}
   m_Layer: 0
   m_Name: PlayerStartLeft
-  m_TagString: PlayerStart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
