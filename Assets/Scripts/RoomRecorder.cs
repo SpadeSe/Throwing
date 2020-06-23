@@ -17,6 +17,7 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
 {
     public PhotonView view;
     public GameBeginEvent gameBeginEvent;
+    public PlayerController playerControllerLocal;
 
     public RoomState state = RoomState.Preparing;
     public bool clearRecord = false;
@@ -44,8 +45,9 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         
     }
 
-    public KeyValuePair<int, PlayerSide> CallRegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
+    public KeyValuePair<int, PlayerSide> CallRegisterToRoom(PlayerController controller, string playername, string spriteprefabname, string ingameprefabname)
     {
+        playerControllerLocal = controller;
         KeyValuePair<int, PlayerSide> result = new KeyValuePair<int, PlayerSide>(curIdx,
             (redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE));
         int toReturnId = curIdx;
@@ -147,6 +149,10 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
     [PunRPC]
     public void StartGame()
     {
+        if (PhotonNetwork.CurrentRoom.IsVisible)
+        {
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+        }
         PhotonNetwork.LoadLevel("TestPlayScene");
         StartCoroutine(WaitForSceneLoading());
         //while(PhotonNetwork.LevelLoadingProgress < 1f)

@@ -103,6 +103,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         //update dict
         foreach (RoomInfo room in roomList)
         {
+            //Debug.Log(room.Name);
             if (!room.IsVisible || !room.IsOpen || room.RemovedFromList)
             {
                 if (roomInfoDict.ContainsKey(room.Name))
@@ -134,6 +135,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
         foreach (var room in roomInfoDict)
         {
             Transform child = contentTrans.GetChild(idx);
+            child.gameObject.SetActive(true);
             Text[] texts = child.GetComponentsInChildren<Text>();
             texts[0].text = "房间名: " + room.Value.Name;
             texts[1].text = "人属: " + room.Value.PlayerCount + " / " + (int)room.Value.MaxPlayers;
@@ -207,6 +209,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         string roomname = RoomNameInput.text;
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = (byte)maxPlayer;
+        options.IsOpen = true;
+        options.IsVisible = true;
         if (!PhotonNetwork.InLobby)
         {
             PhotonNetwork.JoinLobby();
@@ -291,8 +295,8 @@ public class RoomManager : MonoBehaviourPunCallbacks
         }
         roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
         yield return new WaitForSeconds(2.0f / PhotonNetwork.SendRate);
-        Debug.Log(roomRecorder.curIdx);
-        Debug.Log(roomRecorder.redRecords.Count <= roomRecorder.blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
+        //Debug.Log(roomRecorder.curIdx);
+        //Debug.Log(roomRecorder.redRecords.Count <= roomRecorder.blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
         playerController.ConnectToRoom(roomRecorder);
     }
 }

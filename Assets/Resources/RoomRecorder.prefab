@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 0}
+  playerControllerLocal: {fileID: 0}
   state: 0
   clearRecord: 0
   redRecords: []
