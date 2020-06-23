@@ -279,7 +279,12 @@ public class RoomManager : MonoBehaviourPunCallbacks
             PopupHint.PopupUI("人数不均, 不能开始游戏");
             return;
         }
-
+        Debug.Log("MasterClient?: " + PhotonNetwork.IsMasterClient);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            PopupHint.PopupUI("你不是房主, 不能开始游戏");
+            return;
+        }
         roomRecorder.CallStartGame();
     }
 

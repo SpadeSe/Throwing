@@ -10,11 +10,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VolumetricLines;
+using Photon.Pun;
+using Photon.Realtime;
 
 public delegate void PlayerHittenEvent();
 public delegate void PlayerDeadEvent(PlayerCharacter dead, PlayerCharacter killer);
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 {
     public bool isStaticTarget = false;
     [Header("Hand Init")]
@@ -60,7 +62,8 @@ public class PlayerCharacter : MonoBehaviour
 
     //Delegates
     public PlayerDeadEvent deadEvent;
-    
+
+    #region MainLoopFlow
     private void Awake()
     {
         
@@ -88,10 +91,25 @@ public class PlayerCharacter : MonoBehaviour
             return;//靶子角色设置不能移动, 摄像机也无效. 然后退出            
         }
         //以上是靶子角色, 下面是非靶子角色
-        if (ownedCanvas == null && CanvasPrefab != null)
+        if (photonView.IsMine)
         {
-            ownedCanvas = Instantiate(CanvasPrefab);
-            ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
+            if (ownedCanvas == null && CanvasPrefab != null)
+            {
+                ownedCanvas = Instantiate(CanvasPrefab);
+                ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
+            }
+        }
+        else
+        {
+            if (moveControl != null)
+            {
+                moveControl.enableCameraMovement = false;
+                moveControl.playerCanMove = false;
+            }
+            if (playerCam != null)
+            {
+                playerCam.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -198,7 +216,9 @@ public class PlayerCharacter : MonoBehaviour
         }
 
     }
+    #endregion
 
+    
     //用来更新瞄准时的参考线的绘制
     public void UpdateLine()
     {
@@ -379,4 +399,18 @@ public class PlayerCharacter : MonoBehaviour
         moveControl.transform.position = respawnTrans.position;
         moveControl.transform.rotation = respawnTrans.rotation;
     }
+
+    #region CallBacks
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+    #endregion
 }
