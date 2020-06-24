@@ -30,6 +30,16 @@ public enum PlayerSide: byte
     BLUE
 }
 
+public enum CharacterLiveState: byte
+{
+    Alive,
+    Dying_Forward,
+    Dying_Backward,
+    Dying_Left,
+    Dying_Right,
+    Dead
+}
+
 [System.Serializable]
 public class SideRecords
 {
