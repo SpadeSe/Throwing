@@ -328,9 +328,22 @@ public class Weapon : Focusable
         //爆炸粒子
         if(burstParticlePrefab != null)
         {
-            GameObject particle = Instantiate<GameObject>(burstParticlePrefab);
-            particle.GetComponent<ParticleSystem>().Play();
-            Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
+            GameObject particleObj = Instantiate(burstParticlePrefab, transform);
+            ParticleSystem[] particles  = particleObj.GetComponentsInChildren<ParticleSystem>();
+            float multiplier = burstRange.radius;
+            for (int i = 0; i < particles.Length;i++)//ScaleParticles
+            {
+                var particle = particles[i];
+                var mainModule = particle.main;
+                mainModule.startSizeMultiplier *= multiplier;
+                var shape = particle.shape;
+                shape.radius *= multiplier;
+                shape.randomPositionAmount *= multiplier;
+                var sizeOverTime = particle.sizeOverLifetime;
+                sizeOverTime.sizeMultiplier *= multiplier;
+            }
+            particleObj.GetComponent<ParticleSystem>().Play();
+            Destroy(particleObj, particleObj.GetComponent<ParticleSystem>().main.duration);
         }
         if (BombBurstSound != null)
         {
@@ -341,6 +354,7 @@ public class Weapon : Focusable
         foreach(var player in burstAffectPlayers)
         {
             Debug.Log(player.gameObject.name + "is hurt by burst");
+            player.ReceiveDamage(this, damage, transform.position - player.transform.position);
         }
         //reset状态
         MinusUseCount();

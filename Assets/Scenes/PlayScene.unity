@@ -1130,10 +1130,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomb1
       objectReference: {fileID: 0}
+    - target: {fileID: 7869507501951208234, guid: 7cd536f8cb80ed3459a3e847a974224b,
+        type: 3}
+      propertyPath: burstParticlePrefab
+      value: 
+      objectReference: {fileID: 4870727731603080214, guid: 594166c8064db4d49891038c3a6617d3,
+        type: 3}
     - target: {fileID: 7869507501951208235, guid: 7cd536f8cb80ed3459a3e847a974224b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.675404
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 7869507501951208235, guid: 7cd536f8cb80ed3459a3e847a974224b,
         type: 3}
@@ -1143,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 7869507501951208235, guid: 7cd536f8cb80ed3459a3e847a974224b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.7812867
+      value: -7.55
       objectReference: {fileID: 0}
     - target: {fileID: 7869507501951208235, guid: 7cd536f8cb80ed3459a3e847a974224b,
         type: 3}

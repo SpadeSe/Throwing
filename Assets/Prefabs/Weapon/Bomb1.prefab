@@ -250,6 +250,7 @@ MonoBehaviour:
   moving: 0
   gravityScale: 1
   StartSpeed: 25
+  hitPlayer: []
   WeaponHead: {fileID: 7869507500584864803}
   startPos: {x: 0, y: 0, z: 0}
   startRotate: {x: 0, y: 0, z: 0, w: 0}
@@ -261,7 +262,7 @@ MonoBehaviour:
   burstRange: {fileID: 8631119709719460613}
   burstAffectPlayers: []
   burstHintObj: {fileID: 0}
-  burstParticlePrefab: {fileID: 6778918282498884917, guid: 6b61d80521f91614d9a4815fc8774138,
+  burstParticlePrefab: {fileID: 4870727731603080214, guid: 594166c8064db4d49891038c3a6617d3,
     type: 3}
   burstCountDown: 3
   maxBounce: 3
@@ -405,7 +406,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7869507501923895796
 PrefabInstance:
