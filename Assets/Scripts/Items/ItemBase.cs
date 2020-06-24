@@ -24,6 +24,7 @@ public class ItemBase : MonoBehaviour
         
     }
 
+    //TODO: 这后期可能要改成RPC调用
     public virtual void TakeEffect(Weapon weapon)
     {
         Debug.Log(weapon.name);

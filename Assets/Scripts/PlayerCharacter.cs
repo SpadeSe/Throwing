@@ -91,7 +91,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             return;//靶子角色设置不能移动, 摄像机也无效. 然后退出            
         }
         //以上是靶子角色, 下面是非靶子角色
-        if (photonView.IsMine)
+        if (photonView.IsMine || !PhotonNetwork.IsConnected)
         {
             if (ownedCanvas == null && CanvasPrefab != null)
             {
@@ -328,24 +328,30 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
     public void CallThrow()
     {
-        if (photonView.IsMine)
-        {
-            photonView.RPC("Throw", RpcTarget.All, playerCam.transform.forward);
-        }
-    }
-
-    //投掷武器时的处理函数
-    [PunRPC]
-    public void Throw(Vector3 forward)
-    {
         if (!hasWeapon())
         {
             Debug.Log("<color=red>No Weapon</color>");
             return;
         }
+        if (photonView.IsMine)
+        {
+            photonView.RPC("Throw", RpcTarget.All, 
+                playerCam.transform.forward, weaponSlot.GetChild(0).transform.position);
+        }
+    }
+
+    public void Throw()
+    {
+        Throw(playerCam.transform.forward, weaponSlot.GetChild(0).transform.position);
+    }
+
+    //投掷武器时的处理函数
+    [PunRPC]
+    public void Throw(Vector3 forward, Vector3 startPos)
+    {
         Transform weapon = weaponSlot.GetChild(0);
         weaponSlot.DetachChildren();
-        weapon.GetComponent<Weapon>().ThrowOut(forward);
+        weapon.GetComponent<Weapon>().ThrownOut(forward, startPos);
         //GameObject copy = GameObject.Instantiate<GameObject>(weapon.gameObject, weaponSlot.transform);
         //copy.transform.parent = null;
         //copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);

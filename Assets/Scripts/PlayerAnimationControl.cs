@@ -48,7 +48,7 @@ public class PlayerAnimationControl : MonoBehaviourPun
         {
             return;
         }
-        if (!photonView.IsMine)
+        if (PhotonNetwork.IsConnected && !photonView.IsMine)
         {
             return;
         }
@@ -103,7 +103,14 @@ public class PlayerAnimationControl : MonoBehaviourPun
     public void ThrowOut()
     {
         //Debug.Log("<color=blue>throw out</color>");
-        playerControl.CallThrow();
+        if (PhotonNetwork.IsConnected)
+        {
+            playerControl.CallThrow();
+        }
+        else
+        {
+            playerControl.Throw();
+        }
     }
     #endregion
 }

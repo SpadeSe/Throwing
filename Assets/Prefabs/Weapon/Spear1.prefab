@@ -239,9 +239,9 @@ MonoBehaviour:
   Synchronization: 0
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114114839262924410}
+  - {fileID: 0}
   - {fileID: 114026638705162404}
-  - {fileID: 114852576170285948}
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

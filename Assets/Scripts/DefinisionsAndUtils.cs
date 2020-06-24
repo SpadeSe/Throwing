@@ -12,6 +12,7 @@ public class Definitions
 
     public static string characterSelectDisplaySpriteResourcePath = "displaySprite/";
     public static string inGameCharacterPrefabResourcePath = "charactersFinal/";
+    public static string TempWeaponResourcePath = "TempWeapon/";
 }
 
 public enum RoomState: byte

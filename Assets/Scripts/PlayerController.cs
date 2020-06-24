@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         gameObject.tag = Definitions.playerControllerTag;
-
     }
     
     void Start()
@@ -46,7 +45,14 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                controllingCharacter.CallDealWithFocusingObj();
+                if (PhotonNetwork.IsConnected)
+                {
+                    controllingCharacter.CallDealWithFocusingObj();
+                }
+                else
+                {
+                    controllingCharacter.DealWithFocusingObj();
+                }
             }
         }
     }

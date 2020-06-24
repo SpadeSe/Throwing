@@ -131,14 +131,15 @@ public class Weapon : Focusable
     }
 
     //武器被扔出前的各种处理
-    public void ThrowOut(Vector3 dir)
+    public void ThrownOut(Vector3 dir, Vector3 startPos)
     {
         if (moving)
         {
             Debug.LogError("Already thrown out");
             return;
         }
-        if(WeaponHead != null)
+        transform.position = startPos;
+        if (WeaponHead != null)
         {
             AdjustRotation(dir);
         }
