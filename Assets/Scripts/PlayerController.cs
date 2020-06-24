@@ -27,18 +27,28 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void GameBegin()
+    private void FixedUpdate()
     {
-        PlayerStart playerStarts = GameObject.FindWithTag(Definitions.playerStartTag).GetComponent<PlayerStart>();
-        playerStarts.CallGetStartTrans(this);
-        //Transform startTrans = playerStarts.getStartTrans(side);
-        //if (roomRecorder != null && roomRecorder.state == RoomState.ReadyToPlay)
-        //{
-        //    inGameCharacterObj = Instantiate(selectCharacter.inGamePrefab);
-        //    controllingCharacter = inGameCharacterObj.GetComponentInChildren<PlayerCharacter>();
-        //    controllingCharacter.respawnTrans = startTrans;
-        //    controllingCharacter.Respawn();
-        //}
+        if(controllingCharacter != null)
+        {
+            if (controllingCharacter.hasWeapon() && Input.GetMouseButton(1))
+            {
+                controllingCharacter.targeting = true;
+            }
+            else
+            {
+                if (controllingCharacter.targeting == true && controllingCharacter.hasWeapon())
+                {
+                    controllingCharacter.throwing = true;
+                }
+                controllingCharacter.targeting = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                controllingCharacter.CallDealWithFocusingObj();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -54,19 +64,41 @@ public class PlayerController : MonoBehaviour
         roomRecorder.gameBeginEvent += GameBegin;
         //Debug.Log(roomRecorder.curIdx);
         //Debug.Log(roomRecorder.redRecords.Count <= roomRecorder.blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
-        var result = roomRecorder.CallRegisterToRoom(
+        roomRecorder.CallRegisterToRoom(
             this,
             playerName,
             selectCharacter.displaySprite.name,
             selectCharacter.inGamePrefab.name);
-        idInRoom = result.Key;
-        side = result.Value;
+    }
+
+    public void SetRoomInfo(int idInRoom, PlayerSide side)
+    {
+        Debug.Log("RoomInfoSetup: " + idInRoom + " " + side);
+        this.idInRoom = idInRoom;
+        this.side = side;
+    }
+
+
+    public void GameBegin()
+    {
+        PlayerStart playerStarts = GameObject.FindWithTag(Definitions.playerStartTag).GetComponent<PlayerStart>();
+        playerStarts.CallGetStartTrans(this);
+        //Transform startTrans = playerStarts.getStartTrans(side);
+        //if (roomRecorder != null && roomRecorder.state == RoomState.ReadyToPlay)
+        //{
+        //    inGameCharacterObj = Instantiate(selectCharacter.inGamePrefab);
+        //    controllingCharacter = inGameCharacterObj.GetComponentInChildren<PlayerCharacter>();
+        //    controllingCharacter.respawnTrans = startTrans;
+        //    controllingCharacter.Respawn();
+        //}
     }
 
     public void InitCharacter(Transform startTrans)
     {
+        Debug.Log("<color=red>RoomState: " + roomRecorder.state + "</color>");
         if (roomRecorder != null && roomRecorder.state == RoomState.ReadyToPlay)
         {
+            Debug.Log("<color=aqua>id: " + idInRoom + " InitCharacter</color>");
             inGameCharacterObj = PhotonNetwork.Instantiate(Definitions.inGameCharacterPrefabResourcePath + 
                 selectCharacter.inGamePrefab.name,
                 startTrans.position, startTrans.rotation);

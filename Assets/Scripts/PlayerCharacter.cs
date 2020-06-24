@@ -103,12 +103,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             if (moveControl != null)
             {
-                moveControl.enableCameraMovement = false;
+                //moveControl.enableCameraMovement = false;
                 moveControl.playerCanMove = false;
             }
             if (playerCam != null)
             {
-                playerCam.gameObject.SetActive(false);
+                playerCam.GetComponent<AudioListener>().enabled = false;
+                playerCam.enabled = false;
+
             }
         }
     }
@@ -128,23 +130,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             attackType = weaponSlot.transform.GetChild(0).GetComponent<Weapon>().type;
         }
-        if(hasWeapon() && Input.GetMouseButton(1))
-        {
-            targeting = true;
-        }
-        else
-        {
-            if(targeting == true && hasWeapon())
-            {
-                throwing = true;
-            }
-            targeting = false;
-        }
         #endregion
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DealWithFocusingObj();
-        }
     }
 
     // Update is called once per frame
@@ -293,6 +279,13 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
     }
 
+
+    public void CallDealWithFocusingObj()
+    {
+        photonView.RPC("DealWithFocusingObj", RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
     public void DealWithFocusingObj()
     {
         if(focusingObj == null)
@@ -333,8 +326,17 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         takeWeapon.GetComponent<Weapon>().Taken(this);
     }
 
+    public void CallThrow()
+    {
+        if (photonView.IsMine)
+        {
+            photonView.RPC("Throw", RpcTarget.All, playerCam.transform.forward);
+        }
+    }
+
     //投掷武器时的处理函数
-    public void Throw()
+    [PunRPC]
+    public void Throw(Vector3 forward)
     {
         if (!hasWeapon())
         {
@@ -343,7 +345,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
         Transform weapon = weaponSlot.GetChild(0);
         weaponSlot.DetachChildren();
-        weapon.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
+        weapon.GetComponent<Weapon>().ThrowOut(forward);
         //GameObject copy = GameObject.Instantiate<GameObject>(weapon.gameObject, weaponSlot.transform);
         //copy.transform.parent = null;
         //copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
@@ -394,6 +396,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         Respawn();
     }
 
+    
     public void Respawn()
     {
         moveControl.transform.position = respawnTrans.position;

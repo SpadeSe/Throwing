@@ -103,7 +103,7 @@ public class PlayerAnimationControl : MonoBehaviourPun
     public void ThrowOut()
     {
         //Debug.Log("<color=blue>throw out</color>");
-        playerControl.Throw();
+        playerControl.CallThrow();
     }
     #endregion
 }
