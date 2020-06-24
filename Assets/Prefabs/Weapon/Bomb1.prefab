@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7869507500584864802}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: bombhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114900759125843312}
   - component: {fileID: 114513506551424350}
   - component: {fileID: 114928637275669546}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Bomb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ MonoBehaviour:
   canDestroy: 0
   canTransfer: 0
   bornSurface: {fileID: 0}
-  WeaponCollider: {fileID: 7869507501923895793}
+  WeaponCollider: {fileID: 7682941530130207244}
   moving: 0
   gravityScale: 1
   StartSpeed: 25
@@ -319,6 +319,50 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!1 &8018965395233418727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2854242055562198113}
+  - component: {fileID: 7682941530130207244}
+  m_Layer: 10
+  m_Name: WeaponCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2854242055562198113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018965395233418727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7869507501924029300}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7682941530130207244
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018965395233418727}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07397925, y: 0.13397174, z: 0.05517612}
+  m_Center: {x: -0.007981799, y: 0.06698583, z: -0.00000001017518}
 --- !u!1 &8175105161945915548
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7022286917475494428}
   - component: {fileID: 8631119709719460613}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: BurstRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 61c492d903529924cb2e8ace6507e556, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 61c492d903529924cb2e8ace6507e556, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1156,7 +1156,7 @@ PrefabInstance:
     - target: {fileID: 114319097185882066, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114564158500149878, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
@@ -1173,16 +1173,41 @@ PrefabInstance:
       propertyPath: ObservedComponents.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4903320825780382658, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234386053131313327, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983296080518028886, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8984542439349651904, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: m_Name
       value: Hammer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984542439349651904, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8984542439349651910, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: canDestroy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8984542439349651910, guid: 9f506f8501069f54aae65bf47bb22a61,
+        type: 3}
+      propertyPath: WeaponCollider
+      value: 
+      objectReference: {fileID: 847277993}
     - target: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1243,6 +1268,12 @@ PrefabInstance:
 --- !u!4 &847277992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
+    type: 3}
+  m_PrefabInstance: {fileID: 847277991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &847277993 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3921705177130218806, guid: 9f506f8501069f54aae65bf47bb22a61,
     type: 3}
   m_PrefabInstance: {fileID: 847277991}
   m_PrefabAsset: {fileID: 0}
@@ -2145,6 +2176,16 @@ PrefabInstance:
       propertyPath: respawnTrans
       value: 
       objectReference: {fileID: 1079992835}
+    - target: {fileID: 5718438447531051202, guid: 7994d5eeb41adc34882c8de01d29d3cd,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718438447531051202, guid: 7994d5eeb41adc34882c8de01d29d3cd,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 5780115938940837039, guid: 7994d5eeb41adc34882c8de01d29d3cd,
         type: 3}
       propertyPath: viewIdField

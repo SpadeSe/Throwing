@@ -66,9 +66,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 1.22
+  m_Height: 2.06
   m_Direction: 1
-  m_Center: {x: 0, y: -0.44, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5705526055096259836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   checkedSlope: 0
   isSprinting: 0
   fps_Rigidbody: {fileID: 0}
-  useHeadbob: 1
+  useHeadbob: 0
   head: {fileID: 7103858105996739984}
   snapHeadjointToCapsul: 1
   headbobFrequency: 1.5

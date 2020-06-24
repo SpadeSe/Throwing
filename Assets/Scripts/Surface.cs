@@ -168,7 +168,7 @@ public class Surface : Focusable
                 //TODO: 调整武器位置和角度
                 if (weapon.canDestroy && canBeDestroyed)
                 {
-                    weapon.DestroySurface(this);
+                    weapon.DestroySurface(this, collision);
                 }
                 else
                 {
@@ -218,6 +218,7 @@ public class Surface : Focusable
         {
             AddWeaponToList(weapon);
         }
+
     }
 
     private void OnTriggerExit(Collider other)

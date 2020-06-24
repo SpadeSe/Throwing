@@ -155,22 +155,27 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         else
         {
             DisableLine();
+            //Invoke("DisableLine", 1.0f);
 
             #region Detect Interactable(Weapon Or Can be fixed Deck)
             RaycastHit hit = new RaycastHit();
             Debug.DrawRay(playerCam.transform.position, playerCam.transform.forward * interactDis, Color.blue);
             if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, 
-                out hit, interactDis))//, ~LayerMask.NameToLayer("PlayerBlock")))
+                out hit, interactDis, ~LayerMask.NameToLayer("PlayerBlock")))
             {
-                if(hit.collider.transform.parent != null 
-                    && hit.collider.transform.parent.GetComponent<Focusable>() != null
-                    && hit.collider.transform.parent.GetComponent<Focusable>().focusable)
+                Focusable hitFocusable = hit.collider.transform.GetComponentInParent<Focusable>();
+                if(hitFocusable == null)
+                {
+                    hitFocusable = hit.collider.transform.GetComponentInChildren<Focusable>();
+                }
+                if (hit.collider.transform.parent != null 
+                    && hitFocusable != null && hitFocusable.focusable)
                 {
                     if (focusingObj != null)
                     {
                         focusingObj.GetComponent<Focusable>().focused = false;
                     }
-                    focusingObj = hit.collider.transform.parent.gameObject;
+                    focusingObj = hitFocusable.gameObject;
                     Focusable focusable = focusingObj.GetComponent<Focusable>();
                     focusable.focused = true;
                     //if(hintUI != null)
@@ -267,7 +272,6 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 }
             }
             #endregion
-
         }
     }
     //用来禁用参考线
