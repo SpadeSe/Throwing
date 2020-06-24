@@ -4791,7 +4791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4870727731252963220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -11.5999975, z: 123.59997}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4870727731603080219}
@@ -5049,8 +5049,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 60
-      minScalar: 70
+      scalar: 150
+      minScalar: 180
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5102,8 +5102,8 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 60
-      minScalar: 70
+      scalar: 150
+      minScalar: 180
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5509,9 +5509,9 @@ ParticleSystem:
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
     sphericalDirectionAmount: 0
-    randomPositionAmount: 0
+    randomPositionAmount: 10
     radius:
-      value: 10
+      value: 120
       mode: 0
       spread: 0
       speed:
@@ -5919,18 +5919,9 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 1
+          time: 0.005332947
           value: 1
-          inSlope: 1
+          inSlope: 0
           outSlope: 0
           tangentMode: 0
           weightedMode: 0
@@ -14333,7 +14324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4870727731973164824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: -11.5999975, z: 123.59997}
+  m_LocalPosition: {x: 0.3, y: -11.5999975, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4870727731603080219}
