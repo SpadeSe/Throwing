@@ -40,6 +40,9 @@ MonoBehaviour:
   - StartGame
   - getStartTrans
   - GetStartTrans
+  - DealWithFocusingObj
+  - SetSceneLoadedLocal
+  - Throw
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

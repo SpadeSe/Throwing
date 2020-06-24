@@ -15,7 +15,6 @@ public delegate void GameBeginEvent();
 [RequireComponent(typeof(PhotonView))]
 public class RoomRecorder : MonoBehaviourPun, IPunObservable
 {
-    public PhotonView view;
     public GameBeginEvent gameBeginEvent;
     public PlayerController playerControllerLocal;
 
@@ -37,6 +36,8 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
             //开始计时, 计分.
             Debug.Log("Start to play");
         }
+
+        Debug.Log("AutoSyncScene?:" + PhotonNetwork.AutomaticallySyncScene);
     }
 
     // Update is called once per frame
@@ -45,21 +46,29 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         
     }
 
-    public KeyValuePair<int, PlayerSide> CallRegisterToRoom(PlayerController controller, string playername, string spriteprefabname, string ingameprefabname)
+    public void CallRegisterToRoom(PlayerController controller, string playername, string spriteprefabname, string ingameprefabname)
     {
         playerControllerLocal = controller;
-        KeyValuePair<int, PlayerSide> result = new KeyValuePair<int, PlayerSide>(curIdx,
-            (redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE));
-        int toReturnId = curIdx;
-        view = PhotonView.Get(this);
-        Debug.Log(redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
-        view.RPC("RegisterToRoom", RpcTarget.All, playername, spriteprefabname, ingameprefabname);
-        return result;
+        //KeyValuePair<int, PlayerSide> result = new KeyValuePair<int, PlayerSide>(curIdx,
+        //    (redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE));
+        //int toReturnId = curIdx;
+        //Debug.Log(redRecords.Count <= blueRecords.Count ? PlayerSide.RED : PlayerSide.BLUE);
+        photonView.RPC("RegisterToRoom", RpcTarget.AllViaServer, 
+            PhotonNetwork.LocalPlayer.ActorNumber,
+            playername, spriteprefabname, ingameprefabname);
+        //return result;
     }
 
-    //玩家初次进入房间的时候要注册进这个roomRecorder, 然后recoder会返回一个int来标识
+    /// <summary>
+    /// 玩家初次进入房间的时候要注册进这个roomRecorder, 
+    /// 然后recoder会给playercontroller分配id和side
+    /// </summary>
+    /// <param name="PlayerNumber"></param>
+    /// <param name="playername"></param>
+    /// <param name="spriteprefabname"></param>
+    /// <param name="ingameprefabname"></param>
     [PunRPC]
-    public void RegisterToRoom(string playername, string spriteprefabname, string ingameprefabname)
+    public void RegisterToRoom(int PlayerNumber, string playername, string spriteprefabname, string ingameprefabname)
     {
         //Debug.Log(playername);
         RoomRecord newRecord = new RoomRecord
@@ -78,10 +87,20 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         {
             blueRecords.Add(newRecord);
         }
+        if(PlayerNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            playerControllerLocal.SetRoomInfo(newRecord.id, newRecord.side);
+        }
         curIdx++;
     }
 
-    //玩家离开房间的时候需要调用, 将记录移除
+
+    /// <summary>
+    /// 玩家离开房间的时候需要调用, 将记录移除
+    /// TODO: 这应该使一个RPC, 不过还没做离开房间的功能所以暂时算了
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="prevSide"></param>
     public void LeaveRoom(int id, PlayerSide prevSide)
     {
         //if(!redRecords.Remove(redRecords.Find((r) => r.id == id)))
@@ -142,8 +161,7 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
     }
 
     public void CallStartGame() {
-        view = PhotonView.Get(this);
-        view.RPC("StartGame", RpcTarget.All);
+        photonView.RPC("StartGame", RpcTarget.All);
     }
 
     [PunRPC]
@@ -155,6 +173,7 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         }
         PhotonNetwork.LoadLevel("TestPlayScene");
         StartCoroutine(WaitForSceneLoading());
+        StartCoroutine(WaitForBeingReadyToPlay());
         //while(PhotonNetwork.LevelLoadingProgress < 1f)
         //{
         //    //这里之后可以用来显示loading界面
@@ -162,6 +181,58 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         //}
         //state = RoomState.ReadyToPlay;
         //gameBeginEvent?.Invoke();
+    }
+    
+    [PunRPC]
+    public void SetSceneLoadedLocal(int idInRoom, PlayerSide side)
+    {
+        if(side == PlayerSide.RED)
+        {
+            foreach (var record in redRecords)
+            {
+                if (record.id == idInRoom)
+                {
+                    record.playSceneLoaded = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            foreach (var record in blueRecords)
+            {
+                if (record.id == idInRoom)
+                {
+                    record.playSceneLoaded = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    public bool AllSceneLoaded()
+    {
+        bool allReady = true;
+        foreach (var record in redRecords)
+        {
+            if (!record.playSceneLoaded)
+            {
+                allReady = false;
+                break;
+            }
+        }
+        if (allReady)
+        {
+            foreach (var record in blueRecords)
+            {
+                if (!record.playSceneLoaded)
+                {
+                    allReady = false;
+                    break;
+                }
+            }
+        }
+        return allReady;
     }
 
     #region CallBacks
@@ -176,21 +247,39 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         }
         else
         {
-            state = (RoomState)stream.ReceiveNext();
+            RoomState receivedState = (RoomState)stream.ReceiveNext();
+            if(receivedState > state)
+            {
+                state = receivedState;
+            }
             redRecords = new List<RoomRecord>((RoomRecord[])stream.ReceiveNext());
             blueRecords = new List<RoomRecord>((RoomRecord[])stream.ReceiveNext());
+
             curIdx = (int)stream.ReceiveNext();
         }
     }
     #endregion
 
+    #region Coroutines
     IEnumerator WaitForSceneLoading()
     {
+        Debug.Log("<color=aqua>start waiting for sceneloading</color>");
         while(PhotonNetwork.LevelLoadingProgress < 1.0f)
         {
             yield return new WaitForSeconds(1.0f / PhotonNetwork.SendRate);
         }
+        photonView.RPC("SetSceneLoadedLocal", RpcTarget.All, playerControllerLocal.idInRoom, playerControllerLocal.side);
+    }
+    
+    IEnumerator WaitForBeingReadyToPlay()
+    {
+        while (!AllSceneLoaded())
+        {
+            yield return new WaitForSeconds(1.0f / PhotonNetwork.SendRate);
+        }
+        Debug.Log("<color=aqua>Ready To Play</color>");
         state = RoomState.ReadyToPlay;
         gameBeginEvent?.Invoke();
     }
+    #endregion
 }

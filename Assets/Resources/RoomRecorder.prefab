@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400c4156e9408b44f90ea1f347318f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 0}
   playerControllerLocal: {fileID: 0}
   state: 0
   clearRecord: 0

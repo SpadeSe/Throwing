@@ -157,6 +157,7 @@ namespace Photon.Pun.UtilityScripts
         {
             if (autoSpawnObjects)
                 SpawnObjects();
+            
         }
 
         public virtual void SpawnObjects()

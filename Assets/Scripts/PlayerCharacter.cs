@@ -10,11 +10,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VolumetricLines;
+using Photon.Pun;
+using Photon.Realtime;
 
 public delegate void PlayerHittenEvent();
 public delegate void PlayerDeadEvent(PlayerCharacter dead, PlayerCharacter killer);
 
-public class PlayerCharacter : MonoBehaviour
+public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 {
     public bool isStaticTarget = false;
     [Header("Hand Init")]
@@ -60,7 +62,8 @@ public class PlayerCharacter : MonoBehaviour
 
     //Delegates
     public PlayerDeadEvent deadEvent;
-    
+
+    #region MainLoopFlow
     private void Awake()
     {
         
@@ -88,10 +91,27 @@ public class PlayerCharacter : MonoBehaviour
             return;//靶子角色设置不能移动, 摄像机也无效. 然后退出            
         }
         //以上是靶子角色, 下面是非靶子角色
-        if (ownedCanvas == null && CanvasPrefab != null)
+        if (photonView.IsMine || !PhotonNetwork.IsConnected)
         {
-            ownedCanvas = Instantiate(CanvasPrefab);
-            ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
+            if (ownedCanvas == null && CanvasPrefab != null)
+            {
+                ownedCanvas = Instantiate(CanvasPrefab);
+                ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
+            }
+        }
+        else
+        {
+            if (moveControl != null)
+            {
+                //moveControl.enableCameraMovement = false;
+                moveControl.playerCanMove = false;
+            }
+            if (playerCam != null)
+            {
+                playerCam.GetComponent<AudioListener>().enabled = false;
+                playerCam.enabled = false;
+
+            }
         }
     }
 
@@ -110,23 +130,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             attackType = weaponSlot.transform.GetChild(0).GetComponent<Weapon>().type;
         }
-        if(hasWeapon() && Input.GetMouseButton(1))
-        {
-            targeting = true;
-        }
-        else
-        {
-            if(targeting == true && hasWeapon())
-            {
-                throwing = true;
-            }
-            targeting = false;
-        }
         #endregion
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DealWithFocusingObj();
-        }
     }
 
     // Update is called once per frame
@@ -151,22 +155,27 @@ public class PlayerCharacter : MonoBehaviour
         else
         {
             DisableLine();
+            //Invoke("DisableLine", 1.0f);
 
             #region Detect Interactable(Weapon Or Can be fixed Deck)
             RaycastHit hit = new RaycastHit();
             Debug.DrawRay(playerCam.transform.position, playerCam.transform.forward * interactDis, Color.blue);
             if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, 
-                out hit, interactDis))//, ~LayerMask.NameToLayer("PlayerBlock")))
+                out hit, interactDis, ~LayerMask.NameToLayer("PlayerBlock")))
             {
-                if(hit.collider.transform.parent != null 
-                    && hit.collider.transform.parent.GetComponent<Focusable>() != null
-                    && hit.collider.transform.parent.GetComponent<Focusable>().focusable)
+                Focusable hitFocusable = hit.collider.transform.GetComponentInParent<Focusable>();
+                if(hitFocusable == null)
+                {
+                    hitFocusable = hit.collider.transform.GetComponentInChildren<Focusable>();
+                }
+                if (hit.collider.transform.parent != null 
+                    && hitFocusable != null && hitFocusable.focusable)
                 {
                     if (focusingObj != null)
                     {
                         focusingObj.GetComponent<Focusable>().focused = false;
                     }
-                    focusingObj = hit.collider.transform.parent.gameObject;
+                    focusingObj = hitFocusable.gameObject;
                     Focusable focusable = focusingObj.GetComponent<Focusable>();
                     focusable.focused = true;
                     //if(hintUI != null)
@@ -198,7 +207,9 @@ public class PlayerCharacter : MonoBehaviour
         }
 
     }
+    #endregion
 
+    
     //用来更新瞄准时的参考线的绘制
     public void UpdateLine()
     {
@@ -261,7 +272,6 @@ public class PlayerCharacter : MonoBehaviour
                 }
             }
             #endregion
-
         }
     }
     //用来禁用参考线
@@ -273,6 +283,13 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+
+    public void CallDealWithFocusingObj()
+    {
+        photonView.RPC("DealWithFocusingObj", RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
     public void DealWithFocusingObj()
     {
         if(focusingObj == null)
@@ -313,17 +330,32 @@ public class PlayerCharacter : MonoBehaviour
         takeWeapon.GetComponent<Weapon>().Taken(this);
     }
 
-    //投掷武器时的处理函数
-    public void Throw()
+    public void CallThrow()
     {
         if (!hasWeapon())
         {
             Debug.Log("<color=red>No Weapon</color>");
             return;
         }
+        if (photonView.IsMine)
+        {
+            photonView.RPC("Throw", RpcTarget.All, 
+                playerCam.transform.forward, weaponSlot.GetChild(0).transform.position);
+        }
+    }
+
+    public void Throw()
+    {
+        Throw(playerCam.transform.forward, weaponSlot.GetChild(0).transform.position);
+    }
+
+    //投掷武器时的处理函数
+    [PunRPC]
+    public void Throw(Vector3 forward, Vector3 startPos)
+    {
         Transform weapon = weaponSlot.GetChild(0);
         weaponSlot.DetachChildren();
-        weapon.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
+        weapon.GetComponent<Weapon>().ThrownOut(forward, startPos);
         //GameObject copy = GameObject.Instantiate<GameObject>(weapon.gameObject, weaponSlot.transform);
         //copy.transform.parent = null;
         //copy.GetComponent<Weapon>().ThrowOut(playerCam.transform.forward);
@@ -374,9 +406,24 @@ public class PlayerCharacter : MonoBehaviour
         Respawn();
     }
 
+    
     public void Respawn()
     {
         moveControl.transform.position = respawnTrans.position;
         moveControl.transform.rotation = respawnTrans.rotation;
     }
+
+    #region CallBacks
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+    #endregion
 }

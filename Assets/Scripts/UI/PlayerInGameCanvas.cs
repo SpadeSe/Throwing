@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerInGameCanvas : MonoBehaviour
 {
     [Header("DataRefs")]
-    public RoundManager roundManager;//动态获取
+    public RoomRecorder roomRecorder;//动态获取
     public PlayerCharacter player;//必须靠其他东西来分配
 
     [Header("UIRefs")]
@@ -48,10 +48,11 @@ public class PlayerInGameCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: 获取自己的dataRefs
-        if(roundManager == null)
+
+        GameObject roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
+        if(roomRecorderObj != null)
         {
-            roundManager = GameObject.Find("RoundManager").GetComponent<RoundManager>();
+            roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
         }
 
     }
@@ -59,7 +60,7 @@ public class PlayerInGameCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region roundManager
+        #region roomRecorder
         #endregion
 
         #region player

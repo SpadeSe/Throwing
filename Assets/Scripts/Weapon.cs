@@ -8,7 +8,9 @@
  * 下挂武器, 加上weaponhead
  * 给weapon脚本设置里面各种东西. 完成!
  * 
- * 注意: 用collisionEnter的时候不用在parent找weapon, 而triggerEnter需要从parent找weapon
+ * 注意: 武器碰撞: 需要两层. 武器mesh本体上一个, istrigger一直on, 
+ *       下层再放一个, 作为脚本的weaponColllider, 并且打上weapon标签,
+ *       这样再physics里面关闭与player的碰撞之后就能同时保留triggerEnter事件.
  */
 
 using System.Collections;
@@ -109,8 +111,8 @@ public class Weapon : Focusable
         if (moving)
         {
             //加重力
-            GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale);
-            //Debug.Log("<color=blue>Velocity * time:" + GetComponent<Rigidbody>().velocity * Time.deltaTime + "</color>");
+            GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale, ForceMode.Force);
+            //Debug.Log("<color=blue>Velocity:" + GetComponent<Rigidbody>().velocity + "</color>");
             //Debug.Log("<color=blue>Delta Pos:" + (transform.position - debugPos) + "</color>");
             debugPos = transform.position;
             //调整指向
@@ -131,14 +133,15 @@ public class Weapon : Focusable
     }
 
     //武器被扔出前的各种处理
-    public void ThrowOut(Vector3 dir)
+    public void ThrownOut(Vector3 dir, Vector3 startPos)
     {
         if (moving)
         {
             Debug.LogError("Already thrown out");
             return;
         }
-        if(WeaponHead != null)
+        transform.position = startPos;
+        if (WeaponHead != null)
         {
             AdjustRotation(dir);
         }
@@ -147,7 +150,7 @@ public class Weapon : Focusable
         rigid.isKinematic = false;
         //给初速度
         rigid.AddForce(StartSpeed * dir, ForceMode.Impulse);
-        //Debug.Log("<color=aqua>Force: " + (StartSpeed * dir) + "</color>");
+        Debug.Log("<color=aqua>Dir: " + (StartSpeed * dir) + "</color>");
         rigid.useGravity = false;
         debugPos = transform.position;
         //转为碰撞体
@@ -363,42 +366,81 @@ public class Weapon : Focusable
         focusable = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log(collision.gameObject.name);
-    }
+    #region Collisions
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(collision.gameObject.name);
+    //    PlayerCharacter hitPlayer = collision.gameObject.GetComponentInChildren<PlayerCharacter>();
+    //    if (hitPlayer != null)
+    //    {
+    //        Debug.Log("<color=red>击中" + collision.gameObject + "</color>");
+    //        if (hitPlayer == owner)
+    //        {
+    //            GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
+    //        }
+    //        WeaponCollider.isTrigger = true;
+    //    }
+    //}
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    PlayerCharacter hitPlayer = collision.gameObject.GetComponentInChildren<PlayerCharacter>();
+    //    if (hitPlayer != null)
+    //    {
+    //        Debug.Log("<color=red>击中" + collision.gameObject + "</color>");
+    //        if (hitPlayer == owner)
+    //        {
+    //            GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
+    //        }
+    //        WeaponCollider.isTrigger = false;
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
-        //只处理爆炸的触发器
-        if(burstRange == null || !burstRange.enabled)
-        {
-            return;
-        }
         //Debug.Log(other.gameObject.name);
-        if (other.GetComponentInChildren<PlayerCharacter>() != null)
+        PlayerCharacter otherPlayer = other.GetComponentInChildren<PlayerCharacter>();
+        if (otherPlayer != null)
         {
-            if (burstAffectPlayers.Find(
-                delegate(PlayerCharacter player){ return player == other.GetComponentInChildren<PlayerCharacter>(); }) 
-                == null)
+            Debug.Log("<color=red>HitPlayer" + otherPlayer.name + "</color>");
+            if (isBomb)
             {
-                burstAffectPlayers.Add(other.GetComponentInChildren<PlayerCharacter>());
+                //只处理爆炸的触发器
+                if (burstRange == null || !burstRange.enabled)
+                {
+                    return;
+                }
+                if (burstAffectPlayers.Find(
+                    delegate (PlayerCharacter player) { return player == otherPlayer; })
+                    == null)
+                {
+                    burstAffectPlayers.Add(otherPlayer);
+                }
             }
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        //只处理爆炸的触发器
-        if (burstRange == null || !burstRange.enabled)
+        PlayerCharacter otherPlayer = other.GetComponentInChildren<PlayerCharacter>();
+
+        if (otherPlayer != null)
         {
-            return;
+            if (isBomb)
+            {
+                //只处理爆炸的触发器
+                if (burstRange == null || !burstRange.enabled)
+                {
+                    return;
+                }
+                burstAffectPlayers.Remove(otherPlayer);
+            }
         }
-        if (other.GetComponentInChildren<PlayerCharacter>() != null)
-        {
-            burstAffectPlayers.Remove(other.GetComponentInChildren<PlayerCharacter>());
-        }
+
     }
+
+    #endregion
 
     //用来在砸地和开始的时候调整位置到Surface上
     public void AdjustPosAndRotToSurface(Collision collision = null)
@@ -442,6 +484,8 @@ public class Weapon : Focusable
             Vector3 posDiffer = collision.GetContact(0).point - transform.position +
                 (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
             transform.Translate(posDiffer, Space.World);
+            //GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
+            /*AdjustRotation(-collision.impulse);*/
         }
     }
 
@@ -488,7 +532,7 @@ public class Weapon : Focusable
         }
     }
     
-    public void DestroySurface(Surface surface)
+    public void DestroySurface(Surface surface, Collision collision=null)
     {
         if (!canDestroy)
         {
@@ -498,7 +542,10 @@ public class Weapon : Focusable
         {
             surface.Broken();
             canDestroy = false;//避免一砸砸一片
-            
+        }
+        if(collision != null)
+        {
+            GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
         }
     }
 
@@ -513,4 +560,6 @@ public class Weapon : Focusable
         transPos.z = transform.position.z;
         owner.moveControl.transform.position = transPos;
     }
+
+    
 }

@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3559526146793026420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4700535891296802241}
+  - component: {fileID: 1779814559869750137}
+  m_Layer: 10
+  m_Name: WeaponCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4700535891296802241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559526146793026420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6654273003860727949}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1779814559869750137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559526146793026420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.70988506, y: 2.9374292, z: 0.26444018}
+  m_Center: {x: 0.024563177, y: 0.7929283, z: 0.0000018838776}
 --- !u!65 &6653623441555990754
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6653623441811101084}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: swordHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +100,7 @@ GameObject:
   - component: {fileID: 6653623443066835467}
   - component: {fileID: 82981876844003662}
   - component: {fileID: 6653623443066835466}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Sword1_temp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +286,7 @@ MonoBehaviour:
   canDestroy: 0
   canTransfer: 0
   bornSurface: {fileID: 0}
-  WeaponCollider: {fileID: 6653623441555990754}
+  WeaponCollider: {fileID: 1779814559869750137}
   moving: 0
   gravityScale: 0.8
   StartSpeed: 18
@@ -273,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1672165267303468, guid: cd1656aac74ce37488f1fd178a368a00, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170782859014250, guid: cd1656aac74ce37488f1fd178a368a00, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,12 +6,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(PlayerCharacter))]
-public class PlayerAnimationControl : MonoBehaviour
+public class PlayerAnimationControl : MonoBehaviourPun
 {
     public Animator animControl;
     public PlayerCharacter playerControl;
@@ -43,6 +45,10 @@ public class PlayerAnimationControl : MonoBehaviour
     void Update()
     {
         if (playerControl.isStaticTarget)
+        {
+            return;
+        }
+        if (PhotonNetwork.IsConnected && !photonView.IsMine)
         {
             return;
         }
@@ -97,7 +103,14 @@ public class PlayerAnimationControl : MonoBehaviour
     public void ThrowOut()
     {
         //Debug.Log("<color=blue>throw out</color>");
-        playerControl.Throw();
+        if (PhotonNetwork.IsConnected)
+        {
+            playerControl.CallThrow();
+        }
+        else
+        {
+            playerControl.Throw();
+        }
     }
     #endregion
 }
