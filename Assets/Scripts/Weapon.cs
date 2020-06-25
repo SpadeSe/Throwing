@@ -33,6 +33,7 @@ public class Weapon : Focusable
     //public GameObject highlightObj;
     [Header("Display")]
     public string weaponName;
+    public string description;
     public Sprite UISprite;
     [Header("State")]
     public int damage = 2;
