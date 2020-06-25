@@ -28,7 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(controllingCharacter != null)
+        if(controllingCharacter != null 
+            && controllingCharacter.liveState == CharacterLiveState.Alive)
         {
             if (controllingCharacter.hasWeapon() && Input.GetMouseButton(1))
             {

@@ -9,7 +9,8 @@ public class KillZone : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     [Tooltip("进入水面时的音效")]
-    public AudioClip enterClip;
+    public AudioClip WeaponEnterClip;
+    public AudioClip PlayerEnterClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +30,27 @@ public class KillZone : MonoBehaviour
             GameObject particle = Instantiate(EnterParticle, transform);
             particle.transform.position = other.transform.position;
         }
-        if(enterClip != null)
-        {
-            audioSource.clip = enterClip;
-            audioSource.Play();
-        }
         //处理武器
         Weapon weapon = other.GetComponentInParent<Weapon>();
         if (weapon != null)
         {
+            if (WeaponEnterClip != null)
+            {
+                audioSource.clip = WeaponEnterClip;
+                audioSource.Play();
+            }
             weapon.ReGen();
+            return;
         }
 
         PlayerCharacter player = other.GetComponentInChildren<PlayerCharacter>();
         if (player != null)
         {
+            if (PlayerEnterClip != null)
+            {
+                audioSource.clip = PlayerEnterClip;
+                audioSource.Play();
+            }
             player.Killed();
         }
     }

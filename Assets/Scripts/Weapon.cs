@@ -11,6 +11,7 @@
  * 注意: 武器碰撞: 需要两层. 武器mesh本体上一个, istrigger一直on, 
  *       下层再放一个, 作为脚本的weaponColllider, 并且打上weapon标签,
  *       这样再physics里面关闭与player的碰撞之后就能同时保留triggerEnter事件.
+ *       !!!Bomb可不要给Weapon层
  */
 
 using System.Collections;
@@ -32,6 +33,7 @@ public class Weapon : Focusable
     //public GameObject highlightObj;
     [Header("Display")]
     public string weaponName;
+    public string description;
     public Sprite UISprite;
     [Header("State")]
     public int damage = 2;
@@ -50,6 +52,7 @@ public class Weapon : Focusable
     public float gravityScale = 0.05f;
     public float StartSpeed = 1.5f;
     Vector3 debugPos = Vector3.zero;
+    public List<PlayerCharacter> hitPlayer;//用来防止多次击中
     [Header("TransAdjust")]
     public GameObject WeaponHead;
     public Vector3 startPos;
@@ -158,6 +161,7 @@ public class Weapon : Focusable
         //改变状态
         taken = false;
         moving = true;
+        hitPlayer.Clear();
         if (isBomb)
         {
             bounceCount = maxBounce;
@@ -325,9 +329,22 @@ public class Weapon : Focusable
         //爆炸粒子
         if(burstParticlePrefab != null)
         {
-            GameObject particle = Instantiate<GameObject>(burstParticlePrefab);
-            particle.GetComponent<ParticleSystem>().Play();
-            Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
+            GameObject particleObj = Instantiate(burstParticlePrefab, transform);
+            ParticleSystem[] particles  = particleObj.GetComponentsInChildren<ParticleSystem>();
+            float multiplier = burstRange.radius;
+            for (int i = 0; i < particles.Length;i++)//ScaleParticles
+            {
+                var particle = particles[i];
+                var mainModule = particle.main;
+                mainModule.startSizeMultiplier *= multiplier;
+                var shape = particle.shape;
+                shape.radius *= multiplier;
+                shape.randomPositionAmount *= multiplier;
+                var sizeOverTime = particle.sizeOverLifetime;
+                sizeOverTime.sizeMultiplier *= multiplier;
+            }
+            particleObj.GetComponent<ParticleSystem>().Play();
+            Destroy(particleObj, particleObj.GetComponent<ParticleSystem>().main.duration);
         }
         if (BombBurstSound != null)
         {
@@ -338,6 +355,7 @@ public class Weapon : Focusable
         foreach(var player in burstAffectPlayers)
         {
             Debug.Log(player.gameObject.name + "is hurt by burst");
+            player.ReceiveDamage(this, damage, transform.position - player.transform.position);
         }
         //reset状态
         MinusUseCount();
@@ -401,10 +419,10 @@ public class Weapon : Focusable
     {
         //Debug.Log(other.gameObject.name);
         PlayerCharacter otherPlayer = other.GetComponentInChildren<PlayerCharacter>();
-        if (otherPlayer != null)
+        if (otherPlayer != null && !hitPlayer.Find(player=>player==otherPlayer))
         {
             Debug.Log("<color=red>HitPlayer" + otherPlayer.name + "</color>");
-            if (isBomb)
+            if (isBomb)//处理爆炸范围的判定
             {
                 //只处理爆炸的触发器
                 if (burstRange == null || !burstRange.enabled)
@@ -418,6 +436,18 @@ public class Weapon : Focusable
                     burstAffectPlayers.Add(otherPlayer);
                 }
             }
+            else
+            {
+                if (moving)
+                {
+                    //只对活着的其他阵营的角色造成伤害
+                    if(otherPlayer.liveState == CharacterLiveState.Alive && 
+                        otherPlayer.side != owner.side)
+                    {
+                        otherPlayer.ReceiveDamage(this, damage, transform.forward);                    }
+                }
+            }
+            
         }
     }
 

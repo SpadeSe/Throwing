@@ -39,6 +39,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
     [Header("State")]
     public PlayerSide side;
+    public CharacterLiveState liveState = CharacterLiveState.Alive;
     public int curHp = 1;
     public float speedRate = 1.0f;
 
@@ -371,14 +372,46 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         return weaponSlot.childCount > 0;
     }
 
-    public void ReceiveDamage(PlayerCharacter resource, int dam = 0)
+    public void ReceiveDamage(Weapon damWeapon, int dam, Vector3 damDir)
     {
-        Debug.Log(gameObject.name + "ReceiveDamage: " + dam);
+        curHp = Mathf.Max(0, curHp - dam);
+        Debug.Log("<color=aqua>" + gameObject.name + "ReceiveDamage: " + dam + "</color><color=aqua>LeftHp: " + curHp + "</color>");
+        if(curHp == 0)//计算死亡方向
+        {
+            Vector3 faceDir = transform.forward;
+            faceDir.y = 0;
+            Vector3 rightDir = transform.right;
+            rightDir.y = 0;
+            damDir.y = 0;
+            float faceAngle = Vector3.Angle(faceDir, damDir);
+            float rightAngle = Vector3.Angle(rightDir, damDir);
+            Debug.Log("<color=green>FaceAngle: " + faceAngle +
+                "RightAngle: " + rightAngle + "</color>");
+            if(faceAngle < 45f)
+            {
+                liveState = CharacterLiveState.Dying_Forward;
+            }
+            else if (faceAngle > 135f)
+            {
+                liveState = CharacterLiveState.Dying_Backward;
+            }
+            else if (rightAngle < 45f)
+            {
+                liveState = CharacterLiveState.Dying_Right;
+            }
+            else
+            {
+                liveState = CharacterLiveState.Dying_Left;
+            }
+
+            deadEvent?.Invoke(this, damWeapon.owner);
+        }
     }
 
     public void ReceiveHeal(int healPoint = 0)
     {
-        Debug.Log(gameObject.name + "ReceiveHeal: " + healPoint);
+        Debug.Log("<color=pink>" + gameObject.name + "ReceiveHeal: " + healPoint + "</color>");
+        curHp = Mathf.Min(curHp + healPoint, maxHp);
     }
 
     public void MakeSpeedUp(float upRate = 0.0f, float duration = 3.0f)
@@ -399,18 +432,28 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
 
     public void Killed(PlayerCharacter killer=null)
     {
-        deadEvent?.Invoke(this, killer);
+
         //TODO: 计分, 灰屏, 等待时间之类
 
 
         Respawn();
     }
 
+    public void DeadEnd()
+    {
+        Respawn();
+    }
     
     public void Respawn()
     {
+        if(respawnTrans == null)
+        {
+            Debug.Log("<color=red>RespawnTrans Not AssignedYet</color>");
+            return;
+        }
         moveControl.transform.position = respawnTrans.position;
         moveControl.transform.rotation = respawnTrans.rotation;
+        liveState = CharacterLiveState.Alive;
     }
 
     #region CallBacks

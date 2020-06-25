@@ -123,8 +123,9 @@ MonoBehaviour:
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u62FE\u53D6"
   animControl: {fileID: 0}
-  weaponName: 
-  UISprite: {fileID: 0}
+  weaponName: "\u98DE\u65A7"
+  description: "\u666E\u901A\u7684\u98DE\u65A7"
+  UISprite: {fileID: 21300000, guid: d6a7498e722581d4ab5028fe302ecb6c, type: 3}
   damage: 2
   useCount: -1
   type: 0
@@ -137,12 +138,13 @@ MonoBehaviour:
   moving: 0
   gravityScale: 0.8
   StartSpeed: 18
+  hitPlayer: []
   WeaponHead: {fileID: 3702624664921497124}
   startPos: {x: 0, y: 0, z: 0}
   startRotate: {x: 0, y: 0, z: 0, w: 0}
   audioSource: {fileID: 0}
-  pickupSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
-  throwOutSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  pickupSound: {fileID: 8300000, guid: b4170f92fe1a7614ab8b88ae00c54dbf, type: 3}
+  throwOutSound: {fileID: 8300000, guid: a06ac9f5637a06146b9e511970b91f40, type: 3}
   BombBurstSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
   isBomb: 0
   burstRange: {fileID: 0}

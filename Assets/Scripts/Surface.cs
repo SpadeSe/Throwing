@@ -67,7 +67,7 @@ public class Surface : Focusable
                 StopCoroutine(fixRoutine);
                 fixRoutine = null;
                 Debug.Log("Fix stalled");
-                PopupHint.PopupUI("修复失败", (RectTransform)fixingPlayer.ownedCanvas.transform);
+                PopupHint.PopupUI("修复失败");
                 fixingPlayer = null;
                 if(fixingParticle != null)
                 {
@@ -140,12 +140,8 @@ public class Surface : Focusable
             }
             weapon.gameObject.SetActive(true);
         }
-        //Debug.Log(gameObject.name + " has been fixed");
-        //if(fixingUI != null)
-        //{
-        //    fixingUI.SetActive(false);
-        //}
-        //TODO: 提示已修复
+        fixRoutine = null;
+        PopupHint.PopupUI("修复成功");
     }
 
 

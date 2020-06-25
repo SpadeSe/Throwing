@@ -193,20 +193,22 @@ MonoBehaviour:
   focusingUI: {fileID: 0}
   focusUIHint: "\u6309<size=27><color=yellow>E</color></size>\u62FE\u53D6"
   animControl: {fileID: 0}
-  weaponName: 
-  UISprite: {fileID: 0}
+  weaponName: "\u4F20\u9001\u4E4B\u77DB"
+  description: "\u60F3\u53BB\u54EA\u5C31\u53BB\u54EA!(\u9664\u4E86\u843D\u6D77)"
+  UISprite: {fileID: 21300000, guid: 12bcef4d25c338c4b8eba55e56c2973f, type: 3}
   damage: 2
   useCount: -1
   type: 1
   taken: 0
   owner: {fileID: 0}
   canDestroy: 0
-  canTransfer: 0
+  canTransfer: 1
   bornSurface: {fileID: 0}
   WeaponCollider: {fileID: 7936780052575386532}
   moving: 0
   gravityScale: 0.5
   StartSpeed: 20
+  hitPlayer: []
   WeaponHead: {fileID: 4140298138680099230}
   startPos: {x: 0, y: 0, z: 0}
   startRotate: {x: 0, y: 0, z: 0, w: 0}

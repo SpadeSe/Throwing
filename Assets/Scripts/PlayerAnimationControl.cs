@@ -16,7 +16,7 @@ using Photon.Realtime;
 public class PlayerAnimationControl : MonoBehaviourPun
 {
     public Animator animControl;
-    public PlayerCharacter playerControl;
+    public PlayerCharacter playerCharacter;
     public FirstPersonAIO movement;
     public float HorizontalInput = 0.0f;
     public float VerticalInput = 0.0f;
@@ -34,8 +34,8 @@ public class PlayerAnimationControl : MonoBehaviourPun
     void Start()
     {
         animControl = GetComponent<Animator>();
-        playerControl = GetComponent<PlayerCharacter>();
-        movement = playerControl.moveControl;
+        playerCharacter = GetComponent<PlayerCharacter>();
+        movement = playerCharacter.moveControl;
     }
     private void FixedUpdate()
     {
@@ -44,16 +44,37 @@ public class PlayerAnimationControl : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (playerControl.isStaticTarget)
-        {
-            return;
-        }
         if (PhotonNetwork.IsConnected && !photonView.IsMine)
         {
             return;
         }
+        if(playerCharacter.liveState != CharacterLiveState.Alive)//靶子也得处理死亡动画
+        {
+            switch (playerCharacter.liveState)
+            {
+                case CharacterLiveState.Dying_Forward:
+                    animControl.SetTrigger("DyingForward");
+                    break;
+                case CharacterLiveState.Dying_Backward:
+                    animControl.SetTrigger("DyingBackwrad");
+                    break;
+                case CharacterLiveState.Dying_Left:
+                    animControl.SetTrigger("DyingLeft");
+                    break;
+                case CharacterLiveState.Dying_Right:
+                    animControl.SetTrigger("DyingRight");
+                    break;
+                default:break;
+            }
+            playerCharacter.liveState = CharacterLiveState.Dead;
+            return;
+        }
+        if (playerCharacter.isStaticTarget)
+        {
+            return;
+        }
         //state
-        animControl.SetBool("Armed", playerControl.hasWeapon());
+        animControl.SetBool("Armed", playerCharacter.hasWeapon());
         //Move
         HorizontalInput = Input.GetAxis("Horizontal");
         VerticalInput = Input.GetAxis("Vertical");
@@ -69,9 +90,9 @@ public class PlayerAnimationControl : MonoBehaviourPun
         }
         animControl.SetFloat("MoveSpeed", movement.isSprinting ? movement.sprintSpeed / movement.walkSpeed : 1.0f);
         //Throw
-        animControl.SetInteger("AttackType", playerControl.attackType);
-        animControl.SetBool("Throwing", playerControl.throwing);
-        animControl.SetBool("Targeting", playerControl.targeting);
+        animControl.SetInteger("AttackType", playerCharacter.attackType);
+        animControl.SetBool("Throwing", playerCharacter.throwing);
+        animControl.SetBool("Targeting", playerCharacter.targeting);
         //if (playerControl.hasWeapon() &&)
         //{
         //    targeting = true;
@@ -97,7 +118,7 @@ public class PlayerAnimationControl : MonoBehaviourPun
     {
         //Debug.Log("<color=blue>throwing End</color>");
         animControl.SetBool("Throwing", false);
-        playerControl.throwing = false;
+        playerCharacter.throwing = false;
     }
 
     public void ThrowOut()
@@ -105,12 +126,17 @@ public class PlayerAnimationControl : MonoBehaviourPun
         //Debug.Log("<color=blue>throw out</color>");
         if (PhotonNetwork.IsConnected)
         {
-            playerControl.CallThrow();
+            playerCharacter.CallThrow();
         }
         else
         {
-            playerControl.Throw();
+            playerCharacter.Throw();
         }
+    }
+
+    public void DeadAnimEnd()
+    {
+        playerCharacter.DeadEnd();
     }
     #endregion
 }
