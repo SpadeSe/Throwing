@@ -16,13 +16,22 @@ public delegate void GameBeginEvent();
 public class RoomRecorder : MonoBehaviourPun, IPunObservable
 {
     public GameBeginEvent gameBeginEvent;
+    [Header("Settings")]
+    public float RoundDuration = 180.0f;
+    public int KillScore = 2;
+    public int SuicideScore = 1;
+    [Header("States")]
     public PlayerController playerControllerLocal;
-
     public RoomState state = RoomState.Preparing;
     public bool clearRecord = false;
+    public float leftTime;
+    [Header("RoomRecords")]
     public List<RoomRecord> redRecords;
     public List<RoomRecord> blueRecords;
     public int curIdx = 0; //从0开始不断增加, 不回退.(反正溢出的可能性几乎没有)
+    [Header("GameRecords")]
+    public SideRecords redIngameRecords;
+    public SideRecords blueIngameRecords;
 
     // Start is called before the first frame update
     void Start()
@@ -30,20 +39,47 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         gameObject.tag = Definitions.roomRecorderTag;
         DontDestroyOnLoad(gameObject);
         PhotonPeer.RegisterType(typeof(RoomRecord), (byte)'r', RoomRecord.SerializeClass, RoomRecord.DeserializeClass);
-        
+        PhotonPeer.RegisterType(typeof(SideRecords), (byte)'s', SideRecords.SerializeClass, SideRecords.DeserializeClass);
         if(state == RoomState.ReadyToPlay)
         {
             //开始计时, 计分.
             Debug.Log("Start to play");
-        }
+            //TODO: 获取所有characteryinyong.
 
-        Debug.Log("AutoSyncScene?:" + PhotonNetwork.AutomaticallySyncScene);
+            //绑定事件
+            foreach(var character in redIngameRecords.characters)
+            {
+                character.deadEvent += PlayerDead;
+            }
+            foreach (var character in blueIngameRecords.characters)
+            {
+                character.deadEvent += PlayerDead;
+            }
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+
+    public void PlayerDead(PlayerCharacter deadPlayer, PlayerCharacter killer)
+    {
+        int score = killer == null ? SuicideScore : KillScore;
+        int kill = killer == null ? 0 : 1;
+        if (deadPlayer.side == PlayerSide.RED)
+        {
+            blueIngameRecords.Score += score;
+            blueIngameRecords.KillCount += kill;
+        } 
+        else
+        {
+            redIngameRecords.Score += score;
+            redIngameRecords.KillCount += kill;
+        }
     }
 
     public void CallRegisterToRoom(PlayerController controller, string playername, string spriteprefabname, string ingameprefabname)
@@ -244,6 +280,8 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
             stream.SendNext(redRecords.ToArray());
             stream.SendNext(blueRecords.ToArray());
             stream.SendNext(curIdx);
+            stream.SendNext(redIngameRecords);
+            stream.SendNext(blueIngameRecords);
         }
         else
         {
@@ -256,6 +294,9 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
             blueRecords = new List<RoomRecord>((RoomRecord[])stream.ReceiveNext());
 
             curIdx = (int)stream.ReceiveNext();
+
+            redIngameRecords = (SideRecords)stream.ReceiveNext();
+            blueIngameRecords = (SideRecords)stream.ReceiveNext();
         }
     }
     #endregion

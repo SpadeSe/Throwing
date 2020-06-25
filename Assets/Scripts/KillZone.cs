@@ -14,7 +14,9 @@ public class KillZone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = false;
+        audioSource.playOnAwake = false;
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class KillZone : MonoBehaviour
                 audioSource.clip = PlayerEnterClip;
                 audioSource.Play();
             }
-            player.Killed();
+            player.Suicide();
         }
     }
 }

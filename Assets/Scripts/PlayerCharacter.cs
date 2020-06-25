@@ -403,7 +403,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             {
                 liveState = CharacterLiveState.Dying_Left;
             }
-
+            
             deadEvent?.Invoke(this, damWeapon.owner);
         }
     }
@@ -430,12 +430,13 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         speedRate = 1.0f;
     }
 
-    public void Killed(PlayerCharacter killer=null)
+    public void Suicide()
     {
 
         //TODO: 计分, 灰屏, 等待时间之类
 
-
+        PopupHint.PopupUI("<color=red>你跳入海中溺死了自己</color>");
+        deadEvent?.Invoke(this, null);
         Respawn();
     }
 

@@ -65,7 +65,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _RefTex:
         m_Texture: {fileID: 2800000, guid: 90494e0797812be488f2fbe703461966, type: 3}
-        m_Scale: {x: 3, y: 3}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Alpha: 0.774
@@ -87,7 +87,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RefDistort: 1
+    - _RefDistort: 1.29
     - _SmoothnessTextureChannel: 0
     - _SpecRange: 0.55
     - _SpecSet: 2.68
@@ -96,7 +96,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _diffStep: 3.01
-    - _flcSet: 0.394
+    - _flcSet: 0.218
     - _fre_int: 1.51
     - _normal_b: 1
     - _normal_g: 1

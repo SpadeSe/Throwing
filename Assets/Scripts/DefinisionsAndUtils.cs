@@ -44,9 +44,20 @@ public enum CharacterLiveState: byte
 public class SideRecords
 {
     public PlayerSide side;
-    public List<PlayerCharacter> players;
+    public List<PlayerCharacter> characters;
     public int Score;
+    public int KillCount;
     public int DeadCount;
+
+    public static byte[] SerializeClass(object sideRecord)
+    {
+        return UTF8Encoding.Default.GetBytes(JsonConvert.SerializeObject(sideRecord));
+    }
+
+    public static object DeserializeClass(byte[] bytes)
+    {
+        return JsonConvert.DeserializeObject(UTF8Encoding.Default.GetString(bytes), typeof(SideRecords));
+    }
 }
 
 [System.Serializable]

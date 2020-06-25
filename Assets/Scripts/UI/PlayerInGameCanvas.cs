@@ -8,6 +8,7 @@ public class PlayerInGameCanvas : MonoBehaviour
     [Header("DataRefs")]
     public RoomRecorder roomRecorder;//动态获取
     public PlayerCharacter player;//必须靠其他东西来分配
+    public Sprite NoWeaponSprite;
 
     [Header("UIRefs")]
     public Image TimeImage;
@@ -32,7 +33,8 @@ public class PlayerInGameCanvas : MonoBehaviour
     public Text playerDeaths;
     public Text playerScore;
     public Image weaponImage;
-    public Text weaponText;
+    public Text weaponNameText;
+    public Text weaponDescriptionText;
     #endregion
     [Space(10)]
     #region Other
@@ -70,7 +72,6 @@ public class PlayerInGameCanvas : MonoBehaviour
         //crossHair
         crossHair.SetActive(!player.targeting);
         //focusingObj
-        #endregion
         if(player.focusingObj != null)
         {
             Focusable focusable = player.focusingObj.GetComponent<Focusable>();
@@ -101,7 +102,27 @@ public class PlayerInGameCanvas : MonoBehaviour
         {
             fixBar.gameObject.SetActive(false);
         }
-        #region PopUp
+        if (player.hasWeapon())
+        {
+            Weapon weapon = player.weaponSlot.GetChild(0).GetComponent<Weapon>();
+            weaponImage.sprite = weapon.UISprite;
+            weaponNameText.text = weapon.weaponName;
+            weaponDescriptionText.text = weapon.description;
+        }
+        else
+        {
+            weaponImage.sprite = NoWeaponSprite;
+            weaponNameText.text = "(无)";
+            weaponDescriptionText.text = "你还没有拿起武器喔";
+        }
+        //LifeBar
+
+        #endregion
+        #region RoundInfo
+        if(roomRecorder != null)
+        {
+
+        }
         #endregion
     }
 }
