@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4458013413945761240}
   - component: {fileID: 7948104141207161756}
   - component: {fileID: 82800008382412066}
+  - component: {fileID: 54848409362571358}
   m_Layer: 11
   m_Name: tempWeapon
   m_TagString: Untagged
@@ -208,6 +209,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &54848409362571358
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2520546220439201938}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5886030254137139563
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -153,7 +153,7 @@ public class Weapon : Focusable
         rigid.isKinematic = false;
         //给初速度
         rigid.AddForce(StartSpeed * dir, ForceMode.Impulse);
-        Debug.Log("<color=aqua>Dir: " + (StartSpeed * dir) + "</color>");
+        //Debug.Log("<color=aqua>Dir: " + (StartSpeed * dir) + "</color>");
         rigid.useGravity = false;
         debugPos = transform.position;
         //转为碰撞体
@@ -421,7 +421,6 @@ public class Weapon : Focusable
         PlayerCharacter otherPlayer = other.GetComponentInChildren<PlayerCharacter>();
         if (otherPlayer != null && !hitPlayer.Find(player=>player==otherPlayer))
         {
-            Debug.Log("<color=red>HitPlayer" + otherPlayer.name + "</color>");
             if (isBomb)//处理爆炸范围的判定
             {
                 //只处理爆炸的触发器
@@ -440,8 +439,9 @@ public class Weapon : Focusable
             {
                 if (moving)
                 {
+                    Debug.Log("<color=red>HitPlayer" + otherPlayer.name + "</color>");
                     //只对活着的其他阵营的角色造成伤害
-                    if(otherPlayer.liveState == CharacterLiveState.Alive && 
+                    if (otherPlayer.liveState == CharacterLiveState.Alive && 
                         otherPlayer.side != owner.side)
                     {
                         otherPlayer.ReceiveDamage(this, damage, transform.forward);                    }

@@ -29,8 +29,9 @@ public class KillZone : MonoBehaviour
     {
         if(EnterParticle != null)
         {
-            GameObject particle = Instantiate(EnterParticle, transform);
+            GameObject particle = Instantiate(EnterParticle);//, transform);
             particle.transform.position = other.transform.position;
+            Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
         }
         //处理武器
         Weapon weapon = other.GetComponentInParent<Weapon>();

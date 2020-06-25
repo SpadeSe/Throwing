@@ -42,6 +42,9 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public CharacterLiveState liveState = CharacterLiveState.Alive;
     public int curHp = 1;
     public float speedRate = 1.0f;
+    public int kill = 0;
+    public int dead = 0;
+    public int score = 0;
 
     [Header("Throw")]
     public bool targeting = false;
@@ -375,7 +378,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public void ReceiveDamage(Weapon damWeapon, int dam, Vector3 damDir)
     {
         curHp = Mathf.Max(0, curHp - dam);
-        Debug.Log("<color=aqua>" + gameObject.name + "ReceiveDamage: " + dam + "</color><color=aqua>LeftHp: " + curHp + "</color>");
+        Debug.Log("" + gameObject.name + "ReceiveDamage: <color=red>" + dam + "</color> LeftHp: <color=green>" + curHp + "</color>");
         if(curHp == 0)//计算死亡方向
         {
             Vector3 faceDir = transform.forward;
@@ -385,7 +388,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
             damDir.y = 0;
             float faceAngle = Vector3.Angle(faceDir, damDir);
             float rightAngle = Vector3.Angle(rightDir, damDir);
-            Debug.Log("<color=green>FaceAngle: " + faceAngle +
+            Debug.Log("<color=blue>FaceAngle: " + faceAngle +
                 "RightAngle: " + rightAngle + "</color>");
             if(faceAngle < 45f)
             {

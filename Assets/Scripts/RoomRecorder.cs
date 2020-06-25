@@ -42,19 +42,8 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
         PhotonPeer.RegisterType(typeof(SideRecords), (byte)'s', SideRecords.SerializeClass, SideRecords.DeserializeClass);
         if(state == RoomState.ReadyToPlay)
         {
-            //开始计时, 计分.
-            Debug.Log("Start to play");
-            //TODO: 获取所有characteryinyong.
-
-            //绑定事件
-            foreach(var character in redIngameRecords.characters)
-            {
-                character.deadEvent += PlayerDead;
-            }
-            foreach (var character in blueIngameRecords.characters)
-            {
-                character.deadEvent += PlayerDead;
-            }
+            InitGame();
+            state = RoomState.Playing;
         }
         
     }
@@ -62,23 +51,57 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        
+        if(state == RoomState.Playing)
+        {
+            leftTime -= Time.deltaTime;
+            if(leftTime <= 0)
+            {
+                leftTime = 0;
+                state = RoomState.EndPlay;
+                //TODO: 显示结算面板. 暂时用popupHint代替
+                PopupHint.PopupUI("游戏结束");
+            }
+        }
     }
 
+    public void InitGame()
+    {
+        //开始计时, 计分.
+        leftTime = RoundDuration;
+        //TODO: 获取所有characteryinyong.
+
+        //绑定事件
+        foreach (var character in redIngameRecords.characters)
+        {
+            character.deadEvent += PlayerDead;
+        }
+        foreach (var character in blueIngameRecords.characters)
+        {
+            character.deadEvent += PlayerDead;
+        }
+    }
 
     public void PlayerDead(PlayerCharacter deadPlayer, PlayerCharacter killer)
     {
         int score = killer == null ? SuicideScore : KillScore;
         int kill = killer == null ? 0 : 1;
+        deadPlayer.dead += 1;
+        if(killer != null)
+        {
+            killer.kill += 1;
+            killer.score += score;
+        }
         if (deadPlayer.side == PlayerSide.RED)
         {
             blueIngameRecords.Score += score;
             blueIngameRecords.KillCount += kill;
+            redIngameRecords.DeadCount += 1;
         } 
         else
         {
             redIngameRecords.Score += score;
             redIngameRecords.KillCount += kill;
+            blueIngameRecords.DeadCount += 1;
         }
     }
 

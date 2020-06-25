@@ -250,7 +250,7 @@ MonoBehaviour:
   WeaponCollider: {fileID: 7682941530130207244}
   moving: 0
   gravityScale: 1
-  StartSpeed: 25
+  StartSpeed: 15
   hitPlayer: []
   WeaponHead: {fileID: 7869507500584864803}
   startPos: {x: 0, y: 0, z: 0}

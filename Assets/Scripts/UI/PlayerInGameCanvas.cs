@@ -12,7 +12,8 @@ public class PlayerInGameCanvas : MonoBehaviour
 
     [Header("UIRefs")]
     public Image TimeImage;
-    public Text TimeText;
+    public Text Time_Min;
+    public Text Time_Sec;
     [Space(10)]
     #region Red
     public Text redKills;
@@ -62,7 +63,12 @@ public class PlayerInGameCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region roomRecorder
+        #region Time
+        if(roomRecorder != null)
+        {
+            Time_Sec.text = string.Format("{0:00}", (int)roomRecorder.leftTime % 60);
+            Time_Min.text = string.Format("{0:00}", (int)roomRecorder.leftTime / 60);
+        }
         #endregion
 
         #region player
@@ -115,13 +121,38 @@ public class PlayerInGameCanvas : MonoBehaviour
             weaponNameText.text = "(无)";
             weaponDescriptionText.text = "你还没有拿起武器喔";
         }
-        //LifeBar
+        //LifeBar, TODO: 优化实现心破碎和恢复的动画效果
+        int curHeart = playerHearts.transform.childCount;
+        for(; curHeart < player.maxHp; curHeart++)
+        {
+            GameObject heart = Instantiate(HeartPrefab, playerHearts.transform);
+            RectTransform heartTrans = heart.GetComponent<RectTransform>();
+            heartTrans.anchoredPosition = new Vector2(curHeart * heartTrans.sizeDelta.x, heartTrans.anchoredPosition.y);
+        }
+        for(int i = 0; i < player.curHp; i++)
+        {
+            playerHearts.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        for(int i = player.curHp; i < curHeart; i++)
+        {
+            playerHearts.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        //KillAndDeadAndScore
+        playerKills.text = player.kill.ToString();
+        playerDeaths.text = player.dead.ToString();
+        playerScore.text = player.score.ToString();
 
         #endregion
+
         #region RoundInfo
         if(roomRecorder != null)
         {
-
+            redKills.text = roomRecorder.redIngameRecords.KillCount.ToString();
+            redDeaths.text = roomRecorder.redIngameRecords.DeadCount.ToString();
+            redScore.text = roomRecorder.redIngameRecords.Score.ToString();
+            blueKills.text = roomRecorder.blueIngameRecords.KillCount.ToString();
+            blueDeaths.text = roomRecorder.blueIngameRecords.DeadCount.ToString();
+            blueScore.text = roomRecorder.blueIngameRecords.Score.ToString();
         }
         #endregion
     }

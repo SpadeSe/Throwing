@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Collider), typeof(Rigidbody))]
 public class ItemBase : MonoBehaviour
 {
     public bool haveTakenEffect = false;
@@ -30,7 +30,7 @@ public class ItemBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //TODO: 给rigidbody加上变动的速度让它来回飘
     }
 
     //TODO: 这后期可能要改成RPC调用
