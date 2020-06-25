@@ -300,8 +300,8 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   startRotate: {x: 0, y: 0, z: 0, w: 0}
   audioSource: {fileID: 0}
-  pickupSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
-  throwOutSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
+  pickupSound: {fileID: 8300000, guid: 027c058cc8a41b840b28635965382488, type: 3}
+  throwOutSound: {fileID: 8300000, guid: a06ac9f5637a06146b9e511970b91f40, type: 3}
   BombBurstSound: {fileID: 8300000, guid: db6cf9bb89e1fa44694fb7f46e891a48, type: 3}
   isBomb: 0
   burstRange: {fileID: 0}

@@ -25,6 +25,8 @@ public class Surface : Focusable
     public AudioClip bombBounceSound;
     [Tooltip("被砸碎的音效音效")]
     public AudioClip BrokenSound;
+    [Tooltip("修复中音效")]
+    public AudioClip FixingSound;
     [Tooltip("修复时的音效")]
     public AudioClip fixedSound;
     [Header("Particle")]
@@ -71,7 +73,12 @@ public class Surface : Focusable
                 fixingPlayer = null;
                 if(fixingParticle != null)
                 {
-                    fixingParticle.GetComponent<ParticleSystem>().Pause();
+                    fixingParticle.GetComponent<ParticleSystem>().Stop();
+                }
+                if (audioSource.isPlaying)
+                {
+                    audioSource.loop = false;
+                    audioSource.Stop();
                 }
                 //TODO: 提示修复失败, 这里架构可能还要改
 
@@ -90,11 +97,12 @@ public class Surface : Focusable
         if(BrokenSound != null)
         {
             audioSource.clip = BrokenSound;
+            audioSource.loop = false;
             audioSource.Play();
         }
         if(brokenParticlePrefab != null)
         {
-            GameObject brokenParticle = Instantiate(brokenParticlePrefab);
+            GameObject brokenParticle = Instantiate(brokenParticlePrefab, transform);
             brokenParticle.GetComponent<ParticleSystem>().Play();
             Destroy(brokenParticle, brokenParticle.GetComponent<ParticleSystem>().main.duration);
         }
@@ -121,10 +129,11 @@ public class Surface : Focusable
             fixingPlayer.fixingSurface = null;
         }
         fixingPlayer = null;
-        if (fixing && fixedSound != null)
+        if (fixedSound != null)
         {
             audioSource.clip = fixedSound;
             audioSource.Play();
+            audioSource.loop = false;
         }
         if (fixingParticle != null)
         {
@@ -171,6 +180,7 @@ public class Surface : Focusable
                     if(weaponHitSound != null)
                     {
                         audioSource.clip = weaponHitSound;
+                        audioSource.loop = false;
                         audioSource.Play();
                     }
                     weapon.AdjustPosAndRotToSurface(collision);
@@ -246,11 +256,17 @@ public class Surface : Focusable
         //    fixingUI.GetComponent<Scrollbar>().size = 0;
         //}
         //fixProgress = 0.0f;
+        if(FixingSound != null)
+        {
+            audioSource.clip = FixingSound;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
         if(fixingParticle == null)
         {
             if(fixingParticlePrefab != null)
             {
-                fixingParticle = Instantiate(fixingParticlePrefab);
+                fixingParticle = Instantiate(fixingParticlePrefab, transform);
                 fixingParticle.GetComponent<ParticleSystem>().Play();
             }
         }
