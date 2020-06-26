@@ -56,7 +56,7 @@ public class PlayerAnimationControl : MonoBehaviourPun
                     animControl.SetTrigger("DyingForward");
                     break;
                 case CharacterLiveState.Dying_Backward:
-                    animControl.SetTrigger("DyingBackwrad");
+                    animControl.SetTrigger("DyingBackward");
                     break;
                 case CharacterLiveState.Dying_Left:
                     animControl.SetTrigger("DyingLeft");

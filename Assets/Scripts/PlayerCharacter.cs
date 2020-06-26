@@ -50,13 +50,14 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     public bool targeting = false;
     public bool throwing = false;
     public int attackType = 0;
-    public GameObject linePrefab;
-    [HideInInspector]
-    public GameObject lineObj;
-    public Color predictLineColor = Color.yellow;
-    public float LinePredictTime = 3.0f;
-    [Range(3, 100)]
-    public int LineSlice = 50;
+    public HintLine hintLine;
+    //public GameObject linePrefab;
+    //[HideInInspector]
+    //public GameObject lineObj;
+    //public Color predictLineColor = Color.yellow;
+    //public float LinePredictTime = 3.0f;
+    //[Range(3, 100)]
+    //public int LineSlice = 50;
 
     [Header("Interact")]
     public float interactDis = 1.0f;
@@ -102,6 +103,7 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
                 ownedCanvas = Instantiate(CanvasPrefab);
                 ownedCanvas.GetComponent<PlayerInGameCanvas>().player = this;
             }
+            hintLine = GetComponent<HintLine>();
         }
         else
         {
@@ -144,21 +146,19 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         {
             return;
         }
-        //if(crosshair != null)
-        //{
-        //    crosshair.SetActive(!targeting);
-        //}
-        //if(fixingBar != null)
-        //{
-        //    fixingBar.SetActive(fixingSurface != null && fixingSurface.fixing);
-        //}
         if (targeting)
         {
-            UpdateLine();
+            if(hintLine != null)
+            {
+                hintLine.UpdateLine(weaponSlot.GetChild(0), playerCam.transform.forward);
+            }
         }
         else
         {
-            DisableLine();
+            if(hintLine != null)
+            {
+                hintLine.DisableLine();
+            }
             //Invoke("DisableLine", 1.0f);
 
             #region Detect Interactable(Weapon Or Can be fixed Deck)
@@ -213,80 +213,80 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     }
     #endregion
 
-    
-    //用来更新瞄准时的参考线的绘制
-    public void UpdateLine()
-    {
-        if (hasWeapon())
-        {
-            Transform weapon = weaponSlot.GetChild(0);
-            #region DrawDebugLine
-            if (Debug.unityLogger.logEnabled)
-            {
-                Debug.DrawRay(playerCam.transform.position, interactDis * playerCam.transform.forward, Color.blue);
-                weapon.GetComponent<Weapon>().DrawDebug(playerCam.transform.forward);
-                Vector3 start = weapon.position;
-                Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
-                float timeStep = LinePredictTime / LineSlice;
-                for (float i = 0.0f; i < LinePredictTime; i += timeStep)
-                {
-                    Vector3 end = start + speed * timeStep;
-                    Debug.DrawLine(start, end, predictLineColor);
-                    speed += Physics.gravity * weapon.GetComponent<Weapon>().gravityScale * timeStep;
-                    start = end;
-                }
-            }
-            #endregion
+    #region DeprecatedHintLine
+    ////用来更新瞄准时的参考线的绘制
+    //public void UpdateLine()
+    //{
+    //    if (hasWeapon())
+    //    {
+    //        Transform weapon = weaponSlot.GetChild(0);
+    //        #region DrawDebugLine
+    //        if (Debug.unityLogger.logEnabled)
+    //        {
+    //            Debug.DrawRay(playerCam.transform.position, interactDis * playerCam.transform.forward, Color.blue);
+    //            weapon.GetComponent<Weapon>().DrawDebug(playerCam.transform.forward);
+    //            Vector3 start = weapon.position;
+    //            Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
+    //            float timeStep = LinePredictTime / LineSlice;
+    //            for (float i = 0.0f; i < LinePredictTime; i += timeStep)
+    //            {
+    //                Vector3 end = start + speed * timeStep;
+    //                Debug.DrawLine(start, end, predictLineColor);
+    //                speed += Physics.gravity * weapon.GetComponent<Weapon>().gravityScale * timeStep;
+    //                start = end;
+    //            }
+    //        }
+    //        #endregion
 
-            #region DrawLine
-            if(linePrefab != null)
-            {
-                if(lineObj == null)
-                {
-                    lineObj = Instantiate<GameObject>(linePrefab);
-                }
-                else
-                {
-                    lineObj.SetActive(true);
-                }
-                lineObj.transform.position = Vector3.zero;
-                lineObj.transform.rotation = Quaternion.Euler(Vector3.zero);
-                VolumetricLineStripBehavior stripe = lineObj.GetComponent<VolumetricLineStripBehavior>();
-                if(stripe != null)
-                {
-                    List<Vector3> vertices = new List<Vector3>();
-                    Vector3 cur = weapon.position;
-                    Vector3 end = cur;
-                    Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
-                    float gravityScale = weapon.GetComponent<Weapon>().gravityScale;
-                    float timeStep = LinePredictTime / LineSlice;
-                    for(float i = 0.0f; i < LinePredictTime; i += timeStep)
-                    {
-                        vertices.Add(cur);
-                        end = cur + speed * timeStep;
-                        #region RayTest: if hit any target or surface
+    //        #region DrawLine
+    //        if(linePrefab != null)
+    //        {
+    //            if(lineObj == null)
+    //            {
+    //                lineObj = Instantiate<GameObject>(linePrefab);
+    //            }
+    //            else
+    //            {
+    //                lineObj.SetActive(true);
+    //            }
+    //            lineObj.transform.position = Vector3.zero;
+    //            lineObj.transform.rotation = Quaternion.Euler(Vector3.zero);
+    //            VolumetricLineStripBehavior stripe = lineObj.GetComponent<VolumetricLineStripBehavior>();
+    //            if(stripe != null)
+    //            {
+    //                List<Vector3> vertices = new List<Vector3>();
+    //                Vector3 cur = weapon.position;
+    //                Vector3 end = cur;
+    //                Vector3 speed = weapon.GetComponent<Weapon>().StartSpeed * playerCam.transform.forward;
+    //                float gravityScale = weapon.GetComponent<Weapon>().gravityScale;
+    //                float timeStep = LinePredictTime / LineSlice;
+    //                for(float i = 0.0f; i < LinePredictTime; i += timeStep)
+    //                {
+    //                    vertices.Add(cur);
+    //                    end = cur + speed * timeStep;
+    //                    #region RayTest: if hit any target or surface
 
-                        #endregion
-                        speed += Physics.gravity * gravityScale * timeStep;
-                        cur = end;
-                    }
-                    vertices.Add(end);
-                    stripe.UpdateLineVertices(vertices.ToArray());
-                    stripe.LineColor = predictLineColor;
-                }
-            }
-            #endregion
-        }
-    }
-    //用来禁用参考线
-    public void DisableLine()
-    {
-        if(lineObj != null)
-        {
-            lineObj.SetActive(false);
-        }
-    }
-
+    //                    #endregion
+    //                    speed += Physics.gravity * gravityScale * timeStep;
+    //                    cur = end;
+    //                }
+    //                vertices.Add(end);
+    //                stripe.UpdateLineVertices(vertices.ToArray());
+    //                stripe.LineColor = predictLineColor;
+    //            }
+    //        }
+    //        #endregion
+    //    }
+    //}
+    ////用来禁用参考线
+    //public void DisableLine()
+    //{
+    //    if(lineObj != null)
+    //    {
+    //        lineObj.SetActive(false);
+    //    }
+    //}
+    #endregion
 
     public void CallDealWithFocusingObj()
     {

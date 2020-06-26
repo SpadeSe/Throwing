@@ -360,6 +360,18 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: Armed
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingForward
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingBackward
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingLeft
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingRight
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -577,6 +589,11 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnTrans
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 677073136860725616, guid: 90f81c51595412242a8694f3456af8ff,
+        type: 3}
+      propertyPath: LineSlice
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3183391301267663376, guid: 90f81c51595412242a8694f3456af8ff,
         type: 3}

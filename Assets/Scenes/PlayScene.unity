@@ -530,6 +530,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c1a98aac6ca94c84c8b732f3818de94c, type: 2}
+    - target: {fileID: 3501145826029650628, guid: cd90874e1ac302d4e90c0e995bf897e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.375
+      objectReference: {fileID: 0}
     - target: {fileID: 4751401481438878594, guid: cd90874e1ac302d4e90c0e995bf897e2,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -1344,6 +1349,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0e4d682b4f5a174428f596ff725d9a22, type: 2}
+    - target: {fileID: 3501145826029650628, guid: cd90874e1ac302d4e90c0e995bf897e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.373
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd90874e1ac302d4e90c0e995bf897e2, type: 3}
 --- !u!1001 &838981876
@@ -1851,12 +1861,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
     type: 3}
   m_PrefabInstance: {fileID: 1019577082}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1079992835 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9102386347240080062, guid: cd90874e1ac302d4e90c0e995bf897e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 698165664}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1102447348
 PrefabInstance:
@@ -2546,6 +2550,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 857b4e7e80f62a44c88b404217e0d663, type: 3}
+--- !u!4 &1660575953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 887169385193789023, guid: cd90874e1ac302d4e90c0e995bf897e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 175266308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1728145601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3128,6 +3138,11 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5178337635887525618, guid: 7994d5eeb41adc34882c8de01d29d3cd,
+        type: 3}
+      propertyPath: LineSlice
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5672230073954388380, guid: 7994d5eeb41adc34882c8de01d29d3cd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3192,7 +3207,7 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnTrans
       value: 
-      objectReference: {fileID: 1079992835}
+      objectReference: {fileID: 1660575953}
     - target: {fileID: 5718438447531051202, guid: 7994d5eeb41adc34882c8de01d29d3cd,
         type: 3}
       propertyPath: m_Height

@@ -70,9 +70,9 @@ public class Weapon : Focusable
 
     [Header("Bomb")]
     public bool isBomb = false;
-    public SphereCollider burstRange;
     public List<PlayerCharacter> burstAffectPlayers;
-    public GameObject burstHintObj;
+    public SphereCollider burstRange;
+    public GameObject burstHintParticle;
     public GameObject burstParticlePrefab;
     public Coroutine burstRoutine;
     public float burstCountDown = 3.0f;
@@ -96,6 +96,13 @@ public class Weapon : Focusable
             if(burstRange != null)
             {
                 burstRange.enabled = false;
+                if(burstHintParticle != null)
+                {
+                    ParticleSystem particle = burstHintParticle.GetComponent<ParticleSystem>();
+                    var mainModule = particle.main;
+                    mainModule.startSizeMultiplier = burstRange.radius;
+                    burstHintParticle.SetActive(false);
+                }
             }
         }
     }
@@ -230,9 +237,9 @@ public class Weapon : Focusable
         GetComponent<Rigidbody>().isKinematic = true;
         if (isBomb)
         {
-            if(burstHintObj != null)
+            if(burstHintParticle != null)
             {
-                burstHintObj.SetActive(false);
+                burstHintParticle.SetActive(false);
             }
         }
         if(pickupSound != null)
@@ -294,9 +301,9 @@ public class Weapon : Focusable
         if(bounceCount == 0)
         {
             Debug.Log("<color=yellow>Bursting</color>");
-            if (burstHintObj != null)
+            if (burstHintParticle != null)
             {
-                burstHintObj.SetActive(true);
+                burstHintParticle.SetActive(true);
                 //TODO: adjust rotation
                 AdjustPosAndRotToSurface(collision);
             }
@@ -322,9 +329,9 @@ public class Weapon : Focusable
     public void Burst()
     {
         Debug.Log("<color=red>Burst</color>");
-        if(burstHintObj != null)
+        if(burstHintParticle != null)
         {
-            burstHintObj.SetActive(false);
+            burstHintParticle.SetActive(false);
         }
         //爆炸粒子
         if(burstParticlePrefab != null)
@@ -336,7 +343,8 @@ public class Weapon : Focusable
             {
                 var particle = particles[i];
                 var mainModule = particle.main;
-                mainModule.startSizeMultiplier *= multiplier;
+                //mainModule.startSizeMultiplier *= multiplier;
+                mainModule.startSpeedMultiplier *= multiplier;
                 var shape = particle.shape;
                 shape.radius *= multiplier;
                 shape.randomPositionAmount *= multiplier;
@@ -506,8 +514,8 @@ public class Weapon : Focusable
         }
         if (isBomb)//如果是炸弹的话那就躺平
         {
-            ContactPoint cp = collision.GetContact(0);
-            AdjustRotation(-cp.normal);
+            
+            AdjustRotation(collision.impulse);
         }
         else//否则要沿原来方向插在surface上面
         {
@@ -586,6 +594,7 @@ public class Weapon : Focusable
             return;
         }
         Vector3 transPos = owner.moveControl.transform.position;
+        /*Vector3 desPos = transform.position - */
         transPos.x = transform.position.x;
         transPos.z = transform.position.z;
         owner.moveControl.transform.position = transPos;

@@ -202,6 +202,10 @@ public class Surface : Focusable
     private void OnCollisionExit(Collision collision)
     {
         Weapon weapon = collision.transform.GetComponent<Weapon>();
+        //if(weapon == null)
+        //{
+        //    weapon = collision.transform.GetComponentInParent<Weapon>();
+        //}
         if(weapon != null)
         {
             //weaponList.Remove(weapon);
