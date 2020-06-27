@@ -184,7 +184,7 @@ public class Surface : Focusable
                         audioSource.Play();
                     }
                     weapon.AdjustPosAndRotToSurface(collision);
-                    weapon.ForceStop();
+                    //weapon.ForceStop();
                     if (weapon.canTransfer)//如果可以传送, 辣么就要传送
                     {
                         weapon.Transfer();

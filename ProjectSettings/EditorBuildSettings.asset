@@ -10,8 +10,5 @@ EditorBuildSettings:
     guid: e81ee743056ed454e9766b6ec98e9a16
   - enabled: 1
     path: Assets/Scenes/TestPlayScene.unity
-    guid: ceb62f7909bc9c743a31f1a4d5670f80
-  - enabled: 1
-    path: Assets/Photon/PhotonUnityNetworking/Demos/PunCockpit/PunCockpit-Scene.unity
-    guid: 9d6d60c803e244e51ba945a84b88757d
+    guid: e5ab549d3d01e2245b4a365d0b03f3bb
   m_configObjects: {}

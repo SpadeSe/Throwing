@@ -36,9 +36,11 @@ public class Weapon : Focusable
     public string description;
     public Sprite UISprite;
     [Header("State")]
+    public int type = 1;
+    //public bool rotateMoving = false;
+    //public float rotateSpeed = 5.0f;
     public int damage = 2;
     public int useCount = -1;//临时武器的使用计数, 如果小于0表示非临时武器
-    public int type = 0;
     public bool taken = false;
     //public bool focused = false;
     public PlayerCharacter owner = null;
@@ -124,9 +126,10 @@ public class Weapon : Focusable
             GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale, ForceMode.Force);
             //Debug.Log("<color=blue>Velocity:" + GetComponent<Rigidbody>().velocity + "</color>");
             //Debug.Log("<color=blue>Delta Pos:" + (transform.position - debugPos) + "</color>");
+            //Debug.Log("<color=blue>AngularVelocity:" + GetComponent<Rigidbody>().angularVelocity + "</color>");
             debugPos = transform.position;
             //调整指向
-            if(WeaponHead != null)
+            if(WeaponHead != null)// && !rotateMoving)
             {
                 AdjustRotation(GetComponent<Rigidbody>().velocity);
             }
@@ -151,7 +154,7 @@ public class Weapon : Focusable
             return;
         }
         transform.position = startPos;
-        if (WeaponHead != null)
+        if (WeaponHead != null)// && !rotateMoving)
         {
             AdjustRotation(dir);
         }
@@ -160,6 +163,14 @@ public class Weapon : Focusable
         rigid.isKinematic = false;
         //给初速度
         rigid.AddForce(StartSpeed * dir, ForceMode.Impulse);
+        //if (rotateMoving)
+        //{
+        //    Vector3 weaponHeadDir = WeaponHead.transform.position - transform.position;
+        //    Vector3 axis = Vector3.Cross(dir, weaponHeadDir).normalized;
+        //    rigid.AddRelativeTorque(axis * rotateSpeed, ForceMode.Impulse);
+        //    //rigid.angularVelocity = transform.right * rotateSpeed;
+        //    Debug.Log("AddTorque");
+        //}
         //Debug.Log("<color=aqua>Dir: " + (StartSpeed * dir) + "</color>");
         rigid.useGravity = false;
         debugPos = transform.position;
@@ -257,6 +268,7 @@ public class Weapon : Focusable
             return;
         }
         ClearState();
+
         //RaycastHit hit = new RaycastHit();
         //Physics.Raycast(target.position, new Vector3(0, -1, 0), out hit, 100.0f);
         //Vector3 distance = Vector3.zero;
@@ -267,13 +279,16 @@ public class Weapon : Focusable
         //TODO: 修改这里的位置变化方式
         transform.parent = null;
         Vector3 newPos = target.transform.position;
-        if(WeaponHead != null && target.GetComponent<Weapon>().WeaponHead != null)
+        transform.rotation = startRotate;
+        if (WeaponHead != null && target.GetComponent<Weapon>().WeaponHead != null)
         {
+            //Vector3 targetDir = target.position - target.GetComponent<Weapon>().WeaponHead.transform.position;
+            //transform.rotation = Quaternion.identity;
+            //AdjustRotation(targetDir);
             newPos.y += (transform.position.y - WeaponHead.transform.position.y) -
                 (target.position.y - target.GetComponent<Weapon>().WeaponHead.transform.position.y);
         }
         transform.position = newPos;
-        transform.rotation = target.transform.rotation;
         transform.localScale = target.transform.localScale;
         taken = false;
     }
@@ -481,7 +496,7 @@ public class Weapon : Focusable
     #endregion
 
     //用来在砸地和开始的时候调整位置到Surface上
-    public void AdjustPosAndRotToSurface(Collision collision = null)
+    public void AdjustPosAndRotToSurface(Collision collision = null, bool forceStop=true)
     {
         if (taken)
         {
@@ -514,16 +529,21 @@ public class Weapon : Focusable
         }
         if (isBomb)//如果是炸弹的话那就躺平
         {
-            
             AdjustRotation(collision.impulse);
         }
         else//否则要沿原来方向插在surface上面
         {
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            Vector3 finalDir = rigid.velocity + rigid.velocity.magnitude / 2 * Physics.gravity.normalized;
+            //GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
+            AdjustRotation(finalDir);
             Vector3 posDiffer = collision.GetContact(0).point - transform.position +
                 (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
             transform.Translate(posDiffer, Space.World);
-            //GetComponent<Rigidbody>().AddForce(collision.impulse, ForceMode.Impulse);
-            /*AdjustRotation(-collision.impulse);*/
+        }
+        if (forceStop)
+        {
+            ForceStop();
         }
     }
 
