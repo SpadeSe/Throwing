@@ -45,6 +45,7 @@ public class PlayerInGameCanvas : MonoBehaviour
     public GameObject restartButton;
     public GameObject quitButton;
     public GameObject muteToggle;
+    public GameObject returnToGameButton;
     public AudioMixer audioMixer;
     #endregion
     [Space(10)]
@@ -70,6 +71,7 @@ public class PlayerInGameCanvas : MonoBehaviour
         restartButton.GetComponent<Button>().onClick.AddListener(RestartButtonClicked);
         quitButton.GetComponent<Button>().onClick.AddListener(QuitButtonClicked);
         muteToggle.GetComponent<Toggle>().onValueChanged.AddListener(MuteToggleChanged);
+        returnToGameButton.GetComponent<Button>().onClick.AddListener(ReturnToGameButtonClicked);
         EndPanel.SetActive(false);
     }
 
@@ -85,26 +87,17 @@ public class PlayerInGameCanvas : MonoBehaviour
         //暂时直接重开游戏
         if(roomRecorder.state == RoomState.EndPlay)
         {
-            EndPanel.SetActive(true);
-            Time.timeScale = 0.0f;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            TabPanel(true);
         }
         if (Input.GetKeyDown(KeyCode.Escape) && roomRecorder.state != RoomState.EndPlay)
         {
             if (EndPanel.activeSelf)
             {
-                EndPanel.SetActive(false);
-                Time.timeScale = 1.0f;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                TabPanel(false);
             }
             else
             {
-                EndPanel.SetActive(true);
-                Time.timeScale = 0.0f;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                TabPanel(true);
             }
         }
         #endregion
@@ -207,6 +200,27 @@ public class PlayerInGameCanvas : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+    public void TabPanel(bool show)
+    {
+        if (show)
+        {
+            EndPanel.SetActive(true);
+            Time.timeScale = 0.0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            EndPanel.SetActive(false);
+            Time.timeScale = 1.0f;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    public void ReturnToGameButtonClicked()
+    {
+        TabPanel(false);
     }
 
     public void MuteToggleChanged(bool on)
