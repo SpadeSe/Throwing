@@ -37,7 +37,8 @@ public enum CharacterLiveState: byte
     Dying_Backward,
     Dying_Left,
     Dying_Right,
-    Dead
+    Dead,
+    Respawn
 }
 
 [System.Serializable]

@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool debugMode = false;
     public RoomRecorder roomRecorder;
     public int idInRoom = -1;
 
@@ -17,7 +18,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (!debugMode)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         gameObject.tag = Definitions.playerControllerTag;
     }
     

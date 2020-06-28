@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnterParticle: {fileID: 8066329362020403895, guid: 83e20b7f0a2a76140aab693963d2a7c5,
     type: 3}
+  weaponList: []
+  playerList: []
   audioSource: {fileID: 0}
   WeaponEnterClip: {fileID: 8300000, guid: 7a6fcb92befddd146acfb9767c87db14, type: 3}
   PlayerEnterClip: {fileID: 8300000, guid: 604012bc455e35f49ab6261d42bd22f4, type: 3}
@@ -119,7 +121,8 @@ AudioSource:
   m_GameObject: {fileID: 1749649004535511998}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243877164428570778, guid: 564ee267a0a6c284583feb7394413373,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

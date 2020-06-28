@@ -379,7 +379,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
     {
         curHp = Mathf.Max(0, curHp - dam);
         Debug.Log("" + gameObject.name + "ReceiveDamage: <color=red>" + dam + "</color> LeftHp: <color=green>" + curHp + "</color>");
-        if(curHp == 0)//计算死亡方向
+        PopupHint.PopupUI("(DebugInfo)" + gameObject.name + "ReceiveDamage: <color=red>" + dam + "</color> LeftHp: <color=green>" + curHp + "</color>");
+        if (curHp == 0)//计算死亡方向
         {
             Vector3 faceDir = transform.forward;
             faceDir.y = 0;
@@ -457,7 +458,8 @@ public class PlayerCharacter : MonoBehaviourPun, IPunObservable
         }
         moveControl.transform.position = respawnTrans.position;
         moveControl.transform.rotation = respawnTrans.rotation;
-        liveState = CharacterLiveState.Alive;
+        curHp = maxHp;
+        liveState = CharacterLiveState.Respawn;
     }
 
     #region CallBacks

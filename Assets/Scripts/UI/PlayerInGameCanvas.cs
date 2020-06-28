@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class PlayerInGameCanvas : MonoBehaviour
 {
@@ -37,13 +39,21 @@ public class PlayerInGameCanvas : MonoBehaviour
     public Text weaponNameText;
     public Text weaponDescriptionText;
     #endregion
+    #region TabPanel
+    [Space(10)]
+    public GameObject EndPanel;
+    public GameObject restartButton;
+    public GameObject quitButton;
+    public GameObject muteToggle;
+    public AudioMixer audioMixer;
+    #endregion
     [Space(10)]
     #region Other
     public GameObject crossHair;
     public GameObject interactHint;
     public Scrollbar fixBar;
+
     //TODO
-    public GameObject popUpHint;
     public GameObject Communication;
     #endregion
 
@@ -51,13 +61,16 @@ public class PlayerInGameCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Time.timeScale = 1.0f;
         GameObject roomRecorderObj = GameObject.FindGameObjectWithTag(Definitions.roomRecorderTag);
         if(roomRecorderObj != null)
         {
             roomRecorder = roomRecorderObj.GetComponent<RoomRecorder>();
         }
-
+        restartButton.GetComponent<Button>().onClick.AddListener(RestartButtonClicked);
+        quitButton.GetComponent<Button>().onClick.AddListener(QuitButtonClicked);
+        muteToggle.GetComponent<Toggle>().onValueChanged.AddListener(MuteToggleChanged);
+        EndPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,6 +81,31 @@ public class PlayerInGameCanvas : MonoBehaviour
         {
             Time_Sec.text = string.Format("{0:00}", (int)roomRecorder.leftTime % 60);
             Time_Min.text = string.Format("{0:00}", (int)roomRecorder.leftTime / 60);
+        }
+        //暂时直接重开游戏
+        if(roomRecorder.state == RoomState.EndPlay)
+        {
+            EndPanel.SetActive(true);
+            Time.timeScale = 0.0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && roomRecorder.state != RoomState.EndPlay)
+        {
+            if (EndPanel.activeSelf)
+            {
+                EndPanel.SetActive(false);
+                Time.timeScale = 1.0f;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                EndPanel.SetActive(true);
+                Time.timeScale = 0.0f;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
         #endregion
 
@@ -156,4 +194,31 @@ public class PlayerInGameCanvas : MonoBehaviour
         }
         #endregion
     }
+
+    #region Events
+    public void RestartButtonClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void QuitButtonClicked()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    public void MuteToggleChanged(bool on)
+    {
+        if (on)
+        {
+            audioMixer.SetFloat("MainVolume", -80f);
+        }
+        else
+        {
+            audioMixer.SetFloat("MainVolume", 0f);
+        }
+    }
+    #endregion
 }

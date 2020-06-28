@@ -44,12 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400c4156e9408b44f90ea1f347318f16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoundDuration: 180
+  KillScore: 2
+  SuicideScore: 1
   playerControllerLocal: {fileID: 0}
   state: 0
   clearRecord: 0
+  leftTime: 0
   redRecords: []
   blueRecords: []
   curIdx: 0
+  redIngameRecords:
+    side: 0
+    characters: []
+    Score: 0
+    KillCount: 0
+    DeadCount: 0
+  blueIngameRecords:
+    side: 0
+    characters: []
+    Score: 0
+    KillCount: 0
+    DeadCount: 0
 --- !u!114 &161012523
 MonoBehaviour:
   m_ObjectHideFlags: 0

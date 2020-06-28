@@ -1257,6 +1257,8 @@ GameObject:
   - component: {fileID: 3183391301268058402}
   - component: {fileID: 677073136860725616}
   - component: {fileID: 114297072254386896}
+  - component: {fileID: 5015648343340643715}
+  - component: {fileID: 8316014791634894856}
   m_Layer: 9
   m_Name: sporty_granny
   m_TagString: Untagged
@@ -1296,7 +1298,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: c5d20249c03c0ba49acc1b9a999859e0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1337,7 +1339,7 @@ MonoBehaviour:
   lineObj: {fileID: 0}
   predictLineColor: {r: 1, g: 0.46078432, b: 0.007843138, a: 1}
   LinePredictTime: 3
-  LineSlice: 20
+  LineSlice: 50
 --- !u!114 &114297072254386896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1375,6 +1377,95 @@ MonoBehaviour:
   interactDis: 2
   focusingObj: {fileID: 0}
   fixingSurface: {fileID: 0}
+--- !u!114 &5015648343340643715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183391301268092528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 0
+    Name: Blend
+  - Type: 1
+    SynchronizeType: 2
+    Name: Vertical
+  - Type: 1
+    SynchronizeType: 2
+    Name: Horizontal
+  - Type: 4
+    SynchronizeType: 1
+    Name: Moving
+  - Type: 1
+    SynchronizeType: 0
+    Name: MoveSpeed
+  - Type: 1
+    SynchronizeType: 0
+    Name: Turn
+  - Type: 1
+    SynchronizeType: 2
+    Name: AttackSpeed
+  - Type: 4
+    SynchronizeType: 1
+    Name: Throwing
+  - Type: 4
+    SynchronizeType: 1
+    Name: Targeting
+  - Type: 3
+    SynchronizeType: 1
+    Name: AttackType
+  - Type: 4
+    SynchronizeType: 1
+    Name: Armed
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingForward
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingBackward
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingLeft
+  - Type: 9
+    SynchronizeType: 0
+    Name: DyingRight
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
+  - SynchronizeType: 0
+    LayerIndex: 2
+--- !u!114 &8316014791634894856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183391301268092528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 5015648343340643715}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3183391301268092530
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class PlayerAnimationControl : MonoBehaviourPun
     //public bool throwing = false;
     //public int attackType = 0;
     
+    
 
     private void Awake()
     {
@@ -64,9 +65,16 @@ public class PlayerAnimationControl : MonoBehaviourPun
                 case CharacterLiveState.Dying_Right:
                     animControl.SetTrigger("DyingRight");
                     break;
+                case CharacterLiveState.Respawn:
+                    animControl.SetTrigger("Respawn");
+                    playerCharacter.liveState = CharacterLiveState.Alive;
+                    break;
                 default:break;
             }
-            playerCharacter.liveState = CharacterLiveState.Dead;
+            if(playerCharacter.liveState != CharacterLiveState.Alive)
+            {
+                playerCharacter.liveState = CharacterLiveState.Dead;
+            }
             return;
         }
         if (playerCharacter.isStaticTarget)

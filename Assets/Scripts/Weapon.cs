@@ -509,7 +509,7 @@ public class Weapon : Focusable
             if(Physics.Raycast(transform.position, dir, out hit, 100))
             {
                 Vector3 posDiffer = hit.point - transform.position + 
-                    (WeaponHead == null ? Vector3.zero : transform.position - WeaponHead.transform.position);
+                    (WeaponHead == null ? Vector3.zero : (transform.position - WeaponHead.transform.position));
                 //Debug.Log(hit.point);
                 //Debug.Log(gameObject.name + " " + hit.collider.gameObject.name + (hit.point - WeaponHead.transform.position));
                 transform.Translate(posDiffer, Space.World);

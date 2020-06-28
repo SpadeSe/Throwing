@@ -6,6 +6,8 @@ using UnityEngine;
 public class KillZone : MonoBehaviour
 {
     public GameObject EnterParticle;
+    public List<Weapon> weaponList;
+    public List<PlayerCharacter> playerList;
     [Header("Audio")]
     public AudioSource audioSource;
     [Tooltip("进入水面时的音效")]
@@ -27,16 +29,14 @@ public class KillZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(EnterParticle != null)
-        {
-            GameObject particle = Instantiate(EnterParticle);//, transform);
-            particle.transform.position = other.transform.position;
-            Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
-        }
         //处理武器
         Weapon weapon = other.GetComponentInParent<Weapon>();
-        if (weapon != null)
+        if (weapon != null && weapon.moving)
+            //&& !weaponList.Find(w => w == weapon))
         {
+            //Debug.Log("WeaponEnter");
+            GenParticle(weapon.transform);
+            //weaponList.Add(weapon);
             if (WeaponEnterClip != null)
             {
                 audioSource.clip = WeaponEnterClip;
@@ -48,7 +48,11 @@ public class KillZone : MonoBehaviour
 
         PlayerCharacter player = other.GetComponentInChildren<PlayerCharacter>();
         if (player != null)
+            //&& !playerList.Find(f => f == player ))
         {
+            //Debug.Log("playerEnter");
+            GenParticle(player.transform);
+            //playerList.Add(player);
             if (PlayerEnterClip != null)
             {
                 audioSource.clip = PlayerEnterClip;
@@ -57,4 +61,15 @@ public class KillZone : MonoBehaviour
             player.Suicide();
         }
     }
+
+    public void GenParticle(Transform other)
+    {
+        if (EnterParticle != null)
+        {
+            GameObject particle = Instantiate(EnterParticle);//, transform);
+            particle.transform.position = other.position;
+            Destroy(particle, particle.GetComponent<ParticleSystem>().main.duration);
+        }
+    }
+    
 }

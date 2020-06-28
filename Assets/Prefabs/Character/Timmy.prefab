@@ -2174,6 +2174,8 @@ GameObject:
   - component: {fileID: 4637157838847128298}
   - component: {fileID: 2437588491359827023}
   - component: {fileID: 1614504855609762092}
+  - component: {fileID: 3716033202567271771}
+  - component: {fileID: 9120317411388388301}
   m_Layer: 9
   m_Name: Timmy
   m_TagString: Untagged
@@ -2210,7 +2212,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: c5d20249c03c0ba49acc1b9a999859e0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2266,10 +2268,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStaticTarget: 0
   weaponSlot: {fileID: 7157459900735865981}
-  playerCam: {fileID: 6983993711176959598}
+  playerCam: {fileID: 0}
   moveControl: {fileID: 0}
   respawnTrans: {fileID: 0}
-  CanvasPrefab: {fileID: 0}
+  CanvasPrefab: {fileID: 1333277302465083856, guid: 2f9ca634479899d4cbc717e375195f66,
+    type: 3}
   ownedCanvas: {fileID: 0}
   maxHp: 3
   normalSpeed: 2
@@ -2288,6 +2291,83 @@ MonoBehaviour:
   interactDis: 2
   focusingObj: {fileID: 0}
   fixingSurface: {fileID: 0}
+--- !u!114 &3716033202567271771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544019747377795454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 0
+    Name: Blend
+  - Type: 1
+    SynchronizeType: 2
+    Name: Vertical
+  - Type: 1
+    SynchronizeType: 2
+    Name: Horizontal
+  - Type: 4
+    SynchronizeType: 1
+    Name: Moving
+  - Type: 1
+    SynchronizeType: 0
+    Name: MoveSpeed
+  - Type: 1
+    SynchronizeType: 0
+    Name: Turn
+  - Type: 1
+    SynchronizeType: 2
+    Name: AttackSpeed
+  - Type: 4
+    SynchronizeType: 1
+    Name: Throwing
+  - Type: 4
+    SynchronizeType: 1
+    Name: Targeting
+  - Type: 3
+    SynchronizeType: 1
+    Name: AttackType
+  - Type: 4
+    SynchronizeType: 1
+    Name: Armed
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
+  - SynchronizeType: 0
+    LayerIndex: 2
+--- !u!114 &9120317411388388301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544019747377795454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 3716033202567271771}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5746466084566550271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,14 +2470,13 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3440465616812685333, guid: a7027407690972e4f99d7e770cbab775,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7027407690972e4f99d7e770cbab775, type: 3}
---- !u!20 &6983993711176959598 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 358107629351118583, guid: a7027407690972e4f99d7e770cbab775,
-    type: 3}
-  m_PrefabInstance: {fileID: 7211496358486171801}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9079096283561340694 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1867599998106554255, guid: a7027407690972e4f99d7e770cbab775,

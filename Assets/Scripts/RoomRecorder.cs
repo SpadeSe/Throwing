@@ -15,6 +15,7 @@ public delegate void GameBeginEvent();
 [RequireComponent(typeof(PhotonView))]
 public class RoomRecorder : MonoBehaviourPun, IPunObservable
 {
+    public bool DebugMode = false;
     public GameBeginEvent gameBeginEvent;
     [Header("Settings")]
     public float RoundDuration = 180.0f;
@@ -37,7 +38,10 @@ public class RoomRecorder : MonoBehaviourPun, IPunObservable
     void Start()
     {
         gameObject.tag = Definitions.roomRecorderTag;
-        DontDestroyOnLoad(gameObject);
+        if (!DebugMode)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         PhotonPeer.RegisterType(typeof(RoomRecord), (byte)'r', RoomRecord.SerializeClass, RoomRecord.DeserializeClass);
         PhotonPeer.RegisterType(typeof(SideRecords), (byte)'s', SideRecords.SerializeClass, SideRecords.DeserializeClass);
         if(state == RoomState.ReadyToPlay)

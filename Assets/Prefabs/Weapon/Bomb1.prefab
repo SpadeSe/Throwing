@@ -127,7 +127,8 @@ AudioSource:
   m_GameObject: {fileID: 7869507501951208232}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243328608310040008, guid: 564ee267a0a6c284583feb7394413373,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -239,9 +240,9 @@ MonoBehaviour:
   weaponName: "\u9AD8\u7206\u624B\u96F7"
   description: "\u5927\u4EBA, \u65F6\u4EE3\u53D8\u4E86"
   UISprite: {fileID: 21300000, guid: fce2cda8b0df1f14ba83dd3fcf3c293b, type: 3}
+  type: 1
   damage: 2
   useCount: -1
-  type: 1
   taken: 0
   owner: {fileID: 0}
   canDestroy: 0
@@ -260,8 +261,8 @@ MonoBehaviour:
   throwOutSound: {fileID: 8300000, guid: a06ac9f5637a06146b9e511970b91f40, type: 3}
   BombBurstSound: {fileID: 8300000, guid: 2d8cafe866c607e49ab20e01603e8deb, type: 3}
   isBomb: 1
-  burstRange: {fileID: 8631119709719460613}
   burstAffectPlayers: []
+  burstRange: {fileID: 8631119709719460613}
   burstHintParticle: {fileID: 6124550683584004421}
   burstParticlePrefab: {fileID: 4870727731603080214, guid: 594166c8064db4d49891038c3a6617d3,
     type: 3}
