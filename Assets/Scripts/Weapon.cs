@@ -53,8 +53,13 @@ public class Weapon : Focusable
     public bool moving = false;
     public float gravityScale = 0.05f;
     public float StartSpeed = 1.5f;
-    Vector3 debugPos = Vector3.zero;
     public List<PlayerCharacter> hitPlayer;//用来防止多次击中
+    [Header("Trail")]
+    public WeaponTrail trail;
+    public float trailTime = 0.5f;
+    private float t = 0.033f;
+    private float tempT = 0;
+    private float animationIncrement = 0.003f;
     [Header("TransAdjust")]
     public GameObject WeaponHead;
     public Vector3 startPos;
@@ -92,6 +97,10 @@ public class Weapon : Focusable
         startPos = transform.position;
         startRotate = transform.rotation;
         //ForceStop();
+        if(trail != null)
+        {
+            trail.SetTime(0.0f, 0.0f, 1.0f);
+        }
         if (isBomb)
         {
             bounceCount = maxBounce;
@@ -125,9 +134,7 @@ public class Weapon : Focusable
             //加重力
             GetComponent<Rigidbody>().AddForce(Physics.gravity * gravityScale, ForceMode.Force);
             //Debug.Log("<color=blue>Velocity:" + GetComponent<Rigidbody>().velocity + "</color>");
-            //Debug.Log("<color=blue>Delta Pos:" + (transform.position - debugPos) + "</color>");
             //Debug.Log("<color=blue>AngularVelocity:" + GetComponent<Rigidbody>().angularVelocity + "</color>");
-            debugPos = transform.position;
             //调整指向
             if(WeaponHead != null)// && !rotateMoving)
             {
@@ -143,6 +150,40 @@ public class Weapon : Focusable
         //{
         //    Debug.Log(GetComponent<Rigidbody>().angularVelocity);
         //}
+    }
+    private void LateUpdate()
+    {
+        if (moving)
+        {
+            if(trail != null)
+            {
+                t = Mathf.Clamp(Time.deltaTime, 0, 0.066f);
+
+                if (t > 0)
+                {
+                    while (tempT < t)
+                    {
+                        tempT += animationIncrement;
+
+                        if (trail.time > 0)
+                        {
+                            trail.Itterate(Time.time - t + tempT);
+                        }
+                        else
+                        {
+                            trail.ClearTrail();
+                        }
+                    }
+
+                    tempT -= t;
+
+                    if (trail.time > 0)
+                    {
+                        trail.UpdateTrail(Time.time, t);
+                    }
+                }
+            }
+        }
     }
 
     //武器被扔出前的各种处理
@@ -173,7 +214,12 @@ public class Weapon : Focusable
         //}
         //Debug.Log("<color=aqua>Dir: " + (StartSpeed * dir) + "</color>");
         rigid.useGravity = false;
-        debugPos = transform.position;
+        if(trail != null)
+        {
+            tempT = 0.0f;
+            trail.SetTime(trailTime, 0.0f, 1.0f);
+            trail.StartTrail(trailTime, 1.0f);
+        }
         //转为碰撞体
         WeaponCollider.isTrigger = false;
         //改变状态
@@ -298,6 +344,12 @@ public class Weapon : Focusable
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = true;
+        if (trail != null)
+        {
+            trail.SetTime(0.0f, 0.0f, 1.0f);
+            
+        }
         moving = false;
     }
     //public void HitSurface(Collision collision)

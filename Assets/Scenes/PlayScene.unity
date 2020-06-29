@@ -8625,7 +8625,7 @@ PrefabInstance:
     - target: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.0149193
+      value: -2.566
       objectReference: {fileID: 0}
     - target: {fileID: 8984542439349651911, guid: 9f506f8501069f54aae65bf47bb22a61,
         type: 3}
@@ -12250,10 +12250,20 @@ PrefabInstance:
       propertyPath: rotateSpeed
       value: 1800
       objectReference: {fileID: 0}
+    - target: {fileID: 114669656394451216, guid: c3d7f59c950ad014a8572e4e2ba3a409,
+        type: 3}
+      propertyPath: gravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114669656394451216, guid: c3d7f59c950ad014a8572e4e2ba3a409,
+        type: 3}
+      propertyPath: StartSpeed
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2550361064817628423, guid: c3d7f59c950ad014a8572e4e2ba3a409,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.49
+      value: -4.11
       objectReference: {fileID: 0}
     - target: {fileID: 2550361064817628423, guid: c3d7f59c950ad014a8572e4e2ba3a409,
         type: 3}
@@ -12263,7 +12273,7 @@ PrefabInstance:
     - target: {fileID: 2550361064817628423, guid: c3d7f59c950ad014a8572e4e2ba3a409,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.19
+      value: -6.9
       objectReference: {fileID: 0}
     - target: {fileID: 2550361064817628423, guid: c3d7f59c950ad014a8572e4e2ba3a409,
         type: 3}
@@ -12309,6 +12319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Axe1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8862243162065782407, guid: c3d7f59c950ad014a8572e4e2ba3a409,
+        type: 3}
+      propertyPath: height
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d7f59c950ad014a8572e4e2ba3a409, type: 3}
@@ -21650,7 +21665,7 @@ PrefabInstance:
     - target: {fileID: 3374222769699269239, guid: 27654fc8737de2e48a61f1be94359b5d,
         type: 3}
       propertyPath: itemRotateSpeed
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27654fc8737de2e48a61f1be94359b5d, type: 3}
